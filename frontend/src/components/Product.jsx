@@ -10,9 +10,24 @@ const Product = ({ product }) => {
         <Card.Img variant="top" src={product.image} />
       </Link>
       <Card.Body>
-        <Card.Title>{product.name}</Card.Title>
-        <Card.Text>{product.description}</Card.Text>
-        <Card.Text>${product.price}</Card.Text>
+        <Link to={`/product/${product._id}`}>
+          <Card.Title as="div">
+            <strong>{product.name}</strong>
+          </Card.Title>
+        </Link>
+
+        <Card.Text as="div">
+          <div className="my-3">
+            {product.rating} from {product.numReviews} reviews
+          </div>
+        </Card.Text>
+
+        <Card.Text as="div">{product.description}</Card.Text>
+
+        <Card.Text as="h4" className="my-3">
+          ${product.price}
+        </Card.Text>
+
         <Button variant="primary">Add to Cart</Button>
       </Card.Body>
     </Card>

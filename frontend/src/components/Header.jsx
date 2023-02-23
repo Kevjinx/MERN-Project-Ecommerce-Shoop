@@ -7,9 +7,9 @@ const Header = () => {
     <header>
       <Navbar bg="dark" variant="dark" collapseOnSelect expand="lg">
         <Container>
-          {/* wrapping to make element behave like a Link from react-router, avoiding screen reloading */}
+          {/* wrapping to make element behave like a Link from react-router, avoiding screen reloading, while keeping bootstrap styling */}
           <LinkContainer to="/">
-            <Navbar.Brand href="/">Shoop</Navbar.Brand>
+            <Navbar.Brand>Shoop</Navbar.Brand>
           </LinkContainer>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

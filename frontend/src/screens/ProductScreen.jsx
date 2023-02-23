@@ -1,13 +1,21 @@
-import React from 'react';
-import products from '../products';
+import React, { useState, useEffect } from 'react';
 import { Row, Col, Image, Card, Button, ListGroup } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import Rating from '../components/Rating';
+import axios from 'axios';
 
 const ProductScreen = () => {
   const { productId } = useParams();
-  //will replace this with a fetch request to mongodb
-  const product = products.find((p) => p._id === productId);
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    const apiURL = `http://localhost:5000/api/products/${productId}`;
+    const fetchProduct = async () => {
+      const { data } = await axios.get(apiURL);
+      setProduct(data);
+    };
+    fetchProduct();
+  }, []);
 
   return (
     <>

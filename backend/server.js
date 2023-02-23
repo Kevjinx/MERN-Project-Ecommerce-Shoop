@@ -2,6 +2,9 @@ import express from 'express';
 import dotenv from 'dotenv';
 import products from './data/products.js';
 import cors from 'cors';
+import dbConnect from './db/dbConnect.js';
+
+dbConnect();
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;

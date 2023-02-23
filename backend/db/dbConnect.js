@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import colors from 'colors';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -9,9 +10,11 @@ const dbConnect = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log(`MongoDB connected: ${connect.connection.host}`);
+    console.log(
+      colors.rainbow(`MongoDB connected: ${connect.connection.host}`)
+    );
   } catch (error) {
-    console.log('error: ', error.message);
+    console.log(colors.red('error: ', error.message));
     process.exit(1); //exit with failure
   }
 };

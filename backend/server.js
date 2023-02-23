@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import products from './data/products.js';
 import cors from 'cors';
+import colors from 'colors';
 import dbConnect from './db/dbConnect.js';
 
 dbConnect();
@@ -27,5 +28,7 @@ app.get('/api/products/:productId', (req, res) => {
 });
 
 app.listen(PORT, () =>
-  console.log(`Server running in ${process.env.NODE_ENV} on port ${PORT}`)
+  console.log(
+    colors.rainbow(`Server running in ${process.env.NODE_ENV} on port ${PORT}`)
+  )
 );

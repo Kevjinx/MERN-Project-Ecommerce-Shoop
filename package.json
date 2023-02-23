@@ -1,0 +1,19 @@
+{
+  "name": "shoop",
+  "version": "1.0.0",
+  "description": "Shooping Cart App with MERN",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon backend/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Kevin Mei",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

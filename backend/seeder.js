@@ -3,10 +3,10 @@ import dotenv from 'dotenv';
 import colors from 'colors';
 import users from './data/users.js';
 import products from './data/products.js';
-import User from './models/userModel.js';
-import Product from './models/productModel.js';
-import Order from './models/orderModel.js';
-import dbConnect from './db/models/dbConnect.js';
+import User from './db/models/userModel.js';
+import Product from './db/models/productModel.js';
+import Order from './db/models/orderModel.js';
+import dbConnect from './db/dbConnect.js';
 
 dotenv.config();
 
@@ -23,6 +23,7 @@ const importData = async () => {
 
     const adminUser = createdUsers[0]._id;
 
+    // Add admin user to all products
     const sampleProducts = products.map((product) => {
       return { ...product, user: adminUser };
     });
@@ -50,3 +51,10 @@ const destroyData = async () => {
     process.exit(1);
   }
 };
+
+process.argv[2] === '-d' ? destroyData() : importData();
+
+// Run the script with the following command:
+// from package.json
+//   "data:import": "node backend/seeder.js",
+//   "data:destroy": "node backend/seeder.js -d"

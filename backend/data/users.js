@@ -1,8 +1,8 @@
 const users = [
   {
     isAdmin: true,
-    firstName: 'Terry',
-    lastName: 'Medhurst',
+    firstName: 'Bad',
+    lastName: 'Admin',
     maidenName: 'Smitham',
     age: 50,
     gender: 'male',

@@ -1,4 +1,4 @@
-import { Reducer, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 
 const preloadedState = {};
 
@@ -8,7 +8,7 @@ const store = configureStore({
   },
   preloadedState,
   middleware: [],
-  devTools: process.env.NODE_ENV !== 'production',
+  devTools: true,
 });
 
 export default store;

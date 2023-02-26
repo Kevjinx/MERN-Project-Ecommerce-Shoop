@@ -25,7 +25,7 @@ const Rating = ({ value, text }) => {
   );
 };
 
-//type checking
+// type checking
 Rating.propTypes = {
   value: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,

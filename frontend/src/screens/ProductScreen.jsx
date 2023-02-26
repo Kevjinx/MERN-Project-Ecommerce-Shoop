@@ -3,6 +3,7 @@ import { Row, Col, Image, Card, Button, ListGroup } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import Rating from '../components/Rating';
 import axios from 'axios';
+import AddToCart from '../features/cart/AddToCart';
 
 const ProductScreen = () => {
   const { productId } = useParams();
@@ -13,6 +14,7 @@ const ProductScreen = () => {
     const fetchProduct = async () => {
       const { data } = await axios.get(apiURL);
       setProduct(data);
+      console.log(data);
     };
     fetchProduct();
   }, [productId]);
@@ -34,7 +36,7 @@ const ProductScreen = () => {
 
             <ListGroup.Item>
               <Rating
-                value={product.rating}
+                value={parseInt(product.rating)}
                 text={`${product.numReviews} reviews`}
               />
             </ListGroup.Item>
@@ -70,9 +72,7 @@ const ProductScreen = () => {
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item className="text-center">
-                <Button variant="dark" disabled={product.countInStock === 0}>
-                  Add to Cart
-                </Button>
+                <AddToCart productId={productId} />
               </ListGroup.Item>
             </ListGroup>
           </Card>

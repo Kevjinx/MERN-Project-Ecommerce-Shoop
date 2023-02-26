@@ -1,10 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
+import productReducer from './features/product/productSlice';
+import cartReducer from './features/cart/cartSlice';
 
 const preloadedState = {};
 
 const store = configureStore({
   reducer: {
-    // Add your reducers here
+    product: productReducer,
+    cart: cartReducer,
   },
   preloadedState,
   middleware: [],

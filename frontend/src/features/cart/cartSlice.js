@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../../constants/cartConstants';
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+} from '../../constants/cartConstants.js';
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -21,7 +24,7 @@ const cartSlice = createSlice({
 
     [REMOVE_FROM_CART]: (state, action) => {
       const productId = action.payload;
-      state.cartItems = state.cartItems.filter(
+      state.cartProducts = state.cartProducts.filter(
         (cartProductId) => cartProductId !== productId
       );
     },

@@ -6,11 +6,9 @@ import {
   incrementQuantity,
   decrementQuantity,
 } from './cartSlice.js';
-import { Button } from 'react-bootstrap';
+import { Button, Badge } from 'react-bootstrap';
 
 const CartButton = ({ product }) => {
-  const [isAdded, setIsAdded] = useState(false);
-
   //workaround for redux quantity bug, will fix later
   const [quantity, setQuantity] = useState(0);
   const dispatch = useDispatch();
@@ -18,7 +16,6 @@ const CartButton = ({ product }) => {
   const handleAddToCart = () => {
     setQuantity(1);
     dispatch(addToCart(product));
-    setIsAdded(true);
   };
 
   const handleIncrementQuantity = () => {
@@ -27,7 +24,6 @@ const CartButton = ({ product }) => {
   };
 
   const handleDecrementQuantity = () => {
-    quantity === 1 && setIsAdded(false);
     setQuantity(quantity - 1);
     dispatch(decrementQuantity(product));
   };
@@ -35,33 +31,51 @@ const CartButton = ({ product }) => {
   const handleRemoveFromCart = () => {
     setQuantity(0);
     dispatch(removeFromCart(product));
-    setIsAdded(false);
   };
 
   return (
     <div>
-      <Button variant="dark" onClick={handleAddToCart} disabled={isAdded}>
-        {isAdded ? 'Added to cart!' : 'Add to cart'}
-      </Button>
-      <div>
-        <Button
-          variant="dark"
-          onClick={handleIncrementQuantity}
-          disabled={!isAdded}
-        >
-          +
+      {quantity === 0 && (
+        <Button variant="dark" onClick={handleAddToCart}>
+          Add to cart
         </Button>
-        <Button
-          variant="dark"
-          onClick={handleDecrementQuantity}
-          disabled={!isAdded}
+      )}
+      {quantity > 0 && (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
         >
-          -
-        </Button>
-      </div>
-      <Button variant="dark" onClick={handleRemoveFromCart} disabled={!isAdded}>
-        {isAdded ? 'Remove from cart' : 'Removed from cart'}
-      </Button>
+          <i class="fa-solid fa-cart-shopping">
+            <Badge bg="secondary">{quantity}</Badge>
+          </i>
+          <div>
+            <Button
+              variant="dark"
+              onClick={handleIncrementQuantity}
+              disabled={quantity === 0}
+            >
+              +
+            </Button>
+            <Button
+              variant="dark"
+              onClick={handleDecrementQuantity}
+              disabled={quantity === 0}
+            >
+              -
+            </Button>
+            <Button
+              variant="dark"
+              onClick={handleRemoveFromCart}
+              disabled={quantity === 0}
+            >
+              <i class="fa-solid fa-trash"></i>{' '}
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Rating from './Rating';
+import AddToCart from '../features/cart/CartButton.jsx';
 
 const Product = ({ product }) => {
+  console.log(product);
+
   return (
     <Card style={{ width: '18rem' }}>
       <Link to={`/product/${product._id}`}>
@@ -30,8 +32,7 @@ const Product = ({ product }) => {
         <Card.Text as="h4" className="my-3">
           ${product.price}
         </Card.Text>
-
-        <Button variant="primary">Add to Cart</Button>
+        <AddToCart product={product} />
       </Card.Body>
     </Card>
   );

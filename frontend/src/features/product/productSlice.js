@@ -1,4 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import {
+  PRODUCT_REQUEST,
+  PRODUCT_SUCCESS,
+  PRODUCT_FAIL,
+} from '../../constants/productConstants';
 
 const productSlice = createSlice({
   name: 'product',
@@ -8,14 +13,14 @@ const productSlice = createSlice({
     error: null,
   },
   reducers: {
-    productRequest(state) {
+    [PRODUCT_REQUEST]: (state) => {
       state.loading = true;
     },
-    productSuccess(state, action) {
+    [PRODUCT_SUCCESS]: (state, action) => {
       state.loading = false;
       state.products = action.payload;
     },
-    productFail(state, action) {
+    [PRODUCT_FAIL]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },

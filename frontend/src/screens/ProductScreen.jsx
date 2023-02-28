@@ -14,8 +14,11 @@ const ProductScreen = () => {
     dispatch(fetchProductById(productId));
   }, [dispatch, productId]);
 
-  const { product } = useSelector((state) => state.product);
+  const product = useSelector((state) => state.product.products);
 
+  if (!product) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
       <Link className="btn btn-light my-3" to="/">

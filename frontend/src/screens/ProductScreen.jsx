@@ -1,22 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Row, Col, Image, Card, Button, ListGroup } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import Rating from '../components/Rating';
-import axios from 'axios';
 import CartButton from '../features/cart/CartButton';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProductById } from '../features/product/productSlice.js';
 
 const ProductScreen = () => {
   const { productId } = useParams();
-  const [product, setProduct] = useState({});
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const apiURL = `http://localhost:5000/api/products/${productId}`;
-    const fetchProduct = async () => {
-      const { data } = await axios.get(apiURL);
-      setProduct(data);
-    };
-    fetchProduct();
-  }, [productId]);
+    dispatch(fetchProductById(productId));
+  }, [dispatch, productId]);
+
+  const { product } = useSelector((state) => state.product);
 
   return (
     <>

@@ -18,7 +18,7 @@ const productSlice = createSlice({
     },
     [PRODUCT_SUCCESS]: (state, action) => {
       state.loading = false;
-      state.products = action.payload;
+      state.product = action.payload;
     },
     [PRODUCT_FAIL]: (state, action) => {
       state.loading = false;
@@ -31,9 +31,20 @@ export const { productRequest, productSuccess, productFail } =
   productSlice.actions;
 
 export const fetchProducts = () => async (dispatch) => {
-  dispatch(productRequest());
   try {
+    dispatch(productRequest());
     const response = await fetch('http://localhost:5000/api/products');
+    const data = await response.json();
+    dispatch(productSuccess(data));
+  } catch (error) {
+    dispatch(productFail(error.message));
+  }
+};
+
+export const fetchProductById = (id) => async (dispatch) => {
+  try {
+    dispatch(productRequest());
+    const response = await fetch(`http://localhost:5000/api/products/${id}`);
     const data = await response.json();
     dispatch(productSuccess(data));
   } catch (error) {

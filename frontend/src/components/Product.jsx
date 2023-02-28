@@ -5,8 +5,6 @@ import Rating from './Rating';
 import AddToCart from '../features/cart/CartButton.jsx';
 
 const Product = ({ product }) => {
-  console.log(product);
-
   return (
     <Card style={{ width: '18rem' }}>
       <Link to={`/product/${product._id}`}>

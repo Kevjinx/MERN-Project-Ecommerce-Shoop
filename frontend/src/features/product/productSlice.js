@@ -29,4 +29,16 @@ const productSlice = createSlice({
 
 export const { productRequest, productSuccess, productFail } =
   productSlice.actions;
+
+export const fetchProducts = () => async (dispatch) => {
+  dispatch(productRequest());
+  try {
+    const response = await fetch('http://localhost:5000/api/products');
+    const data = await response.json();
+    dispatch(productSuccess(data));
+  } catch (error) {
+    dispatch(productFail(error.message));
+  }
+};
+
 export default productSlice.reducer;

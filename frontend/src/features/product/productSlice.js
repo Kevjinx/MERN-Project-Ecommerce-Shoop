@@ -33,7 +33,7 @@ export const productDetailSlice = createSlice({
 export const productListSlice = createSlice({
   name: 'productList',
   initialState: {
-    products: [],
+    productList: [],
     loading: false,
     error: null,
   },

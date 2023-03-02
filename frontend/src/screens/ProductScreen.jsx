@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Row, Col, Image, Card, Button, ListGroup } from 'react-bootstrap';
+import { Row, Col, Image, Card, ListGroup } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import Rating from '../components/Rating';
 import CartButton from '../features/cart/CartButton';

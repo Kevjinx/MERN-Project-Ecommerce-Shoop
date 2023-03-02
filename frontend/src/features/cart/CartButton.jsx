@@ -37,7 +37,11 @@ const CartButton = ({ product }) => {
   return (
     <div>
       {quantity === 0 && (
-        <Button variant="dark" onClick={handleAddToCart}>
+        <Button
+          disabled={product.countInStock === 0}
+          variant="dark"
+          onClick={handleAddToCart}
+        >
           <FaCartPlus />
           Add to cart
         </Button>
@@ -50,6 +54,7 @@ const CartButton = ({ product }) => {
           </div>
           <div className="d-flex">
             <Button
+              disabled={product.countInStock === quantity}
               variant="outline-secondary"
               onClick={handleIncrementQuantity}
             >

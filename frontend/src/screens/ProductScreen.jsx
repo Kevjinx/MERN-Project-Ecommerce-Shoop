@@ -14,7 +14,7 @@ const ProductScreen = () => {
     dispatch(fetchProductById(productId));
   }, [dispatch, productId]);
 
-  const product = useSelector((state) => state.product.products);
+  const product = useSelector((state) => state.productDetail.productDetail);
 
   if (!product) {
     return <div>Loading...</div>;

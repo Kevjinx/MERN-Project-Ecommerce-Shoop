@@ -7,6 +7,7 @@ import {
   decrementQuantity,
 } from './cartSlice.js';
 import { Button, Badge } from 'react-bootstrap';
+import { FaCartPlus, FaTrash, FaPlus, FaMinus } from 'react-icons/fa';
 
 const CartButton = ({ product }) => {
   //workaround for redux quantity bug, will fix later
@@ -37,41 +38,31 @@ const CartButton = ({ product }) => {
     <div>
       {quantity === 0 && (
         <Button variant="dark" onClick={handleAddToCart}>
+          <FaCartPlus />
           Add to cart
         </Button>
       )}
       {quantity > 0 && (
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-        >
-          <i class="fa-solid fa-cart-shopping">
+        <div className="d-flex align-items-center">
+          <div className="d-flex align-items-center">
+            <FaCartPlus size={20} />
             <Badge bg="secondary">{quantity}</Badge>
-          </i>
-          <div>
+          </div>
+          <div className="d-flex">
             <Button
-              variant="dark"
+              variant="outline-secondary"
               onClick={handleIncrementQuantity}
-              disabled={quantity === 0}
             >
-              +
+              <FaPlus />
             </Button>
             <Button
-              variant="dark"
+              variant="outline-secondary"
               onClick={handleDecrementQuantity}
-              disabled={quantity === 0}
             >
-              -
+              <FaMinus />
             </Button>
-            <Button
-              variant="dark"
-              onClick={handleRemoveFromCart}
-              disabled={quantity === 0}
-            >
-              <i class="fa-solid fa-trash"></i>{' '}
+            <Button variant="outline-secondary" onClick={handleRemoveFromCart}>
+              <FaTrash />
             </Button>
           </div>
         </div>

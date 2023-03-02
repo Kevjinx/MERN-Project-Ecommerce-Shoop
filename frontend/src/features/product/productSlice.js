@@ -1,55 +1,81 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  PRODUCT_REQUEST,
-  PRODUCT_SUCCESS,
-  PRODUCT_FAIL,
+  PRODUCT_LIST_REQUEST,
+  PRODUCT_LIST_SUCCESS,
+  PRODUCT_LIST_FAIL,
+  PRODUCT_DETAIL_REQUEST,
+  PRODUCT_DETAIL_SUCCESS,
+  PRODUCT_DETAIL_FAIL,
 } from '../../constants/productConstants';
 
-const productSlice = createSlice({
-  name: 'product',
+export const productDetailSlice = createSlice({
+  name: 'productDetail',
   initialState: {
-    products: [],
+    productDetail: [],
     loading: false,
     error: null,
   },
   reducers: {
-    [PRODUCT_REQUEST]: (state) => {
+    [PRODUCT_DETAIL_REQUEST]: (state) => {
       state.loading = true;
     },
-    [PRODUCT_SUCCESS]: (state, action) => {
+    [PRODUCT_DETAIL_SUCCESS]: (state, action) => {
       state.loading = false;
-      state.products = action.payload;
+      state.productDetail = action.payload;
     },
-    [PRODUCT_FAIL]: (state, action) => {
+    [PRODUCT_DETAIL_FAIL]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
   },
 });
 
-export const { productRequest, productSuccess, productFail } =
-  productSlice.actions;
+export const productListSlice = createSlice({
+  name: 'productList',
+  initialState: {
+    products: [],
+    loading: false,
+    error: null,
+  },
+  reducers: {
+    [PRODUCT_LIST_REQUEST]: (state) => {
+      state.loading = true;
+    },
+    [PRODUCT_LIST_SUCCESS]: (state, action) => {
+      state.loading = false;
+      state.productList = action.payload;
+    },
+    [PRODUCT_LIST_FAIL]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+  },
+});
+
+export const { productDetailRequest, productDetailSuccess, productDetailFail } =
+  productDetailSlice.actions;
+
+export const { productListRequest, productListSuccess, productListFail } =
+  productListSlice.actions;
 
 export const fetchProducts = () => async (dispatch) => {
   try {
-    dispatch(productRequest());
+    dispatch(productListRequest());
     const response = await fetch('http://localhost:5000/api/products');
     const data = await response.json();
-    dispatch(productSuccess(data));
+    dispatch(productListSuccess(data));
   } catch (error) {
-    dispatch(productFail(error.message));
+    dispatch(productListFail(error.message));
   }
 };
 
 export const fetchProductById = (id) => async (dispatch) => {
   try {
-    dispatch(productRequest());
+    dispatch(productDetailRequest());
     const response = await fetch(`http://localhost:5000/api/products/${id}`);
     const data = await response.json();
-    dispatch(productSuccess(data));
+    dispatch(productDetailSuccess(data));
   } catch (error) {
-    dispatch(productFail(error.message));
+    dispatch(productDetailFail(error.message));
   }
 };
-
-export default productSlice.reducer;

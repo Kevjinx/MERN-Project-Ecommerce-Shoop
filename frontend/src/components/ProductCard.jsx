@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Rating from './Rating';
 import CartButton from '../features/cart/CartButton.jsx';
 
-const Product = ({ product }) => {
+const ProductCard = ({ product }) => {
   return (
     <Card style={{ width: '18rem' }}>
       <Link to={`/product/${product._id}`}>
@@ -36,4 +36,4 @@ const Product = ({ product }) => {
   );
 };
 
-export default Product;
+export default ProductCard;

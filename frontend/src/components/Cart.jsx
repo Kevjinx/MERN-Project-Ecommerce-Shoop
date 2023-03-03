@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, ListGroup, Image } from 'react-bootstrap';
+import { Row, Col, ListGroup, Image, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import CartButton from '../features/cart/CartButton';
@@ -15,7 +15,7 @@ const Cart = () => {
           <Col md={2}>
             <Image src={product.image} alt={product.name} fluid rounded />
           </Col>
-          <Col md={3}>
+          <Col md={2}>
             <Link to={`/product/${product._id}`}>{product.name}</Link>
           </Col>
           <Col md={4} className="text-center">
@@ -27,14 +27,44 @@ const Cart = () => {
     );
   };
 
+  const numProductsInCart = productsInCart.reduce(
+    (acc, product) => acc + product.quantity,
+    0
+  );
+
+  const grossTotal = productsInCart
+    .reduce((acc, product) => acc + product.quantity * product.price, 0)
+    .toFixed(2);
+
+  const handleCheckout = () => {
+    console.log('Checkout');
+  };
+
   return (
     <div>
       <h1>Cart</h1>
-      <ListGroup variant="flush">
-        <ListGroup.Item>
-          {productsInCart.map((product) => productRow(product))}
-        </ListGroup.Item>
-      </ListGroup>
+      <Row>
+        <Col md={8}>
+          <ListGroup variant="flush">
+            {productsInCart.map((product) => productRow(product))}
+          </ListGroup>
+        </Col>
+        <Col md={4}>
+          <Row>
+            <h3>Subtotal ({numProductsInCart}) items</h3>
+            <h4>${grossTotal}</h4>
+          </Row>
+          <Row>
+            <Button
+              type="button"
+              className="btn-block"
+              onClick={handleCheckout}
+            >
+              Proceed to Checkout
+            </Button>
+          </Row>
+        </Col>
+      </Row>
     </div>
   );
 };

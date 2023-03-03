@@ -1,4 +1,4 @@
-import Product from '../components/Product.jsx';
+import ProductCard from '../components/ProductCard.jsx';
 import Loader from '../components/Loader.jsx';
 import Message from '../components/Message.jsx';
 import { Row, Col } from 'react-bootstrap';
@@ -13,11 +13,7 @@ const HomeScreen = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  const products = useSelector((state) => {
-    console.log(state);
-
-    return state.productList.productList;
-  });
+  const products = useSelector((state) => state.productList.productList);
   const { loading, error } = products;
   return (
     <>
@@ -30,7 +26,7 @@ const HomeScreen = () => {
         <Row>
           {products.map((product) => (
             <Col sm={12} md={6} lg={4} xl={3} key={product._id}>
-              <Product product={product} />
+              <ProductCard product={product} />
             </Col>
           ))}
         </Row>

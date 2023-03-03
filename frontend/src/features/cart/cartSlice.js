@@ -27,9 +27,10 @@ const cartSlice = createSlice({
 
     [REMOVE_FROM_CART]: (state, action) => {
       const product = action.payload;
-      state.cartProducts = state.cartProducts.filter(
-        (cartProduct) => cartProduct._id !== product._id
+      const existingProducts = state.cartProducts.find(
+        (cartProduct) => cartProduct._id === product._id
       );
+      existingProducts.quantity = 0;
     },
     [INCREMENT_QUANTITY]: (state, action) => {
       const product = action.payload;

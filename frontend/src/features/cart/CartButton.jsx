@@ -1,4 +1,3 @@
-// TODO: Refactor to combine cart button and cart checkout button
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -7,11 +6,10 @@ import {
   incrementQuantity,
   decrementQuantity,
 } from './cartSlice.js';
-import { Button, Badge } from 'react-bootstrap';
+import { Button, Badge, ButtonGroup } from 'react-bootstrap';
 import { FaCartPlus, FaTrash, FaPlus, FaMinus } from 'react-icons/fa';
 
 const CartButton = ({ product }) => {
-  //workaround for redux quantity bug, will fix later
   const [quantity, setQuantity] = useState(0);
   const dispatch = useDispatch();
   const cartProducts = useSelector((state) => state.cart.cartProducts);
@@ -38,7 +36,7 @@ const CartButton = ({ product }) => {
 
   return (
     <div>
-      {quantity === 0 ? (
+      {quantity === 0 && cartProducts ? (
         <Button
           disabled={product.countInStock === 0}
           variant="dark"
@@ -52,26 +50,27 @@ const CartButton = ({ product }) => {
           <div className="d-flex align-items-center">
             <FaCartPlus size={20} />
             <Badge bg="secondary">{quantity}</Badge>
-            <Badge bg="secondary">{}</Badge>
           </div>
-          <div className="d-flex">
+          <ButtonGroup>
             <Button
+              size="sm"
               disabled={product.countInStock === quantity}
-              variant="outline-secondary"
+              variant="success"
               onClick={handleIncrementQuantity}
             >
               <FaPlus />
             </Button>
             <Button
-              variant="outline-secondary"
+              size="sm"
+              variant="warning"
               onClick={handleDecrementQuantity}
             >
               <FaMinus />
             </Button>
-            <Button variant="outline-secondary" onClick={handleRemoveFromCart}>
+            <Button size="sm" variant="danger" onClick={handleRemoveFromCart}>
               <FaTrash />
             </Button>
-          </div>
+          </ButtonGroup>
         </div>
       )}
     </div>

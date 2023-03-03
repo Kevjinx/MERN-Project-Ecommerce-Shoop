@@ -17,11 +17,10 @@ const Cart = () => {
           <Col md={3}>
             <Link to={`/product/${product._id}`}>{product.name}</Link>
           </Col>
-          <Col md={2}>${product.price}</Col>
-          <Col md={2}>Subtotal: ${product.price * product.quantity}</Col>
-          <Col md={3} className="text-center">
+          <Col md={4} className="text-center">
             <CartButton product={product} />
           </Col>
+          <Col md={2}>${product.price}</Col>
         </Row>
       </ListGroup.Item>
     );
@@ -35,14 +34,6 @@ const Cart = () => {
           {cartProducts.map((product) => productRow(product))}
         </ListGroup.Item>
       </ListGroup>
-
-      {/* <Col md={4}>
-          <ListGroup variant="flush">
-            <ListGroup.Item>
-              <h2>Subtotal (0) items</h2>
-            </ListGroup.Item>
-          </ListGroup>
-        </Col> */}
     </div>
   );
 };

@@ -1,27 +1,69 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import {
+  Row,
+  Col,
+  ListGroup,
+  Image,
+  Button,
+  ButtonGroup,
+} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Row, Col, ListGroup } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import CartButton from '../features/cart/CartButton';
+import CartCheckOutButton from '../features/cart/CartCheckOutButton';
 
 const Cart = () => {
+  const cartProducts = useSelector((state) => state.cart.cartProducts);
+
+  const productRow = (product) => {
+    return (
+      <ListGroup.Item key={product._id}>
+        <Row>
+          <Col md={2}>
+            <Image src={product.image} alt={product.name} fluid rounded />
+          </Col>
+          <Col md={3}>
+            <Link to={`/product/${product._id}`}>{product.name}</Link>
+          </Col>
+          <Col md={2}>${product.price}</Col>
+          <Col md={2}>Subtotal: ${product.price * product.quantity}</Col>
+          <Col md={3} className="text-center">
+            <CartCheckOutButton product={product} />
+
+            {/* <ButtonGroup>
+              <Button>
+                <i class="fa-solid fa-plus"></i>
+              </Button>
+              <Button disabled>{product.quantity}</Button>
+              <Button>
+                <i class="fa-solid fa-minus"></i>
+              </Button>
+              <Button>
+                <i class="fa-solid fa-trash"></i>
+              </Button>
+            </ButtonGroup> */}
+          </Col>
+        </Row>
+      </ListGroup.Item>
+    );
+  };
+
   return (
     <div>
       <h1>Cart</h1>
-      <Row>
-        <Col md={8}>
-          <ListGroup variant="flush">
-            <ListGroup.Item>
-              <h2>Shopping Cart</h2>
-            </ListGroup.Item>
-          </ListGroup>
-        </Col>
-        <Col md={4}>
+      <ListGroup variant="flush">
+        <ListGroup.Item>
+          {cartProducts.map((product) => productRow(product))}
+        </ListGroup.Item>
+      </ListGroup>
+
+      {/* <Col md={4}>
           <ListGroup variant="flush">
             <ListGroup.Item>
               <h2>Subtotal (0) items</h2>
             </ListGroup.Item>
           </ListGroup>
-        </Col>
-      </Row>
+        </Col> */}
     </div>
   );
 };

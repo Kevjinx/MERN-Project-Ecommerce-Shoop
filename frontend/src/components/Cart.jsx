@@ -1,16 +1,8 @@
-import React, { useEffect } from 'react';
-import {
-  Row,
-  Col,
-  ListGroup,
-  Image,
-  Button,
-  ButtonGroup,
-} from 'react-bootstrap';
+import React from 'react';
+import { Row, Col, ListGroup, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import CartButton from '../features/cart/CartButton';
-import CartCheckOutButton from '../features/cart/CartCheckOutButton';
 
 const Cart = () => {
   const cartProducts = useSelector((state) => state.cart.cartProducts);
@@ -28,20 +20,7 @@ const Cart = () => {
           <Col md={2}>${product.price}</Col>
           <Col md={2}>Subtotal: ${product.price * product.quantity}</Col>
           <Col md={3} className="text-center">
-            <CartCheckOutButton product={product} />
-
-            {/* <ButtonGroup>
-              <Button>
-                <i class="fa-solid fa-plus"></i>
-              </Button>
-              <Button disabled>{product.quantity}</Button>
-              <Button>
-                <i class="fa-solid fa-minus"></i>
-              </Button>
-              <Button>
-                <i class="fa-solid fa-trash"></i>
-              </Button>
-            </ButtonGroup> */}
+            <CartButton product={product} />
           </Col>
         </Row>
       </ListGroup.Item>

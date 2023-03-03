@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Rating from './Rating';
-import AddToCart from '../features/cart/CartButton.jsx';
+import CartButton from '../features/cart/CartButton.jsx';
 
 const Product = ({ product }) => {
   return (
@@ -30,7 +30,7 @@ const Product = ({ product }) => {
         <Card.Text as="h4" className="my-3">
           ${product.price}
         </Card.Text>
-        <AddToCart product={product} />
+        <CartButton product={product} />
       </Card.Body>
     </Card>
   );

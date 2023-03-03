@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+// TODO: Refactor to combine cart button and cart checkout button
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addToCart,
   removeFromCart,
@@ -13,19 +14,25 @@ const CartCheckOutButton = ({ product }) => {
   //workaround for redux quantity bug, will fix later
   const [quantity, setQuantity] = useState(0);
   const dispatch = useDispatch();
+  const cartProducts = useSelector((state) => state.cart.cartProducts);
+
+  //update quantity whenever cartProducts changes
+  useEffect(() => {
+    const productInCart = cartProducts.find(
+      (cartProduct) => cartProduct._id === product._id
+    );
+    productInCart && setQuantity(productInCart.quantity);
+  }, [cartProducts]);
 
   const handleIncrementQuantity = () => {
-    setQuantity(quantity + 1);
     dispatch(incrementQuantity(product));
   };
 
   const handleDecrementQuantity = () => {
-    setQuantity(quantity - 1);
     dispatch(decrementQuantity(product));
   };
 
   const handleRemoveFromCart = () => {
-    setQuantity(0);
     dispatch(removeFromCart(product));
   };
 
@@ -35,6 +42,7 @@ const CartCheckOutButton = ({ product }) => {
         <div className="d-flex align-items-center">
           <FaCartPlus size={20} />
           <Badge bg="secondary">{quantity}</Badge>
+          <Badge bg="secondary">{}</Badge>
         </div>
         <div className="d-flex">
           <Button

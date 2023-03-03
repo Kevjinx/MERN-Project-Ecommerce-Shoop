@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
 
 const userSchema = new mongoose.Schema(
   {
@@ -41,6 +42,13 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+//turns out arrow functions makes 'this' refer to the lexical scope of the function.
+//So, we need to use a regular function here. *facepalm*
+userSchema.methods.matchPassword = async function (enteredPassword) {
+  //'this' is referring to the user object from userController
+  return await bcrypt.compare(enteredPassword, this.hashPassword);
+};
 
 const User = mongoose.model('User', userSchema);
 export default User;

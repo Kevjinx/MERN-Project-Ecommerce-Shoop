@@ -1874,6 +1874,7 @@ const users = [
         coordinates: {
           lat: 61.203221,
           lng: -149.898655,
+          pass,
         },
         postalCode: '99503',
         state: 'AK',

@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux';
 import CartButton from '../features/cart/CartButton';
 
 const Cart = () => {
-  const cartProducts = useSelector((state) => state.cart.cartProducts);
+  const cart = useSelector((state) => state.cart.cartProducts);
+  const productsInCart = cart.filter((product) => product.quantity > 0);
 
   const productRow = (product) => {
     return (
@@ -31,7 +32,7 @@ const Cart = () => {
       <h1>Cart</h1>
       <ListGroup variant="flush">
         <ListGroup.Item>
-          {cartProducts.map((product) => productRow(product))}
+          {productsInCart.map((product) => productRow(product))}
         </ListGroup.Item>
       </ListGroup>
     </div>

@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       default: false,
     },
-    hashPassword: {
+    password: {
       type: String,
       required: true,
     },
@@ -44,6 +44,16 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
   //'this' is referring to the user object from userController
   return await bcrypt.compare(enteredPassword, this.hashPassword);
 };
+
+userSchema.pre('save', async function (next) {
+  const user = this;
+  if (!user.isModified('password')) {
+    //if the password is not modified, then we don't need to hash it again when updating the user profile
+    next();
+  }
+  user.password = bcrypt.hashSync(user.password, 10);
+  next();
+});
 
 const User = mongoose.model('User', userSchema);
 export default User;

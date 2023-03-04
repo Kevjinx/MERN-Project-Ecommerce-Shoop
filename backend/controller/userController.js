@@ -1,7 +1,6 @@
 import expressAsyncHandler from 'express-async-handler';
 import User from '../db/models/userModel.js';
 import generateToken from '../utils/generateToken.js';
-import bcrypt from 'bcrypt';
 
 // @type    POST
 // @route   /api/users/login
@@ -57,10 +56,9 @@ const registerUser = expressAsyncHandler(async (req, res) => {
   }
   const user = await User.create({
     email,
-    password,
+    password, //password is hashed in the userModel via pre-save middleware
     firstName,
     lastName,
-    hashPassword: bcrypt.hashSync(password, 10),
   });
   if (user) {
     res.status(201).json({

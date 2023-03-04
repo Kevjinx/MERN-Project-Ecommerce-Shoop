@@ -60,8 +60,7 @@ const users = [
     ssn: '661-64-2976',
     userAgent:
       'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/12.0.702.0 Safari/534.24',
-    hashPassword:
-      '$2b$10$BOEmDx8M8zg2Njev88dc1ODwLKDnjeReC9QRJ2392H.qJjWwLBdOG',
+    password: '$2b$10$BOEmDx8M8zg2Njev88dc1ODwLKDnjeReC9QRJ2392H.qJjWwLBdOG',
   },
   {
     firstName: 'Sheldon',
@@ -123,8 +122,7 @@ const users = [
     ssn: '447-08-9217',
     userAgent:
       'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.30 (KHTML, like Gecko) Ubuntu/11.04 Chromium/12.0.742.112 Chrome/12.0.742.112 Safari/534.30',
-    hashPassword:
-      '$2b$10$iGI4eO5mDunYzpH5U3Q5XOwCFKag/3qcm8WWvZHzvPUXKWV5KTYX6',
+    password: '$2b$10$iGI4eO5mDunYzpH5U3Q5XOwCFKag/3qcm8WWvZHzvPUXKWV5KTYX6',
   },
   {
     firstName: 'Terrill',
@@ -186,8 +184,7 @@ const users = [
     ssn: '633-89-1926',
     userAgent:
       'Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:21.0.0) Gecko/20121011 Firefox/21.0.0',
-    hashPassword:
-      '$2b$10$hzqZnmAqeDvEdwVjAiJKoOnDTB6C6TPfA2S8ceeqdur5AP4vaUCFW',
+    password: '$2b$10$hzqZnmAqeDvEdwVjAiJKoOnDTB6C6TPfA2S8ceeqdur5AP4vaUCFW',
   },
   {
     firstName: 'Miles',
@@ -249,8 +246,7 @@ const users = [
     ssn: '487-28-6642',
     userAgent:
       'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.17 Safari/537.11',
-    hashPassword:
-      '$2b$10$DR6fmg/Xel1.WJ9YMQ0rHu0Ws8JDIJmdviJUFKu5/PaVUHpO1gPhy',
+    password: '$2b$10$DR6fmg/Xel1.WJ9YMQ0rHu0Ws8JDIJmdviJUFKu5/PaVUHpO1gPhy',
   },
   {
     firstName: 'Mavis',
@@ -312,8 +308,7 @@ const users = [
     ssn: '667-98-5357',
     userAgent:
       'Mozilla/5.0 (Windows NT 6.0) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.1 Safari/535.1',
-    hashPassword:
-      '$2b$10$rCA2.X1QTgq2GnvkvTTyjeuSkkxkSNh18ysc0d6aYKrhZRfF7DMoq',
+    password: '$2b$10$rCA2.X1QTgq2GnvkvTTyjeuSkkxkSNh18ysc0d6aYKrhZRfF7DMoq',
   },
   {
     firstName: 'Alison',
@@ -375,8 +370,7 @@ const users = [
     ssn: '158-68-0184',
     userAgent:
       'Mozilla/5.0 (Windows; U; Windows NT 6.0; nb-NO) AppleWebKit/533.18.1 (KHTML, like Gecko) Version/5.0.2 Safari/533.18.5',
-    hashPassword:
-      '$2b$10$plsZUfwgmEgxoxrt11KAD.RXR1.J6QNEV2F8tDpu5Yn6DLn8Hfg8i',
+    password: '$2b$10$plsZUfwgmEgxoxrt11KAD.RXR1.J6QNEV2F8tDpu5Yn6DLn8Hfg8i',
   },
   {
     firstName: 'Oleta',
@@ -438,8 +432,7 @@ const users = [
     ssn: '478-11-2206',
     userAgent:
       'Mozilla/5.0 (Windows; U; Windows NT 5.1; ru-RU) AppleWebKit/533.18.1 (KHTML, like Gecko) Version/5.0.2 Safari/533.18.5',
-    hashPassword:
-      '$2b$10$xK5tgstL8bu8focTQeFgFO1qGp78Io9x6tIwB3qShUtOEDRJzFVqS',
+    password: '$2b$10$xK5tgstL8bu8focTQeFgFO1qGp78Io9x6tIwB3qShUtOEDRJzFVqS',
   },
   {
     firstName: 'Ewell',
@@ -501,8 +494,7 @@ const users = [
     ssn: '238-41-5528',
     userAgent:
       'Mozilla/5.0 (X11; Linux amd64) AppleWebKit/534.36 (KHTML, like Gecko) Chrome/13.0.766.0 Safari/534.36',
-    hashPassword:
-      '$2b$10$ns5LiV25xGKjrvbo3eeSh.rMeqDoPNnLkSa/RGGAKhhzjJd12arUG',
+    password: '$2b$10$ns5LiV25xGKjrvbo3eeSh.rMeqDoPNnLkSa/RGGAKhhzjJd12arUG',
   },
   {
     firstName: 'Demetrius',
@@ -564,8 +556,7 @@ const users = [
     ssn: '717-26-3759',
     userAgent:
       'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_4_11; de) AppleWebKit/528.4+ (KHTML, like Gecko) Version/4.0dp1 Safari/526.11.2',
-    hashPassword:
-      '$2b$10$Z2RG2BFU8rFZbEHUTDgmk.bNVjzIP/VTvQFMo8BWCnLvKEzqcJxi2',
+    password: '$2b$10$Z2RG2BFU8rFZbEHUTDgmk.bNVjzIP/VTvQFMo8BWCnLvKEzqcJxi2',
   },
   {
     firstName: 'Eleanora',
@@ -627,8 +618,7 @@ const users = [
     ssn: '544-66-0745',
     userAgent:
       'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.6 Safari/537.11',
-    hashPassword:
-      '$2b$10$iJE9VFiJELujHWZfNZZ9Y.6saQAcLVFlfLLW6sPVUPj0uAmADYuOO',
+    password: '$2b$10$iJE9VFiJELujHWZfNZZ9Y.6saQAcLVFlfLLW6sPVUPj0uAmADYuOO',
   },
   {
     firstName: 'Marcel',
@@ -690,8 +680,7 @@ const users = [
     ssn: '342-54-8422',
     userAgent:
       'Mozilla/5.0 (Windows NT 5.2) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.792.0 Safari/535.1',
-    hashPassword:
-      '$2b$10$dYIXxIh.tSr/3b42vRvUNOIykIPdJtsWMPJ/c.Ty.KSGafJw4ZN2W',
+    password: '$2b$10$dYIXxIh.tSr/3b42vRvUNOIykIPdJtsWMPJ/c.Ty.KSGafJw4ZN2W',
   },
   {
     firstName: 'Assunta',
@@ -752,8 +741,7 @@ const users = [
     ssn: '116-51-6131',
     userAgent:
       'Mozilla/5.0 (X11; CrOS i686 4319.74.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36',
-    hashPassword:
-      '$2b$10$B6R38ZSMuUB8rp/5nkuFRuCAsVzg53JNrxp2ojK.6wS/eGnZsLq12',
+    password: '$2b$10$B6R38ZSMuUB8rp/5nkuFRuCAsVzg53JNrxp2ojK.6wS/eGnZsLq12',
   },
   {
     firstName: 'Trace',
@@ -815,8 +803,7 @@ const users = [
     ssn: '217-05-3082',
     userAgent:
       'Mozilla/5.0 (Windows; U; Windows NT 5.1; ru-RU) AppleWebKit/533.19.4 (KHTML, like Gecko) Version/5.0.3 Safari/533.19.4',
-    hashPassword:
-      '$2b$10$ku74tJBcjegJCThqPbj6tu1i6voLsq16onxzmPk6oDzzT3DaLS0ce',
+    password: '$2b$10$ku74tJBcjegJCThqPbj6tu1i6voLsq16onxzmPk6oDzzT3DaLS0ce',
   },
   {
     firstName: 'Enoch',
@@ -878,8 +865,7 @@ const users = [
     ssn: '742-81-1714',
     userAgent:
       'Mozilla/5.0 (Windows; U; Windows NT 5.0; en-en) AppleWebKit/533.16 (KHTML, like Gecko) Version/4.1 Safari/533.16',
-    hashPassword:
-      '$2b$10$IDRVeqxqDrsVe6y3KNK7I.E7nKmnyVp6B.nnTKLhINNh6D//TnDmC',
+    password: '$2b$10$IDRVeqxqDrsVe6y3KNK7I.E7nKmnyVp6B.nnTKLhINNh6D//TnDmC',
   },
   {
     firstName: 'Jeanne',
@@ -941,8 +927,7 @@ const users = [
     ssn: '855-43-8639',
     userAgent:
       'Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.14 Safari/534.24',
-    hashPassword:
-      '$2b$10$UthyAZioZpdbkx6YN3tjU.K5Iwz7UMAT6V58.PLgy0unIN7JHN28W',
+    password: '$2b$10$UthyAZioZpdbkx6YN3tjU.K5Iwz7UMAT6V58.PLgy0unIN7JHN28W',
   },
   {
     firstName: 'Trycia',
@@ -1004,8 +989,7 @@ const users = [
     ssn: '677-73-1525',
     userAgent:
       'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.872.0 Safari/535.2',
-    hashPassword:
-      '$2b$10$HN19uSBmd2.styPp02/L1ONJgoGkSVQzIJLj2Rd8YgOPDSbyQDW.K',
+    password: '$2b$10$HN19uSBmd2.styPp02/L1ONJgoGkSVQzIJLj2Rd8YgOPDSbyQDW.K',
   },
   {
     firstName: 'Bradford',
@@ -1067,8 +1051,7 @@ const users = [
     ssn: '795-36-7752',
     userAgent:
       'Mozilla/5.0 (Windows NT 5.2) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.813.0 Safari/535.1',
-    hashPassword:
-      '$2b$10$lMlQAZZIFqdaT4qO3nFWKOd1B0KuBsIzVqd2bWxeV3F6W4HS88urm',
+    password: '$2b$10$lMlQAZZIFqdaT4qO3nFWKOd1B0KuBsIzVqd2bWxeV3F6W4HS88urm',
   },
   {
     firstName: 'Arely',
@@ -1130,8 +1113,7 @@ const users = [
     ssn: '551-74-1349',
     userAgent:
       'Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0',
-    hashPassword:
-      '$2b$10$5Hrt/eFPdD898IxVV4Pvh.yVHl9K3D7fMPh2YXGglwN250VEatopG',
+    password: '$2b$10$5Hrt/eFPdD898IxVV4Pvh.yVHl9K3D7fMPh2YXGglwN250VEatopG',
   },
   {
     firstName: 'Gust',
@@ -1193,8 +1175,7 @@ const users = [
     ssn: '809-93-2422',
     userAgent:
       'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.3 Safari/534.24',
-    hashPassword:
-      '$2b$10$sfcjfNQxZyk1mJ.67io.3OSOPYMRZxiNU0YtHUL9TEmSN0wLVX2uS',
+    password: '$2b$10$sfcjfNQxZyk1mJ.67io.3OSOPYMRZxiNU0YtHUL9TEmSN0wLVX2uS',
   },
   {
     firstName: 'Lenna',
@@ -1256,8 +1237,7 @@ const users = [
     ssn: '389-03-0381',
     userAgent:
       'Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.24 (KHTML, like Gecko) Ubuntu/10.10 Chromium/12.0.702.0 Chrome/12.0.702.0 Safari/534.24',
-    hashPassword:
-      '$2b$10$ZLc.NlL3PwBBi8PpCD1XEe.rVQstyL6xpqmEFSJQ0.opbazndSbw2',
+    password: '$2b$10$ZLc.NlL3PwBBi8PpCD1XEe.rVQstyL6xpqmEFSJQ0.opbazndSbw2',
   },
   {
     firstName: 'Doyle',
@@ -1319,8 +1299,7 @@ const users = [
     ssn: '562-46-9709',
     userAgent:
       'Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.0 Safari/536.3',
-    hashPassword:
-      '$2b$10$FWwFZ3s9BjplJ7kMCP.AGupIIQLD2R5Y4WW9BRPJ5rgTqg5Uc5oZq',
+    password: '$2b$10$FWwFZ3s9BjplJ7kMCP.AGupIIQLD2R5Y4WW9BRPJ5rgTqg5Uc5oZq',
   },
   {
     firstName: 'Tressa',
@@ -1382,8 +1361,7 @@ const users = [
     ssn: '155-87-0243',
     userAgent:
       'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_4_11; de-de) AppleWebKit/533.16 (KHTML, like Gecko) Version/4.1 Safari/533.16',
-    hashPassword:
-      '$2b$10$DUi/xfVu7J75vAKDCS6QZ.WY9739D9iwnDTSXCmMJ9ID4wveSI30e',
+    password: '$2b$10$DUi/xfVu7J75vAKDCS6QZ.WY9739D9iwnDTSXCmMJ9ID4wveSI30e',
   },
   {
     firstName: 'Felicity',
@@ -1445,8 +1423,7 @@ const users = [
     ssn: '441-72-1229',
     userAgent:
       'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.872.0 Safari/535.2',
-    hashPassword:
-      '$2b$10$K3x/LnzKJsprvODNb1BppO3WtQCl0X0lYac.fVUgMfcu9IXBnnSPK',
+    password: '$2b$10$K3x/LnzKJsprvODNb1BppO3WtQCl0X0lYac.fVUgMfcu9IXBnnSPK',
   },
   {
     firstName: 'Jocelyn',
@@ -1508,8 +1485,7 @@ const users = [
     ssn: '291-72-5526',
     userAgent:
       'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_7; ja-jp) AppleWebKit/533.20.25 (KHTML, like Gecko) Version/5.0.4 Safari/533.20.27',
-    hashPassword:
-      '$2b$10$Vg.kqRIFPwyCmLozULe.1..MTcic56bEnXJCGV3gPOqCqMh8foK4m',
+    password: '$2b$10$Vg.kqRIFPwyCmLozULe.1..MTcic56bEnXJCGV3gPOqCqMh8foK4m',
   },
   {
     firstName: 'Edwina',
@@ -1571,8 +1547,7 @@ const users = [
     ssn: '266-43-5297',
     userAgent:
       'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1063.0 Safari/536.3',
-    hashPassword:
-      '$2b$10$aFm0PgsvNeADpL6Lk8nlqefcPZ9s1VMikPfMObkxIHS3KrW4HWgKS',
+    password: '$2b$10$aFm0PgsvNeADpL6Lk8nlqefcPZ9s1VMikPfMObkxIHS3KrW4HWgKS',
   },
   {
     firstName: 'Griffin',
@@ -1634,8 +1609,7 @@ const users = [
     ssn: '407-02-8915',
     userAgent:
       'Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5355d Safari/8536.25',
-    hashPassword:
-      '$2b$10$UIhbGI1Ec7XAIdsKKy8b.ultWD/sz4jhilBQPdMoQupjDPHVjwv7O',
+    password: '$2b$10$UIhbGI1Ec7XAIdsKKy8b.ultWD/sz4jhilBQPdMoQupjDPHVjwv7O',
   },
   {
     firstName: 'Piper',
@@ -1697,8 +1671,7 @@ const users = [
     ssn: '408-90-5986',
     userAgent:
       'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2224.3 Safari/537.36',
-    hashPassword:
-      '$2b$10$ss0tWJqXWE5gqF3JeLl2seh91voYF36sTDMVoa9yo223Ju.JGNyja',
+    password: '$2b$10$ss0tWJqXWE5gqF3JeLl2seh91voYF36sTDMVoa9yo223Ju.JGNyja',
   },
   {
     firstName: 'Kody',
@@ -1760,8 +1733,7 @@ const users = [
     ssn: '389-74-9456',
     userAgent:
       'Mozilla/6.0 (Macintosh; I; Intel Mac OS X 11_7_9; de-LI; rv:1.9b4) Gecko/2012010317 Firefox/10.0a4',
-    hashPassword:
-      '$2b$10$X9ka2ocPB2ilLGHQzokrD.Z7mv6M4Ym.eiQuLGqSduNpCTNq1CgIy',
+    password: '$2b$10$X9ka2ocPB2ilLGHQzokrD.Z7mv6M4Ym.eiQuLGqSduNpCTNq1CgIy',
   },
   {
     firstName: 'Macy',
@@ -1823,8 +1795,7 @@ const users = [
     ssn: '391-33-1550',
     userAgent:
       'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.45 Safari/535.19',
-    hashPassword:
-      '$2b$10$sTtbZWmjfbO70JGqKMJGjeZ9S6f9ZYzmJ7pxB.nrYi7QnF3dDqabC',
+    password: '$2b$10$sTtbZWmjfbO70JGqKMJGjeZ9S6f9ZYzmJ7pxB.nrYi7QnF3dDqabC',
   },
   {
     firstName: 'Maurine',
@@ -1887,8 +1858,7 @@ const users = [
     ssn: '534-76-0952',
     userAgent:
       'Mozilla/5.0 (X11; Linux i686) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.66 Safari/535.11',
-    hashPassword:
-      '$2b$10$guu4N67Cs/Rp31q29u8E1.SOGLpiE/t5Y1XOJlvXODMCbHtDaWLbm',
+    password: '$2b$10$guu4N67Cs/Rp31q29u8E1.SOGLpiE/t5Y1XOJlvXODMCbHtDaWLbm',
   },
 ];
 

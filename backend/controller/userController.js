@@ -1,6 +1,7 @@
 import expressAsyncHandler from 'express-async-handler';
 import User from '../db/models/userModel.js';
 import generateToken from '../utils/generateToken.js';
+import bcrypt from 'bcrypt';
 
 // @type    POST
 // @route   /api/users/login
@@ -24,7 +25,7 @@ const authUser = expressAsyncHandler(async (req, res) => {
   }
 });
 
-// @type    Get
+// @type    GET
 // @route   /api/users/profile
 // @desc    get user profile
 // @access  private
@@ -43,22 +44,45 @@ const getUserProfile = expressAsyncHandler(async (req, res) => {
   }
 });
 
-// @type    Put
+// @type    POST
+// @route   /api/users
+// @desc    register a new user
+// @access  public
+const registerUser = expressAsyncHandler(async (req, res) => {
+  const { email, password, firstName, lastName } = req.body;
+  const existingUserSameEmail = await User.findOne({ email });
+  if (existingUserSameEmail) {
+    res.status(400);
+    throw new Error('User already exists');
+  }
+  const user = await User.create({
+    email,
+    password,
+    firstName,
+    lastName,
+    hashPassword: bcrypt.hashSync(password, 10),
+  });
+  if (user) {
+    res.status(201).json({
+      _id: user._id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      token: generateToken(user._id),
+    });
+  } else {
+    res.status(400);
+    throw new Error('Invalid user data');
+  }
+});
+
+// @type    PUT
 // @route   /api/users/profile
 // @desc    update user profile
 // @access  private
 const updateUserProfile = expressAsyncHandler(async (req, res) => {
   res.send('Success');
-  // const user = await User.findById(req.user._id);
-  // if (user && jwt.verify(user.token, process.env.JWT_SECRET)) {
-  //   res.json({
-  //     _id: user._id,
-  //     firstName: user.firstName,
-  //     lastName: user.lastName,
-  //     email: user.email,
-  //     isAdmin: user.isAdmin,
-  //   });
-  // }
 });
 
 // @type    POST
@@ -67,4 +91,10 @@ const updateUserProfile = expressAsyncHandler(async (req, res) => {
 // @access  public
 const logoutUser = expressAsyncHandler(async (req, res) => {});
 
-export { authUser, logoutUser, getUserProfile, updateUserProfile };
+export {
+  authUser,
+  logoutUser,
+  getUserProfile,
+  updateUserProfile,
+  registerUser,
+};

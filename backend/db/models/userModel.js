@@ -45,6 +45,8 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.hashPassword);
 };
 
+//pre-save middleware to hash the password before saving it to the database
+//hash password in middleware instead of in the controller to keep the controller clean
 userSchema.pre('save', async function (next) {
   const user = this;
   if (!user.isModified('password')) {

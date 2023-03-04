@@ -24,10 +24,47 @@ const authUser = expressAsyncHandler(async (req, res) => {
   }
 });
 
+// @type    Get
+// @route   /api/users/profile
+// @desc    get user profile
+// @access  private
+const getUserProfile = expressAsyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  //can use req.user in any protected route
+  if (user) {
+    res.json({
+      _id: user._id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    });
+  }
+});
+
+// @type    Put
+// @route   /api/users/profile
+// @desc    update user profile
+// @access  private
+const updateUserProfile = expressAsyncHandler(async (req, res) => {
+  res.send('Success');
+  // const user = await User.findById(req.user._id);
+  // if (user && jwt.verify(user.token, process.env.JWT_SECRET)) {
+  //   res.json({
+  //     _id: user._id,
+  //     firstName: user.firstName,
+  //     lastName: user.lastName,
+  //     email: user.email,
+  //     isAdmin: user.isAdmin,
+  //   });
+  // }
+});
+
 // @type    POST
 // @route   /api/users/logout
 // @desc    logout user and destroy token
 // @access  public
 const logoutUser = expressAsyncHandler(async (req, res) => {});
 
-export { authUser, logoutUser };
+export { authUser, logoutUser, getUserProfile, updateUserProfile };

@@ -4,6 +4,7 @@ import {
   productListSlice,
   productDetailSlice,
 } from './features/product/productSlice';
+import userLoginSliceReducer from './features/user/userSlice';
 import cartReducer from './features/cart/cartSlice';
 import thunkMiddleware from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -12,13 +13,14 @@ import storage from 'redux-persist/lib/storage'; // defaults to localStorage for
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['cart'],
+  whitelist: ['cart', 'userLogin'],
 };
 
 const rootReducer = combineReducers({
   productList: productListSlice.reducer,
   productDetail: productDetailSlice.reducer,
   cart: cartReducer,
+  userLogin: userLoginSliceReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

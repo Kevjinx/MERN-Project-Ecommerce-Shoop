@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema(
 //So, we need to use a regular function here. *facepalm*
 userSchema.methods.matchPassword = async function (enteredPassword) {
   //'this' is referring to the user object from userController
-  return await bcrypt.compare(enteredPassword, this.hashPassword);
+  return await bcrypt.compare(enteredPassword, this.password);
 };
 
 //pre-save middleware to hash the password before saving it to the database

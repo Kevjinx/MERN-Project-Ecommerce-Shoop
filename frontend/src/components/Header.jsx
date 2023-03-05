@@ -40,14 +40,14 @@ const Header = () => {
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
+                    Log out
                   </NavDropdown.Item>
                 </NavDropdown>
               ) : (
                 <LinkContainer to="/login">
                   <Nav.Link>
                     <i className="fas fa-sign-in"></i>
-                    Sign In
+                    Log In
                   </Nav.Link>
                 </LinkContainer>
               )}

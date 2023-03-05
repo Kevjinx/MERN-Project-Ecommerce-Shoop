@@ -7,7 +7,7 @@ import Loader from '../../components/Loader.jsx';
 import FormContainer from '../../components/FormContainer.jsx';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 
-const UserLogin = () => {
+const UserLoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userLogin = useSelector((state) => state.userLogin);
@@ -16,7 +16,7 @@ const UserLogin = () => {
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    if (userInfo && userInfo.token) {
+    if (userInfo.token) {
       navigate('/');
     }
   }, [navigate, userInfo]);
@@ -25,6 +25,11 @@ const UserLogin = () => {
     e.preventDefault();
     console.log('submitHandler');
     dispatch(fetchUserLogin(email, password));
+  };
+
+  const demoAdminLogin = () => {
+    console.log('demo login');
+    dispatch(fetchUserLogin('yraigatt3@nature.com', 'sRQxjPfdS'));
   };
 
   return (
@@ -62,9 +67,14 @@ const UserLogin = () => {
         <Col>
           New Customer? <Link to="/register">Register</Link>
         </Col>
+        <Col>
+          <Button type="button" onClick={demoAdminLogin} variant="danger">
+            Demo Admin Login
+          </Button>
+        </Col>
       </Row>
     </FormContainer>
   );
 };
 
-export default UserLogin;
+export default UserLoginForm;

@@ -8,7 +8,12 @@ import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
+  USER_DETAIL_REQUEST,
+  USER_DETAIL_SUCCESS,
+  USER_DETAIL_FAIL,
 } from '../../constants/userConstants.js';
+
+// TODO: refactor these user slices into multiple files
 
 export const userLoginSlice = createSlice({
   name: 'userLogin',
@@ -112,3 +117,54 @@ export const registerUser =
       dispatch(userRegisterFail(error.response));
     }
   };
+
+//update user profile
+export const userDetailSlice = createSlice({
+  name: 'userDetail',
+  initialState: {
+    user: {},
+    loading: false,
+    error: null,
+  },
+  reducers: {
+    [USER_DETAIL_REQUEST]: (state) => {
+      state.loading = true;
+    },
+    [USER_DETAIL_SUCCESS]: (state, action) => {
+      state.loading = false;
+      state.user = action.payload;
+    },
+    [USER_DETAIL_FAIL]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+  },
+});
+
+export const { userDetailRequest, userDetailSuccess, userDetailFail } =
+  userDetailSlice.actions;
+
+export const fetchUserDetails = (id) => async (dispatch, getState) => {
+  try {
+    dispatch(userDetailRequest());
+
+    const token = getState().userLogin.userInfo.token;
+    console.log(token);
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await axios.get(
+      `http://localhost:5000/api/users/${id}`,
+      config
+    );
+
+    dispatch(userDetailSuccess(data));
+  } catch (error) {
+    dispatch(userDetailFail(error.response));
+  }
+};

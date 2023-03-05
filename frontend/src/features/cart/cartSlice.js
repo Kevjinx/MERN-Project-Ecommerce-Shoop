@@ -55,4 +55,5 @@ export const {
   incrementQuantity,
   decrementQuantity,
 } = cartSlice.actions;
+
 export default cartSlice.reducer;

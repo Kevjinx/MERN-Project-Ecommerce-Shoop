@@ -1,15 +1,15 @@
 const users = [
   {
     isAdmin: true,
-    firstName: 'Bad',
-    lastName: 'Admin',
+    firstName: 'Admin',
+    lastName: 'Smith',
     maidenName: 'Smitham',
     age: 50,
     gender: 'male',
-    email: 'atuny0@sohu.com',
+    email: 'Admin@admin.com',
     phone: '+63 791 675 8914',
-    username: 'atuny0',
-    password: '9uQFF1Lh',
+    username: 'adminUser',
+    password: 'password',
     birthDate: '2000-12-25',
     image: 'https://robohash.org/hicveldicta.png',
     bloodGroup: 'A−',
@@ -1845,7 +1845,6 @@ const users = [
         coordinates: {
           lat: 61.203221,
           lng: -149.898655,
-          pass,
         },
         postalCode: '99503',
         state: 'AK',

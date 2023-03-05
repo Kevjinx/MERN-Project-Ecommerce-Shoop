@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userLogout } from '../features/user/userSlice.js';
 
 const Header = () => {
@@ -9,10 +9,8 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
-    console.log('logout');
-    dispatch(userLogout);
-    // this will remove all the data from the local storage, including the cart. Not ideal
-    // TODO: figure out the redux-persist way to do it
+    console.log('logoutHandler');
+    dispatch(userLogout());
     localStorage.removeItem('persist:root');
     window.location.reload();
   };

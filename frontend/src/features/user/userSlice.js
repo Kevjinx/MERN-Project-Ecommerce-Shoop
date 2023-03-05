@@ -62,7 +62,3 @@ export const fetchUserLogin = (email, password) => async (dispatch) => {
     dispatch(userLoginFail(error.response));
   }
 };
-
-export const logout = () => (dispatch) => {
-  dispatch(userLogout());
-};

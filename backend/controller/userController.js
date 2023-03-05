@@ -89,10 +89,18 @@ const updateUserProfile = expressAsyncHandler(async (req, res) => {
 // @access  public
 const logoutUser = expressAsyncHandler(async (req, res) => {});
 
+const getAllusers = expressAsyncHandler(async (req, res) => {
+  const users = await User.find();
+  console.log('users: ', users);
+
+  res.json(users);
+});
+
 export {
   authUser,
   logoutUser,
   getUserProfile,
   updateUserProfile,
   registerUser,
+  getAllusers,
 };

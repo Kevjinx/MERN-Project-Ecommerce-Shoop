@@ -16,14 +16,15 @@ const UserRegisterForm = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log('submitHandler');
-    dispatch(registerUser(firstName, lastName, email, password));
+    dispatch(registerUser(email, password, firstName, lastName));
     dispatch(fetchUserLogin(email, password));
     navigate('/');
   };
 
   const demoRegister = () => {
+    console.log('demo register');
     dispatch(
-      registerUser('New Demo User', 'User', 'demo@email.com', 'password')
+      registerUser('demo@email.com', 'password', 'NewDemoUser', 'DemoLastName')
     );
     dispatch(fetchUserLogin('demo@email.com', 'password'));
     navigate('/');

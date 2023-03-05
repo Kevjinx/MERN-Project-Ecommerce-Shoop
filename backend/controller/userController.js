@@ -80,7 +80,25 @@ const registerUser = expressAsyncHandler(async (req, res) => {
 // @desc    update user profile
 // @access  private
 const updateUserProfile = expressAsyncHandler(async (req, res) => {
-  res.send('Success');
+  const user = await User.findById(req.user._id);
+  if (user) {
+    user.firstName = req.body.firstName || user.firstName;
+    user.lastName = req.body.lastName || user.lastName;
+    user.email = req.body.email || user.email;
+    if (req.body.password) {
+      //password is hashed in the userModel via pre-save middleware
+      user.password = req.body.password;
+    }
+    const updatedUser = await user.save();
+    res.json({
+      firstName: updatedUser.firstName,
+      lastName: updatedUser.lastName,
+      email: updatedUser.email,
+    });
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
 });
 
 // @type    POST

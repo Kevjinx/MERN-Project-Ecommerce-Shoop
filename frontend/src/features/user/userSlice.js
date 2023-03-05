@@ -5,6 +5,9 @@ import {
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGOUT,
+  USER_REGISTER_REQUEST,
+  USER_REGISTER_SUCCESS,
+  USER_REGISTER_FAIL,
 } from '../../constants/userConstants.js';
 
 export const userLoginSlice = createSlice({
@@ -35,8 +38,6 @@ export const userLoginSlice = createSlice({
 export const { userLoginRequest, userLoginSuccess, userLoginFail, userLogout } =
   userLoginSlice.actions;
 
-export default userLoginSlice.reducer;
-
 export const fetchUserLogin = (email, password) => async (dispatch) => {
   try {
     dispatch(userLoginRequest());
@@ -62,3 +63,52 @@ export const fetchUserLogin = (email, password) => async (dispatch) => {
     dispatch(userLoginFail(error.response));
   }
 };
+
+export const userRegisterSlice = createSlice({
+  name: 'userRegister',
+  initialState: {
+    userInfo: {},
+    loading: false,
+    error: null,
+  },
+  reducers: {
+    [USER_REGISTER_REQUEST]: (state) => {
+      state.loading = true;
+    },
+    [USER_REGISTER_SUCCESS]: (state, action) => {
+      state.loading = false;
+      state.userInfo = action.payload;
+    },
+    [USER_REGISTER_FAIL]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+  },
+});
+
+export const { userRegisterRequest, userRegisterSuccess, userRegisterFail } =
+  userRegisterSlice.actions;
+
+export const registerUser =
+  (firstName, lastName, email, password) => async (dispatch) => {
+    try {
+      dispatch(userRegisterRequest());
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+
+      const { data } = await axios.post(
+        'http://localhost:5000/api/users',
+        { firstName, lastName, email, password },
+        config
+      );
+
+      dispatch(userRegisterSuccess(data));
+      console.log('register success');
+    } catch (error) {
+      dispatch(userRegisterFail(error.response));
+    }
+  };

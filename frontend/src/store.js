@@ -4,7 +4,7 @@ import {
   productListSlice,
   productDetailSlice,
 } from './features/product/productSlice';
-import userLoginSliceReducer from './features/user/userSlice';
+import { userLoginSlice } from './features/user/userSlice';
 import cartReducer from './features/cart/cartSlice';
 import thunkMiddleware from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   productList: productListSlice.reducer,
   productDetail: productDetailSlice.reducer,
   cart: cartReducer,
-  userLogin: userLoginSliceReducer,
+  userLogin: userLoginSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

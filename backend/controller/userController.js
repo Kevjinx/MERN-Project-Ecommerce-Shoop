@@ -85,15 +85,16 @@ const updateUserProfile = expressAsyncHandler(async (req, res) => {
     user.firstName = req.body.firstName || user.firstName;
     user.lastName = req.body.lastName || user.lastName;
     user.email = req.body.email || user.email;
-    if (req.body.password) {
-      //password is hashed in the userModel via pre-save middleware
-      user.password = req.body.password;
-    }
+
+    //password is hashed in the userModel via pre-save middleware
+    req.body.password && (user.password = req.body.password);
+
     const updatedUser = await user.save();
     res.json({
       firstName: updatedUser.firstName,
       lastName: updatedUser.lastName,
       email: updatedUser.email,
+      password: updatedUser.password,
     });
   } else {
     res.status(404);
@@ -107,6 +108,7 @@ const updateUserProfile = expressAsyncHandler(async (req, res) => {
 // @access  public
 const logoutUser = expressAsyncHandler(async (req, res) => {});
 
+//for development purposes only, see userRoutes.js
 const getAllusers = expressAsyncHandler(async (req, res) => {
   const users = await User.find();
   console.log('users: ', users);

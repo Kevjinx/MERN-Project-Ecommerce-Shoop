@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   fetchUserDetails,
   updateUserProfile,
+  userUpdateProfileReset,
 } from '../features/user/userSlice.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Button, Row, Col } from 'react-bootstrap';
@@ -16,12 +17,22 @@ const ProfileScreen = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [message, setMessage] = useState(null);
+  const [success, setSuccess] = useState(null);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const userDetail = useSelector((state) => state.userDetail);
+  const { loading, error, user } = userDetail;
+
+  const userLogin = useSelector((state) => state.userLogin);
+
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const updateSuccess = userUpdateProfile.success;
+
   const submitHandler = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
+    if (password !== confirmPassword && password.length > 1) {
       setMessage('Passwords do not match');
     } else {
       const updatedUser = {
@@ -32,23 +43,16 @@ const ProfileScreen = () => {
         lastName,
       };
       dispatch(updateUserProfile(updatedUser));
+      setSuccess(updateSuccess);
     }
   };
-
-  const userDetail = useSelector((state) => state.userDetail);
-  const { loading, error, user } = userDetail;
-
-  const userLogin = useSelector((state) => state.userLogin);
-
-  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
-  const updateSuccess = userUpdateProfile.success;
 
   useEffect(() => {
     if (!userLogin.userInfo.token) {
       navigate('/login');
     } else {
       if (!user._id) {
-        // dispatch user details if userDetail is not in the store since it is a protected route
+        dispatch(userUpdateProfileReset());
         dispatch(fetchUserDetails('profile'));
       } else {
         setEmail(user.email);
@@ -65,9 +69,8 @@ const ProfileScreen = () => {
           <h2>User Profile</h2>
           {message && <Message variant="danger">{message}</Message>}
           {error && <Message variant="danger">{error}</Message>}
-          {updateSuccess && (
-            <Message variant="success">Profile Updated</Message>
-          )}
+          {success && <Message variant="success">Profile Updated</Message>}
+          {loading && <Loader />}
           <Form onSubmit={submitHandler}>
             <Form.Group controlId="email">
               <Form.Label>Email Address</Form.Label>

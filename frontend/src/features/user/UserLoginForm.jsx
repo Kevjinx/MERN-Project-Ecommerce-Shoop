@@ -32,9 +32,16 @@ const UserLoginForm = () => {
     dispatch(fetchUserLogin(email, password));
   };
 
-  const demoAdminLogin = () => {
+  const adminLogin = () => {
+    console.log('admin login');
+    setEmail('admin@admin.com');
+    setPassword('adminpassword');
+  };
+
+  const demoLogin = () => {
     console.log('demo login');
-    dispatch(fetchUserLogin('yraigatt3@nature.com', 'sRQxjPfdS'));
+    setEmail('demo@demo.com');
+    setPassword('demopassword');
   };
 
   return (
@@ -73,8 +80,11 @@ const UserLoginForm = () => {
           New Customer? <Link to="/register">Register</Link>
         </Col>
         <Col>
-          <Button type="button" onClick={demoAdminLogin} variant="danger">
-            Demo Admin Login
+          <Button type="button" onClick={demoLogin} variant="danger">
+            Demo Login
+          </Button>
+          <Button type="button" onClick={adminLogin} variant="danger">
+            Admin Login
           </Button>
         </Col>
       </Row>

@@ -197,6 +197,7 @@ export const userUpdateProfileSlice = createSlice({
     },
     [USER_UPDATE_PROFILE_SUCCESS]: (state, action) => {
       state.loading = false;
+      state.success = true;
       state.user = action.payload;
     },
     [USER_UPDATE_PROFILE_FAIL]: (state, action) => {
@@ -205,6 +206,7 @@ export const userUpdateProfileSlice = createSlice({
     },
     [USER_UPDATE_PROFILE_RESET]: (state) => {
       state.user = {};
+      state.success = false;
     },
   },
 });

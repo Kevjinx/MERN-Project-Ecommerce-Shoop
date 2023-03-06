@@ -101,7 +101,7 @@ const updateUserProfile = expressAsyncHandler(async (req, res) => {
       firstName: updatedUser.firstName,
       lastName: updatedUser.lastName,
       email: updatedUser.email,
-      password: 'test',
+      password: user.password,
     });
   } else {
     res.status(404);

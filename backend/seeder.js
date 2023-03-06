@@ -7,6 +7,7 @@ import User from './db/models/userModel.js';
 import Product from './db/models/productModel.js';
 import Order from './db/models/orderModel.js';
 import dbConnect from './db/dbConnect.js';
+import bcrypt from 'bcrypt';
 
 dotenv.config();
 
@@ -19,11 +20,27 @@ const importData = async () => {
     await Product.deleteMany();
     await User.deleteMany();
 
-    const createdUsers = await User.insertMany(users); //arrays of users
+    // Hash the password for each user
+    const hashedUsers = await Promise.all(
+      users.map(async (user) => {
+        const salt = await bcrypt.genSalt(10);
+        const hash = await bcrypt.hash(user.password, salt);
+        const hashedUsers = {
+          ...user,
+          password: hash,
+          realPassword:
+            process.env.NODE_ENV === 'development' ? user.password : null,
+        };
+
+        return hashedUsers;
+      })
+    );
+
+    const createdUsers = await User.insertMany(hashedUsers); //arrays of users
 
     const adminUser = createdUsers[0]._id;
 
-    // Add admin user to all products
+    // reference admin user to all products
     const sampleProducts = products.map((product) => {
       return { ...product, user: adminUser };
     });

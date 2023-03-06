@@ -32,6 +32,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    realPassword: {
+      type: String,
+      required: false,
+    },
   },
   {
     timestamps: true,
@@ -49,12 +53,15 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
 //hash password in middleware instead of in the controller to keep the controller clean
 userSchema.pre('save', async function (next) {
   const user = this;
-  if (!user.isModified('password')) {
-    //if the password is not modified, then we don't need to hash it again when updating the user profile
-    next();
+  if (!user.isModified('password')) return next();
+  try {
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hash = await bcrypt.hash(user.password, salt);
+    user.password = hash;
+    return next();
+  } catch (err) {
+    return next(err);
   }
-  user.password = bcrypt.hashSync(user.password, 10);
-  next();
 });
 
 const User = mongoose.model('User', userSchema);

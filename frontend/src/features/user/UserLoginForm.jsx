@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserLogin } from './userSlice.js';
+import { fetchUserLogin, userLoginErrorReset } from './userSlice.js';
 import Message from '../../components/Message.jsx';
 import Loader from '../../components/Loader.jsx';
 import FormContainer from '../../components/FormContainer.jsx';
@@ -14,6 +14,11 @@ const UserLoginForm = () => {
   const { userInfo, loading, error } = userLogin;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    //when refreshing, delete error
+    dispatch(userLoginErrorReset());
+  }, [dispatch]);
 
   useEffect(() => {
     if (userInfo.token) {

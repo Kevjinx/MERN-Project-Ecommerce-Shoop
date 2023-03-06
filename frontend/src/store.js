@@ -4,7 +4,12 @@ import {
   productListSlice,
   productDetailSlice,
 } from './features/product/productSlice';
-import { userLoginSlice, userDetailSlice } from './features/user/userSlice';
+import {
+  userLoginSlice,
+  userDetailSlice,
+  userRegisterSlice,
+  userUpdateProfileSlice,
+} from './features/user/userSlice';
 import cartReducer from './features/cart/cartSlice';
 import thunkMiddleware from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -13,7 +18,7 @@ import storage from 'redux-persist/lib/storage'; // defaults to localStorage for
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['cart', 'userLogin'],
+  //TODO: update whitelist when in production
 };
 
 const rootReducer = combineReducers({
@@ -22,6 +27,8 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   userLogin: userLoginSlice.reducer,
   userDetail: userDetailSlice.reducer,
+  userRegister: userRegisterSlice.reducer,
+  userUpdateProfile: userUpdateProfileSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

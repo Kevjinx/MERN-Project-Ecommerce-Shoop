@@ -1,27 +1,47 @@
 import React, { useEffect, useState } from 'react';
-import { fetchUserDetails } from '../features/user/userSlice.js';
+import {
+  fetchUserDetails,
+  updateUserProfile,
+} from '../features/user/userSlice.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import Message from '../components/Message.jsx';
+import Loader from '../components/Loader.jsx';
 
 const ProfileScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [message, setMessage] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log('submitHandler');
-    //TODO: dispatch update profile
+    if (password !== confirmPassword) {
+      setMessage('Passwords do not match');
+    } else {
+      const updatedUser = {
+        _id: user._id,
+        email,
+        password,
+        firstName,
+        lastName,
+      };
+      dispatch(updateUserProfile(updatedUser));
+    }
   };
 
   const userDetail = useSelector((state) => state.userDetail);
   const { loading, error, user } = userDetail;
 
   const userLogin = useSelector((state) => state.userLogin);
+
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const updateSuccess = userUpdateProfile.success;
 
   useEffect(() => {
     if (!userLogin.userInfo.token) {
@@ -43,6 +63,11 @@ const ProfileScreen = () => {
       <Row>
         <Col md={3}>
           <h2>User Profile</h2>
+          {message && <Message variant="danger">{message}</Message>}
+          {error && <Message variant="danger">{error}</Message>}
+          {updateSuccess && (
+            <Message variant="success">Profile Updated</Message>
+          )}
           <Form onSubmit={submitHandler}>
             <Form.Group controlId="email">
               <Form.Label>Email Address</Form.Label>
@@ -63,6 +88,17 @@ const ProfileScreen = () => {
                 onChange={(e) => setPassword(e.target.value)}
               ></Form.Control>
             </Form.Group>
+
+            <Form.Group controlId="confirmPassword">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Confirm password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
             <Form.Group controlId="firstName">
               <Form.Label>First Name</Form.Label>
               <Form.Control
@@ -72,6 +108,7 @@ const ProfileScreen = () => {
                 onChange={(e) => setFirstName(e.target.value)}
               ></Form.Control>
             </Form.Group>
+
             <Form.Group controlId="lastName">
               <Form.Label>Last Name</Form.Label>
               <Form.Control
@@ -81,6 +118,7 @@ const ProfileScreen = () => {
                 onChange={(e) => setLastName(e.target.value)}
               ></Form.Control>
             </Form.Group>
+
             <Button type="submit" variant="primary">
               Update
             </Button>

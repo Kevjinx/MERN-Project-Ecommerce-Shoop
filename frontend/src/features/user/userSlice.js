@@ -4,6 +4,7 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
+  USER_LOGIN_ERROR_RESET,
   USER_LOGOUT,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
@@ -11,9 +12,13 @@ import {
   USER_DETAIL_REQUEST,
   USER_DETAIL_SUCCESS,
   USER_DETAIL_FAIL,
+  USER_UPDATE_PROFILE_REQUEST,
+  USER_UPDATE_PROFILE_SUCCESS,
+  USER_UPDATE_PROFILE_FAIL,
+  USER_UPDATE_PROFILE_RESET,
 } from '../../constants/userConstants.js';
 
-// TODO: refactor these user slices into multiple files
+// TODO: refactor these user slices into multiple files. BUT, should I tho?
 
 export const userLoginSlice = createSlice({
   name: 'userLogin',
@@ -37,11 +42,19 @@ export const userLoginSlice = createSlice({
     [USER_LOGOUT]: (state) => {
       state.userInfo = {};
     },
+    [USER_LOGIN_ERROR_RESET]: (state) => {
+      state.error = null;
+    },
   },
 });
 
-export const { userLoginRequest, userLoginSuccess, userLoginFail, userLogout } =
-  userLoginSlice.actions;
+export const {
+  userLoginRequest,
+  userLoginSuccess,
+  userLoginFail,
+  userLogout,
+  userLoginErrorReset,
+} = userLoginSlice.actions;
 
 export const fetchUserLogin = (email, password) => async (dispatch) => {
   try {
@@ -69,6 +82,7 @@ export const fetchUserLogin = (email, password) => async (dispatch) => {
   }
 };
 
+// ************** user register slice **************
 export const userRegisterSlice = createSlice({
   name: 'userRegister',
   initialState: {
@@ -94,6 +108,7 @@ export const userRegisterSlice = createSlice({
 export const { userRegisterRequest, userRegisterSuccess, userRegisterFail } =
   userRegisterSlice.actions;
 
+// ************** user register action **************
 export const registerUser =
   (firstName, lastName, email, password) => async (dispatch) => {
     try {
@@ -118,7 +133,7 @@ export const registerUser =
     }
   };
 
-//update user profile
+// ************** user detail slice **************
 export const userDetailSlice = createSlice({
   name: 'userDetail',
   initialState: {
@@ -165,5 +180,63 @@ export const fetchUserDetails = (id) => async (dispatch, getState) => {
     dispatch(userDetailSuccess(data));
   } catch (error) {
     dispatch(userDetailFail(error.response));
+  }
+};
+
+// ************** user update profile slice **************
+export const userUpdateProfileSlice = createSlice({
+  name: 'userUpdateProfile',
+  initialState: {
+    user: {},
+    loading: false,
+    error: null,
+  },
+  reducers: {
+    [USER_UPDATE_PROFILE_REQUEST]: (state) => {
+      state.loading = true;
+    },
+    [USER_UPDATE_PROFILE_SUCCESS]: (state, action) => {
+      state.loading = false;
+      state.user = action.payload;
+    },
+    [USER_UPDATE_PROFILE_FAIL]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    [USER_UPDATE_PROFILE_RESET]: (state) => {
+      state.user = {};
+    },
+  },
+});
+
+export const {
+  userUpdateProfileRequest,
+  userUpdateProfileSuccess,
+  userUpdateProfileFail,
+  userUpdateProfileReset,
+} = userUpdateProfileSlice.actions;
+
+export const updateUserProfile = (user) => async (dispatch, getState) => {
+  try {
+    dispatch(userUpdateProfileRequest());
+
+    const token = getState().userLogin.userInfo.token;
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await axios.put(
+      `http://localhost:5000/api/users/profile`,
+      user,
+      config
+    );
+
+    dispatch(userUpdateProfileSuccess(data));
+  } catch (error) {
+    dispatch(userUpdateProfileFail(error.response));
   }
 };

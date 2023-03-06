@@ -4,6 +4,7 @@ import {
   REMOVE_FROM_CART,
   INCREMENT_QUANTITY,
   DECREMENT_QUANTITY,
+  CLEAR_CART,
 } from '../../constants/cartConstants.js';
 
 const cartSlice = createSlice({
@@ -46,6 +47,9 @@ const cartSlice = createSlice({
       );
       existingProducts.quantity > 0 && existingProducts.quantity--;
     },
+    [CLEAR_CART]: (state, action) => {
+      state.cartProducts = [];
+    },
   },
 });
 
@@ -54,6 +58,7 @@ export const {
   removeFromCart,
   incrementQuantity,
   decrementQuantity,
+  clearCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

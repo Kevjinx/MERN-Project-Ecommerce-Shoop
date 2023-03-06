@@ -133,8 +133,6 @@ export const userDetailSlice = createSlice({
     [USER_DETAIL_SUCCESS]: (state, action) => {
       state.loading = false;
       state.user = action.payload;
-      console.log(state);
-      console.log(action.payload);
     },
     [USER_DETAIL_FAIL]: (state, action) => {
       state.loading = false;
@@ -163,7 +161,6 @@ export const fetchUserDetails = (id) => async (dispatch, getState) => {
       `http://localhost:5000/api/users/${id}`,
       config
     );
-    console.log(data);
 
     dispatch(userDetailSuccess(data));
   } catch (error) {

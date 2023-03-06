@@ -17,7 +17,7 @@ const ProfileScreen = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [message, setMessage] = useState(null);
-  const [success, setSuccess] = useState(null);
+  // const [success, setSuccess] = useState(null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,8 +32,10 @@ const ProfileScreen = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword && password.length > 1) {
+    if (password !== confirmPassword) {
       setMessage('Passwords do not match');
+    } else if (password.length < 6) {
+      setMessage('Password must be at least 6 characters');
     } else {
       const updatedUser = {
         _id: user._id,
@@ -43,7 +45,7 @@ const ProfileScreen = () => {
         lastName,
       };
       dispatch(updateUserProfile(updatedUser));
-      setSuccess(updateSuccess);
+      setMessage(null);
     }
   };
 
@@ -65,11 +67,13 @@ const ProfileScreen = () => {
   return (
     <>
       <Row>
-        <Col md={3}>
+        <Col md={4}>
           <h2>User Profile</h2>
           {message && <Message variant="danger">{message}</Message>}
+          {updateSuccess && (
+            <Message variant="success">Profile Updated</Message>
+          )}
           {error && <Message variant="danger">{error}</Message>}
-          {success && <Message variant="success">Profile Updated</Message>}
           {loading && <Loader />}
           <Form onSubmit={submitHandler}>
             <Form.Group controlId="email">
@@ -127,7 +131,7 @@ const ProfileScreen = () => {
             </Button>
           </Form>
         </Col>
-        <Col md={9}>
+        <Col md={8}>
           <h2>My Orders</h2>
         </Col>
       </Row>

@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react';
 import { fetchUserDetails } from '../features/user/userSlice.js';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ProfileScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchUserDetails('6403efe3fe58db093f2e1262'));
-  }, []);
+    dispatch(fetchUserDetails('profile'));
+  }, [dispatch]);
 
-  return <div>ProfileScreen</div>;
+  return (
+    <>
+      <div>ProfileScreen</div>
+    </>
+  );
 };
 
 export default ProfileScreen;

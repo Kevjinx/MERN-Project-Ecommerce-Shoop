@@ -55,13 +55,15 @@ const Cart = () => {
             <h4>${grossTotal}</h4>
           </Row>
           <Row>
-            <Button
-              type="button"
-              className="btn-block"
-              onClick={handleCheckout}
-            >
-              Proceed to Checkout
-            </Button>
+            <Link to="/shipping">
+              <Button
+                type="button"
+                className="btn-block"
+                onClick={handleCheckout}
+              >
+                Proceed to Checkout
+              </Button>
+            </Link>
           </Row>
         </Col>
       </Row>

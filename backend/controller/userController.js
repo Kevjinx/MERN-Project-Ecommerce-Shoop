@@ -83,10 +83,7 @@ const registerUser = expressAsyncHandler(async (req, res) => {
 // @desc    update user profile
 // @access  private
 const updateUserProfile = expressAsyncHandler(async (req, res) => {
-  console.log('updating');
-
   const user = await User.findById(req.user._id);
-  console.log(req.body.password);
 
   if (user) {
     user.firstName = req.body.firstName || user.firstName;

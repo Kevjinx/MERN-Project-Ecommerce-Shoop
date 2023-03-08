@@ -8,8 +8,6 @@ import {
   SAVE_SHIPPING_ADDRESS,
   ADD_DISCOUNT_CODE,
   REMOVE_DISCOUNT_CODE,
-  ADD_DISCOUNT_CODE_SUCCESS,
-  ADD_DISCOUNT_CODE_FAIL,
 } from '../../constants/cartConstants.js';
 
 const cartSlice = createSlice({

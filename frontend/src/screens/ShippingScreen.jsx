@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { saveShippingAddress } from '../features/cart/cartSlice';
 import { useNavigate } from 'react-router-dom';
 import CheckoutSteps from '../components/CheckoutSteps';
+import Message from '../components/Message';
 
 const ShippingScreen = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,8 @@ const ShippingScreen = () => {
   const [postalCode, setPostalCode] = useState('');
   const [country, setCountry] = useState('');
 
+  const [message, setMessage] = useState('');
+
   //so user don't have to refill shipping info. #CustomerExperienceLevel9000 :)
   useEffect(() => {
     setAddress(shippingAddress.address);
@@ -28,8 +31,12 @@ const ShippingScreen = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log('submit');
-    dispatch(saveShippingAddress({ address, city, postalCode, country }));
-    navigate('/payment');
+    if (address && city && postalCode && country) {
+      dispatch(saveShippingAddress({ address, city, postalCode, country }));
+      navigate('/payment');
+    } else {
+      setMessage('Please fill out all fields');
+    }
   };
 
   return (
@@ -73,6 +80,7 @@ const ShippingScreen = () => {
             value={country}
           />
         </Form.Group>
+        {message && <Message variant="danger">{message}</Message>}
         <Button type="submit" variant="primary">
           Continue
         </Button>

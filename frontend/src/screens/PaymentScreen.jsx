@@ -1,7 +1,18 @@
 import React from 'react';
 import { Row, Col, Button, Form } from 'react-bootstrap';
 import CheckoutSteps from '../components/CheckoutSteps';
+// import { useSelector } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
+
 const PaymentScreen = () => {
+  // TODO: update shippingAddress state to verify if user has filled out shipping info
+  // const navigate = useNavigate();
+  // const { shippingAddress } = useSelector((state) => state.cart);
+
+  // if (!shippingAddress.address) {
+  //   navigate('/shipping');
+  // }
+
   const submitHandler = (e) => {
     e.preventDefault();
     console.log('submit');

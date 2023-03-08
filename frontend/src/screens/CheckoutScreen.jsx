@@ -3,7 +3,6 @@ import {
   Row,
   Col,
   Button,
-  Form,
   ListGroup,
   Image,
   InputGroup,
@@ -16,6 +15,9 @@ import {
   addDiscountCode,
 } from '../features/cart/cartSlice';
 import { Link } from 'react-router-dom';
+import CheckoutSteps from '../components/CheckoutSteps';
+import discounts from '../Utils/discounts';
+//TODO: add backend verification for discount code
 
 const CheckoutScreen = () => {
   const dispatch = useDispatch();
@@ -33,12 +35,6 @@ const CheckoutScreen = () => {
 
   const [discountCodeInput, setDiscountCodeInput] = useState('');
 
-  //TODO: add backend verification for discount code
-  const discounts = {
-    '5plus5equals11': 11,
-    freeplus20: 120,
-  };
-
   const addDiscountHandler = () => {
     console.log('Discount Code: ', discountCodeInput);
 
@@ -53,8 +49,19 @@ const CheckoutScreen = () => {
       );
     } else {
       setMessage('');
-      setDangerMessage(`Discount code ${discountCodeInput} is not valid!`);
+      discountCodeInput.length > 0
+        ? setDangerMessage(`Discount code ${discountCodeInput} is not valid!`)
+        : setDangerMessage(
+            'Please enter a discount code. I heard "5plus5equals11" is a good one!'
+          );
     }
+    // TODO: add text adventure side quest to console
+    //   //for the lols
+    //   discountCodeInput === 'FREE' &&
+    //     setDangerMessage(
+    //       `Sike! You ain't getting this for free! But I heard there's a console side quest you can do to get a discount code. Try logging 'sideQuest()'`
+    //     );
+    // }
   };
 
   const removeDiscountHandler = () => {
@@ -77,66 +84,74 @@ const CheckoutScreen = () => {
   };
 
   return (
-    <Row>
-      <Col md={8}>
-        <h1>Order Summary</h1>
-        <ListGroup>
-          {cartProducts.map((product) => (
-            <ListGroup.Item key={product._id}>
+    <>
+      <CheckoutSteps step1 step2 />
+      <Row>
+        <Col md={8}>
+          <h1>Order Summary</h1>
+          <ListGroup>
+            {cartProducts.map((product) => (
+              <ListGroup.Item key={product._id}>
+                <Row>
+                  <Col md={2}>
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fluid
+                      rounded
+                    />
+                  </Col>
+                  <Col md={4}>
+                    <p>{product.name}</p>
+                  </Col>
+                  <Col md={2}>
+                    <p>{product.quantity}</p>
+                  </Col>
+                  <Col md={2}>
+                    <p>${product.price}</p>
+                  </Col>
+                </Row>
+              </ListGroup.Item>
+            ))}
+            <ListGroup.Item key="subtotal">
+              <Row className="ps-3 pe-3 pt-1">
+                {dangerMessage && (
+                  <Message variant="danger">{dangerMessage}</Message>
+                )}
+                {message && <Message variant="success">{message}</Message>}
+              </Row>
+              {/* sub total */}
               <Row>
-                <Col md={2}>
-                  <Image src={product.image} alt={product.name} fluid rounded />
-                </Col>
-                <Col md={4}>
-                  <p>{product.name}</p>
+                <Col md={2} />
+                <Col md={6}>
+                  <p>Subtotal</p>
                 </Col>
                 <Col md={2}>
-                  <p>{product.quantity}</p>
-                </Col>
-                <Col md={2}>
-                  <p>${product.price}</p>
+                  <p>${subTotal}</p>
                 </Col>
               </Row>
             </ListGroup.Item>
-          ))}
-          <ListGroup.Item key="subtotal">
-            <Row className="ps-3 pe-3 pt-1">
-              {dangerMessage && (
-                <Message variant="danger">{dangerMessage}</Message>
-              )}
-              {message && <Message variant="success">{message}</Message>}
-            </Row>
-            {/* sub total */}
-            <Row>
-              <Col md={2} />
-              <Col md={6}>
-                <p>Subtotal</p>
-              </Col>
-              <Col md={2}>
-                <p>${subTotal}</p>
-              </Col>
-            </Row>
-          </ListGroup.Item>
-        </ListGroup>
-        <Row className="">
-          <InputGroup>
-            <FormControl
-              onChange={(e) => setDiscountCodeInput(e.target.value)}
-              type="text"
-              placeholder="Discount Code"
-            />
-            {discountToggle()}
-          </InputGroup>
-        </Row>
-        <Row>
-          <Col md={4} className="pt-2">
-            <Link to="/payment">
-              <Button>Proceed to Payment</Button>
-            </Link>
-          </Col>
-        </Row>
-      </Col>
-    </Row>
+          </ListGroup>
+          <Row className="">
+            <InputGroup>
+              <FormControl
+                onChange={(e) => setDiscountCodeInput(e.target.value)}
+                type="text"
+                placeholder="Discount Code"
+              />
+              {discountToggle()}
+            </InputGroup>
+          </Row>
+          <Row>
+            <Col md={4} className="pt-2">
+              <Link to="/shipping">
+                <Button>Proceed to Shipping</Button>
+              </Link>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+    </>
   );
 };
 

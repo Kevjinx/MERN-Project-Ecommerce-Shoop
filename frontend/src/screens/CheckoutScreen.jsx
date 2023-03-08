@@ -8,16 +8,14 @@ import {
   Image,
   InputGroup,
   FormControl,
-  Dropdown,
 } from 'react-bootstrap';
-import FormContainer from '../components/FormContainer';
 import { useSelector, useDispatch } from 'react-redux';
 import Message from '../components/Message';
 import {
-  saveShippingAddress,
   removeDiscountCode,
   addDiscountCode,
 } from '../features/cart/cartSlice';
+import { Link } from 'react-router-dom';
 
 const CheckoutScreen = () => {
   const dispatch = useDispatch();
@@ -80,10 +78,7 @@ const CheckoutScreen = () => {
 
   return (
     <Row>
-      <Col md={7}>
-        <h1>Payment</h1>
-      </Col>
-      <Col md={5}>
+      <Col md={8}>
         <h1>Order Summary</h1>
         <ListGroup>
           {cartProducts.map((product) => (
@@ -132,6 +127,13 @@ const CheckoutScreen = () => {
             />
             {discountToggle()}
           </InputGroup>
+        </Row>
+        <Row>
+          <Col md={4} className="pt-2">
+            <Link to="/payment">
+              <Button>Proceed to Payment</Button>
+            </Link>
+          </Col>
         </Row>
       </Col>
     </Row>

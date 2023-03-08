@@ -4,9 +4,11 @@ import FormContainer from '../components/FormContainer';
 import { useDispatch } from 'react-redux';
 import Message from '../components/Message';
 import { saveShippingAddress } from '../features/cart/cartSlice';
+import { useNavigate } from 'react-router-dom';
 
 const ShippingScreen = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
@@ -17,6 +19,7 @@ const ShippingScreen = () => {
     e.preventDefault();
     console.log('submit');
     dispatch(saveShippingAddress({ address, city, postalCode, country }));
+    navigate('/payment');
   };
 
   return (

@@ -6,6 +6,10 @@ import {
   DECREMENT_QUANTITY,
   CLEAR_CART,
   SAVE_SHIPPING_ADDRESS,
+  ADD_DISCOUNT_CODE,
+  REMOVE_DISCOUNT_CODE,
+  ADD_DISCOUNT_CODE_SUCCESS,
+  ADD_DISCOUNT_CODE_FAIL,
 } from '../../constants/cartConstants.js';
 
 const cartSlice = createSlice({
@@ -54,6 +58,12 @@ const cartSlice = createSlice({
     [SAVE_SHIPPING_ADDRESS]: (state, action) => {
       state.shippingAddress = action.payload;
     },
+    [ADD_DISCOUNT_CODE]: (state, action) => {
+      state.discountCode = action.payload;
+    },
+    [REMOVE_DISCOUNT_CODE]: (state) => {
+      state.discountCode = '';
+    },
   },
 });
 
@@ -64,6 +74,8 @@ export const {
   decrementQuantity,
   clearCart,
   saveShippingAddress,
+  removeDiscountCode,
+  addDiscountCode,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

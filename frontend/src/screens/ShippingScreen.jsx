@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Row,
   Col,
@@ -11,16 +11,19 @@ import {
   Dropdown,
 } from 'react-bootstrap';
 import FormContainer from '../components/FormContainer';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Message from '../components/Message';
-import Loader from '../components/Loader';
-import { saveShippingAddress } from '../features/cart/cartSlice';
-import { useDispatch } from 'react-redux';
+import {
+  saveShippingAddress,
+  removeDiscountCode,
+  addDiscountCode,
+} from '../features/cart/cartSlice';
 
 const ShippingScreen = () => {
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.userLogin);
-  const cartProducts = useSelector((state) => state.cart.cartProducts);
+  const { cartProducts, discountCode } = useSelector((state) => state.cart);
+
   const [subTotal, setSubTotal] = useState(
     cartProducts.reduce((acc, product) => {
       return acc + product.price * product.quantity;
@@ -32,31 +35,51 @@ const ShippingScreen = () => {
   const [postalCode, setPostalCode] = useState('');
   const [country, setCountry] = useState('');
 
-  const [discountCode, setDiscountCode] = useState('');
-  const [discountApplied, setDiscountApplied] = useState(false);
   const [message, setMessage] = useState('');
   const [dangerMessage, setDangerMessage] = useState('');
 
-  //TODO: update discount stuff to use redux state so it persists on refresh
+  const [discountCodeInput, setDiscountCodeInput] = useState('');
+
   //TODO: add backend verification for discount code
-  const addDiscountHandler = () => {
-    if (discountApplied) {
-      return setDangerMessage(`You've already applied a discount code!`);
-    }
-    console.log('Discount Code: ', discountCode);
-    discountCode === '5plus5equals11' && discountSubTotal(11);
-    discountCode === 'freeplus20' && discountSubTotal(120);
+  const discounts = {
+    '5plus5equals11': 11,
+    freeplus20: 120,
   };
 
-  const discountSubTotal = (discount) => {
-    if (discount > 100) {
-      setDangerMessage(`STOP HACKING! You're not getting a free product!`);
-    } else {
+  const addDiscountHandler = () => {
+    console.log('Discount Code: ', discountCodeInput);
+
+    if (discounts[discountCodeInput]) {
+      dispatch(addDiscountCode(discountCodeInput));
+      setMessage(
+        `Discount applied: ${discountCodeInput} for ${discounts[discountCodeInput]}% off!`
+      );
       setDangerMessage('');
-      setMessage(`Discount applied: ${discountCode} for ${discount}% off!`);
+      setSubTotal(
+        (subTotal - subTotal * (discounts[discountCodeInput] / 100)).toFixed(2)
+      );
+    } else {
+      setMessage('');
+      setDangerMessage(`Discount code ${discountCodeInput} is not valid!`);
     }
-    setSubTotal(subTotal - subTotal * (discount / 100));
-    setDiscountApplied(true);
+  };
+
+  const removeDiscountHandler = () => {
+    dispatch(removeDiscountCode());
+    setMessage('');
+    setSubTotal(
+      cartProducts.reduce((acc, product) => {
+        return acc + product.price * product.quantity;
+      }, 0)
+    );
+  };
+
+  const discountToggle = () => {
+    if (discountCode) {
+      return <Button onClick={removeDiscountHandler}>Remove Discount</Button>;
+    } else {
+      return <Button onClick={addDiscountHandler}>Add Discount</Button>;
+    }
   };
 
   const submitHandler = (e) => {
@@ -152,11 +175,11 @@ const ShippingScreen = () => {
         <Row className="">
           <InputGroup>
             <FormControl
-              onChange={(e) => setDiscountCode(e.target.value)}
+              onChange={(e) => setDiscountCodeInput(e.target.value)}
               type="text"
               placeholder="Discount Code"
             />
-            <Button onClick={addDiscountHandler}>Add Discount</Button>
+            {discountToggle()}
           </InputGroup>
         </Row>
       </Col>

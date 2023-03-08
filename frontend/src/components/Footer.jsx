@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, DropDown } from 'react-bootstrap';
 import ClearCartButton from '../features/cart/ClearCartButton';
 
 const Footer = () => {

@@ -17,6 +17,7 @@ import {
 import { Link } from 'react-router-dom';
 import CheckoutSteps from '../components/CheckoutSteps';
 import discounts from '../Utils/discounts';
+
 //TODO: add backend verification for discount code
 
 const CheckoutScreen = () => {

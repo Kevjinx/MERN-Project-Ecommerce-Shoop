@@ -3,6 +3,7 @@ import { Row, Col, ListGroup, Image, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import CartButton from '../features/cart/CartButton';
+import ClearCartButton from '../features/cart/ClearCartButton';
 
 const CartScreen = () => {
   const cart = useSelector((state) => state.cart.cartProducts);
@@ -67,6 +68,7 @@ const CartScreen = () => {
           </Row>
         </Col>
       </Row>
+      <ClearCartButton />
     </div>
   );
 };

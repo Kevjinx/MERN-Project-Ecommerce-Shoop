@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import CheckoutSteps from '../components/CheckoutSteps';
 import Message from '../components/Message';
 
+// TODO: use some sort of form validation library for shipping info
+
 const ShippingScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,7 +32,6 @@ const ShippingScreen = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log('submit');
     if (address && city && postalCode && country) {
       dispatch(saveShippingAddress({ address, city, postalCode, country }));
       navigate('/payment');

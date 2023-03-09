@@ -6,3 +6,4 @@ export const CLEAR_CART = 'clearCart';
 export const SAVE_SHIPPING_ADDRESS = 'saveShippingAddress';
 export const ADD_DISCOUNT_CODE = 'addDiscountCode';
 export const REMOVE_DISCOUNT_CODE = 'removeDiscountCode';
+export const SAVE_PAYMENT_METHOD = 'savePaymentMethod';

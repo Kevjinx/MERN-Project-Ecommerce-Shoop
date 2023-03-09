@@ -8,6 +8,7 @@ import {
   SAVE_SHIPPING_ADDRESS,
   ADD_DISCOUNT_CODE,
   REMOVE_DISCOUNT_CODE,
+  SAVE_PAYMENT_METHOD,
 } from '../../constants/cartConstants.js';
 
 const cartSlice = createSlice({
@@ -62,6 +63,9 @@ const cartSlice = createSlice({
     [REMOVE_DISCOUNT_CODE]: (state) => {
       state.discountCode = '';
     },
+    [SAVE_PAYMENT_METHOD]: (state, action) => {
+      state.paymentMethod = action.payload;
+    },
   },
 });
 
@@ -74,6 +78,7 @@ export const {
   saveShippingAddress,
   removeDiscountCode,
   addDiscountCode,
+  savePaymentMethod,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

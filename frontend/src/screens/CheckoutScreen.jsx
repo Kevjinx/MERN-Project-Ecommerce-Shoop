@@ -17,6 +17,7 @@ import {
 import { Link } from 'react-router-dom';
 import CheckoutSteps from '../components/CheckoutSteps';
 import discounts from '../Utils/discounts';
+import FormContainer from '../components/FormContainer';
 
 //TODO: add backend verification for discount code
 
@@ -87,71 +88,73 @@ const CheckoutScreen = () => {
   return (
     <>
       <CheckoutSteps step1 step2 />
-      <Row>
-        <Col md={8}>
-          <h1>Order Summary</h1>
-          <ListGroup>
-            {cartProducts.map((product) => (
-              <ListGroup.Item key={product._id}>
+      <FormContainer>
+        <Row>
+          <Col md={10}>
+            <h1>Order Summary</h1>
+            <ListGroup>
+              {cartProducts.map((product) => (
+                <ListGroup.Item key={product._id}>
+                  <Row>
+                    <Col md={2}>
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fluid
+                        rounded
+                      />
+                    </Col>
+                    <Col md={4}>
+                      <p>{product.name}</p>
+                    </Col>
+                    <Col md={2}>
+                      <p>{product.quantity}</p>
+                    </Col>
+                    <Col md={2}>
+                      <p>${product.price}</p>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+              ))}
+              <ListGroup.Item key="subtotal">
+                <Row className="ps-3 pe-3 pt-1">
+                  {dangerMessage && (
+                    <Message variant="danger">{dangerMessage}</Message>
+                  )}
+                  {message && <Message variant="success">{message}</Message>}
+                </Row>
+                {/* sub total */}
                 <Row>
-                  <Col md={2}>
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fluid
-                      rounded
-                    />
-                  </Col>
-                  <Col md={4}>
-                    <p>{product.name}</p>
+                  <Col md={2} />
+                  <Col md={6}>
+                    <p>Subtotal</p>
                   </Col>
                   <Col md={2}>
-                    <p>{product.quantity}</p>
-                  </Col>
-                  <Col md={2}>
-                    <p>${product.price}</p>
+                    <p>${subTotal}</p>
                   </Col>
                 </Row>
               </ListGroup.Item>
-            ))}
-            <ListGroup.Item key="subtotal">
-              <Row className="ps-3 pe-3 pt-1">
-                {dangerMessage && (
-                  <Message variant="danger">{dangerMessage}</Message>
-                )}
-                {message && <Message variant="success">{message}</Message>}
-              </Row>
-              {/* sub total */}
-              <Row>
-                <Col md={2} />
-                <Col md={6}>
-                  <p>Subtotal</p>
-                </Col>
-                <Col md={2}>
-                  <p>${subTotal}</p>
-                </Col>
-              </Row>
-            </ListGroup.Item>
-          </ListGroup>
-          <Row className="">
-            <InputGroup>
-              <FormControl
-                onChange={(e) => setDiscountCodeInput(e.target.value)}
-                type="text"
-                placeholder="Discount Code"
-              />
-              {discountToggle()}
-            </InputGroup>
-          </Row>
-          <Row>
-            <Col md={4} className="pt-2">
-              <Link to="/shipping">
-                <Button>Proceed to Shipping</Button>
-              </Link>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
+            </ListGroup>
+            <Row className="pt-1 pb-1">
+              <InputGroup>
+                <FormControl
+                  onChange={(e) => setDiscountCodeInput(e.target.value)}
+                  type="text"
+                  placeholder="Discount Code"
+                />
+                {discountToggle()}
+              </InputGroup>
+            </Row>
+            <Row>
+              <Col>
+                <Link to="/shipping">
+                  <Button>Proceed to Shipping</Button>
+                </Link>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </FormContainer>
     </>
   );
 };

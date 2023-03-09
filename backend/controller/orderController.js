@@ -6,7 +6,6 @@ import Order from '../db/models/orderModel.js';
 // @desc    create an order
 // @access  private
 const addOrderItems = expressAsyncHandler(async (req, res) => {
-  console.log(req);
   const {
     orderItems,
     shippingAddress,
@@ -19,7 +18,7 @@ const addOrderItems = expressAsyncHandler(async (req, res) => {
   } = req.body;
 
   if (orderItems && orderItems.length === 0) {
-    res.status(1400);
+    res.status(204);
     throw new Error('No order items');
     return;
   } else {
@@ -53,4 +52,13 @@ const getOrderById = expressAsyncHandler(async (req, res) => {
   res.json(order);
 });
 
-export { addOrderItems, getOrderById };
+// @type    GET
+// @route   /api/orders/user
+// @desc    fetch all order from logged in user
+// @access  private
+const getMyOrders = expressAsyncHandler(async (req, res) => {
+  const orders = await Order.find({ user: req.user._id });
+  res.json(orders);
+});
+
+export { addOrderItems, getOrderById, getMyOrders };

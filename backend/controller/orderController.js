@@ -6,8 +6,8 @@ import Order from '../db/models/orderModel.js';
 // @desc    create an order
 // @access  private
 const addOrderItems = expressAsyncHandler(async (req, res) => {
+  console.log(req);
   const {
-    user,
     orderItems,
     shippingAddress,
     paymentMethod,
@@ -15,17 +15,17 @@ const addOrderItems = expressAsyncHandler(async (req, res) => {
     taxPrice,
     shippingPrice,
     totalPrice,
+    user,
   } = req.body;
 
   if (orderItems && orderItems.length === 0) {
-    res.status(400);
+    res.status(1400);
     throw new Error('No order items');
     return;
   } else {
     const order = new Order({
-      user,
       orderItems,
-      user: req.user._id,
+      user,
       shippingAddress,
       paymentMethod,
       itemsPrice,

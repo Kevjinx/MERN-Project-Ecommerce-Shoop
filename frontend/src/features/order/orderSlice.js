@@ -43,7 +43,10 @@ export const orderCreateSlice = createSlice({
       state.error = action.payload;
     },
     [ORDER_CREATE_RESET]: (state) => {
-      state = {};
+      state.loading = false;
+      state.success = false;
+      state.order = {};
+      state.error = '';
     },
   },
 });

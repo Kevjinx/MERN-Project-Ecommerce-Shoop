@@ -24,10 +24,12 @@ const ShippingScreen = () => {
 
   //so user don't have to refill shipping info. #CustomerExperienceLevel9000 :)
   useEffect(() => {
-    setAddress(shippingAddress.address);
-    setCity(shippingAddress.city);
-    setPostalCode(shippingAddress.postalCode);
-    setCountry(shippingAddress.country);
+    if (shippingAddress) {
+      setAddress(shippingAddress.address);
+      setCity(shippingAddress.city);
+      setPostalCode(shippingAddress.postalCode);
+      setCountry(shippingAddress.country);
+    }
   }, [shippingAddress]);
 
   const submitHandler = (e) => {

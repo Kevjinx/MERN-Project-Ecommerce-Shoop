@@ -14,15 +14,7 @@ const PlaceOrderScreen = () => {
   const { cartProducts, shippingAddress, paymentMethod } = cart;
 
   const orderCreate = useSelector((state) => state.orderCreate || {});
-  const { success, error } = orderCreate;
-
-  useEffect(() => {
-    if (success && order) {
-      navigate(`/order/${order._id}`);
-      dispatch(orderCreateReset());
-      dispatch(userDetailReset());
-    }
-  }, [success]);
+  const { success, error, order } = orderCreate;
 
   const itemsPrice = cartProducts.reduce((acc, item) => acc + item.price, 0);
   const taxPrice = cartProducts.reduce(
@@ -39,7 +31,15 @@ const PlaceOrderScreen = () => {
     Number(taxPrice)
   ).toFixed(2);
 
-  const order = {
+  useEffect(() => {
+    if (success && order) {
+      dispatch(orderCreateReset());
+      dispatch(userDetailReset());
+      // navigate(`/order/${updatedOrder._id}`);
+    }
+  }, [success]);
+
+  const updatedOrder = {
     orderItems: cartProducts,
     shippingAddress: shippingAddress,
     paymentMethod: paymentMethod,
@@ -50,9 +50,9 @@ const PlaceOrderScreen = () => {
     user: userInfo._id,
   };
   const placeOrderHandler = () => {
-    console.log(order);
+    console.log(updatedOrder);
 
-    dispatch(createOrder(order));
+    dispatch(createOrder(updatedOrder));
   };
 
   const itemRow = (cartProducts) => {
@@ -109,7 +109,7 @@ const PlaceOrderScreen = () => {
                 </Col>
                 <Col md={3}>
                   <span className="d-block text-muted">Order No</span>
-                  <span>{order.orderNumber}</span>
+                  <span>{updatedOrder.orderNumber}</span>
                 </Col>
                 <Col md={3}>
                   <span className="d-block text-muted">Payment</span>
@@ -127,12 +127,12 @@ const PlaceOrderScreen = () => {
               {itemRow(cartProducts)}
               <Row className="justify-content-end p-3">
                 <Col md={8}>
-                  {labelCostRow('Subtotal', order.itemsPrice)}
-                  {labelCostRow('Shipping Fee', order.shippingPrice)}
-                  {labelCostRow('Tax Fee', order.taxPrice)}
-                  {labelCostRow('Discount', order.discount)}
+                  {labelCostRow('Subtotal', updatedOrder.itemsPrice)}
+                  {labelCostRow('Shipping Fee', updatedOrder.shippingPrice)}
+                  {labelCostRow('Tax Fee', updatedOrder.taxPrice)}
+                  {labelCostRow('Discount', updatedOrder.discount)}
                   <hr />
-                  {labelCostRow('Total', order.totalPrice)}
+                  {labelCostRow('Total', updatedOrder.totalPrice)}
                   <hr />
                   <Button onClick={placeOrderHandler}>Place Order</Button>
                 </Col>
@@ -151,7 +151,7 @@ const PlaceOrderScreen = () => {
                 Need Help? visit our{' '}
                 <a href="#sorry-cant-help-you-yet"> help center</a>
               </span>
-              <span>{order.data}</span>
+              <span>{updatedOrder.data}</span>
             </Card.Footer>
           </Card>
         </Col>

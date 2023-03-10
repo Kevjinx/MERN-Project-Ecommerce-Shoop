@@ -4,17 +4,19 @@ import CheckoutSteps from '../components/CheckoutSteps';
 import { useDispatch } from 'react-redux';
 import { savePaymentMethod } from '../features/cart/cartSlice';
 import FormContainer from '../components/FormContainer';
+import { useNavigate } from 'react-router-dom';
 
 // TODO: update shippingAddress state to verify if user has filled out shipping info, and redirect if otherwise
 const PaymentScreen = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState('PayPal');
 
   const submitHandler = (e) => {
     e.preventDefault();
     console.log('submit');
     dispatch(savePaymentMethod(paymentMethod));
+    navigate('/placeorder');
   };
 
   return (
@@ -26,6 +28,7 @@ const PaymentScreen = () => {
           <Form.Group controlId="paymentMethod">
             <Form.Label>Select Method</Form.Label>
             <Form.Check
+              defaultChecked
               type="radio"
               label="PayPal or Credit Card"
               id="PayPal"

@@ -11,6 +11,7 @@ export const USER_REGISTER_FAIL = 'userRegisterFail';
 export const USER_DETAIL_REQUEST = 'userDetailRequest';
 export const USER_DETAIL_SUCCESS = 'userDetailSuccess';
 export const USER_DETAIL_FAIL = 'userDetailFail';
+export const USER_DETAIL_RESET = 'userDetailReset';
 
 export const USER_UPDATE_PROFILE_REQUEST = 'userUpdateProfileRequest';
 export const USER_UPDATE_PROFILE_SUCCESS = 'userUpdateProfileSuccess';

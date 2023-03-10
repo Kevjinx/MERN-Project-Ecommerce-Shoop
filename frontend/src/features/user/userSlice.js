@@ -12,6 +12,7 @@ import {
   USER_DETAIL_REQUEST,
   USER_DETAIL_SUCCESS,
   USER_DETAIL_FAIL,
+  USER_DETAIL_RESET,
   USER_UPDATE_PROFILE_REQUEST,
   USER_UPDATE_PROFILE_SUCCESS,
   USER_UPDATE_PROFILE_FAIL,
@@ -153,11 +154,18 @@ export const userDetailSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    [USER_DETAIL_RESET]: (state) => {
+      state.user = {};
+    },
   },
 });
 
-export const { userDetailRequest, userDetailSuccess, userDetailFail } =
-  userDetailSlice.actions;
+export const {
+  userDetailRequest,
+  userDetailSuccess,
+  userDetailFail,
+  userDetailReset,
+} = userDetailSlice.actions;
 
 export const fetchUserDetails = (id) => async (dispatch, getState) => {
   try {

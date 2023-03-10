@@ -11,6 +11,14 @@ import {
   userUpdateProfileSlice,
 } from './features/user/userSlice';
 import cartReducer from './features/cart/cartSlice';
+import {
+  orderCreateSlice,
+  orderDetailsSlice,
+  orderPaySlice,
+  orderListMySlice,
+  orderListSlice,
+  orderDeliverSlice,
+} from './features/order/orderSlice';
 import thunkMiddleware from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
@@ -30,6 +38,12 @@ const rootReducer = combineReducers({
   userDetail: userDetailSlice.reducer,
   userRegister: userRegisterSlice.reducer,
   userUpdateProfile: userUpdateProfileSlice.reducer,
+  orderCreate: orderCreateSlice.reducer,
+  orderDetails: orderDetailsSlice.reducer,
+  orderPay: orderPaySlice.reducer,
+  orderListMy: orderListMySlice.reducer,
+  orderList: orderListSlice.reducer,
+  orderDeliver: orderDeliverSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

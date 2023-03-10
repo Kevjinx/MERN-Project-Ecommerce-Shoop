@@ -1,241 +1,152 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import {
-  Row,
-  Col,
-  Image,
-  Card,
-  Container,
-  Button,
-  Table,
-} from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Row, Col, Image, Card, Container, Button } from 'react-bootstrap';
 import CheckoutSteps from '../components/CheckoutSteps';
+import { createOrder, orderCreateReset } from '../features/order/orderSlice.js';
+import { userDetailReset } from '../features/user/userSlice.js';
+import { useNavigate } from 'react-router-dom';
 
 const PlaceOrderScreen = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
+  const { userInfo } = useSelector((state) => state.userLogin);
+  const { cartProducts, shippingAddress, paymentMethod } = cart;
+
+  const orderCreate = useSelector((state) => state.orderCreate || {});
+  const { success, error } = orderCreate;
+
+  useEffect(() => {
+    if (success && order) {
+      navigate(`/order/${order._id}`);
+      dispatch(orderCreateReset());
+      dispatch(userDetailReset());
+    }
+  }, [success]);
+
+  const itemsPrice = cartProducts.reduce((acc, item) => acc + item.price, 0);
+  const taxPrice = cartProducts.reduce(
+    (acc, item) => acc + item.price * 0.05,
+    0
+  );
+  const shippingPrice = cartProducts.reduce(
+    (acc, item) => acc + item.price * 0.1,
+    0
+  );
+  const totalPrice = (
+    Number(itemsPrice) +
+    Number(shippingPrice) +
+    Number(taxPrice)
+  ).toFixed(2);
 
   const order = {
-    userName: 'Chris',
-    orderNumber: 1234,
-    date: 'March 9th, 2023',
-    totalAmount: 50.0,
-    items: [
-      {
-        id: 1,
-        quantity: 1,
-        name: 'Item 1',
-        price: 20.0,
-        imageSrc: 'https://i.imgur.com/u11K1qd.jpg',
-      },
-      {
-        id: 2,
-        quantity: 1,
-        name: 'Item 2',
-        price: 15.0,
-        imageSrc: 'https://i.imgur.com/SmBOua9.jpg',
-      },
-      {
-        id: 3,
-        quantity: 1,
-        name: 'Item 3',
-        price: 15.0,
-        imageSrc: 'https://i.imgur.com/SmBOua9.jpg',
-      },
-    ],
-    address: {
-      address: '6007 Applegate Lane',
-      city: 'Louisville',
-      coordinates: {
-        lat: 38.1343013,
-        lng: -85.6498512,
-      },
-      postalCode: '40219',
-      state: 'KY',
-    },
-    paymentMethod: 'Paypal',
-    tax: '5.00',
-    shippingFee: '10.00',
-    discount: '15.00',
-    subtotal: '50.00',
-    date: 'March 9th, 2023',
+    orderItems: cartProducts,
+    shippingAddress: shippingAddress,
+    paymentMethod: paymentMethod,
+    itemsPrice: itemsPrice,
+    shippingPrice: shippingPrice,
+    taxPrice: taxPrice,
+    totalPrice: totalPrice,
+    user: userInfo._id,
+  };
+  const placeOrderHandler = () => {
+    console.log(order);
+
+    dispatch(createOrder(order));
   };
 
-  const items = order.items.map((item) => {
-    return (
-      <tr>
-        <td width="20%">
-          <Image src={item.imageSrc} width="90" />
-        </td>
+  const itemRow = (cartProducts) => {
+    return cartProducts.map((product, index) => {
+      return (
+        <div key={index}>
+          <Row className="p-2">
+            <Col md={3}>
+              <Image src={product.image} width="90" />
+            </Col>
+            <Col md={6}>
+              <span className="font-weight-bold">{product.name}</span>
+              <span className="d-block">Quantity:{product.quantity}</span>
+            </Col>
+            <Col md={3}>${product.price}</Col>
+          </Row>
+          <hr />
+        </div>
+      );
+    });
+  };
 
-        <td width="60%">
-          <span className="font-weight-bold">{item.name}</span>
-          <div className="product-qty">
-            <span className="d-block">Quantity:{item.quantity}</span>
-          </div>
-        </td>
-        <td width="20%">
-          <div className="text-right">
-            <span className="font-weight-bold">${item.price}</span>
-          </div>
-        </td>
-      </tr>
+  const labelCostRow = (label, cost) => {
+    return (
+      <Row className="p-1">
+        <Col md={8}>{label}</Col>
+        <Col md={4}>${cost}</Col>
+      </Row>
     );
-  });
+  };
 
   return (
-    <Container className="mt-5 mb-5">
+    <Container fluid>
       <CheckoutSteps step1 step2 step3 step4 step5 />
       <Row className="justify-content-center">
         <Col md={8}>
           <Card>
             <Card.Body className="invoice p-5">
-              <h5>Your order Confirmed!</h5>
+              {success && (
+                <div className="alert alert-success" role="alert">
+                  Order Placed Successfully!
+                </div>
+              )}
+              {error && (
+                <div className="alert alert-danger" role="alert">
+                  {error}
+                </div>
+              )}
 
-              <span className="font-weight-bold d-block mt-4">
-                Hello, {order.userName}
-              </span>
-              <span>
-                You order has been confirmed and will be shipped in next two
-                days!
-              </span>
-
-              <div className="payment border-top mt-3 mb-3 border-bottom table-responsive">
-                <Table borderless>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div className="py-2">
-                          <span className="d-block text-muted">Order Date</span>
-                          <span>12 Jan,2018</span>
-                        </div>
-                      </td>
-
-                      <td>
-                        <div className="py-2">
-                          <span className="d-block text-muted">Order No</span>
-                          <span>{order.orderNumber}</span>
-                        </div>
-                      </td>
-
-                      <td>
-                        <div className="py-2">
-                          <span className="d-block text-muted">Payment</span>
-                          <span>
-                            <Image
-                              src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"
-                              width="80%"
-                            />
-                          </span>
-                        </div>
-                      </td>
-
-                      <td>
-                        <div className="py-2">
-                          <span className="d-block text-muted">
-                            Shiping Address
-                          </span>
-                          <span>
-                            {order.address.address}, {order.address.city}{' '}
-                            {order.address.state}, {order.address.postalCode}
-                          </span>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </Table>
-              </div>
-
-              <div className="product border-bottom table-responsive">
-                <Table borderless>
-                  <tbody>{items}</tbody>
-                </Table>
-              </div>
-              <Row className="justify-content-end">
-                <Col md={5}>
-                  <Table borderless className="totals">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div className="text-left">
-                            <span className="text-muted">Subtotal</span>
-                          </div>
-                        </td>
-                        <td>
-                          <div className="text-right">
-                            <span>$168.50</span>
-                          </div>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <div className="text-left">
-                            <span className="text-muted">Shipping Fee</span>
-                          </div>
-                        </td>
-                        <td>
-                          <div className="text-right">
-                            <span>${order.shippingFee}</span>
-                          </div>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <div className="text-left">
-                            <span className="text-muted">Tax Fee</span>
-                          </div>
-                        </td>
-                        <td>
-                          <div className="text-right">
-                            <span>${order.tax}</span>
-                          </div>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <div className="text-left">
-                            <span className="text-muted">Discount</span>
-                          </div>
-                        </td>
-                        <td>
-                          <div className="text-right">
-                            <span className="text-success">
-                              ${order.discount}
-                            </span>
-                          </div>
-                        </td>
-                      </tr>
-
-                      <tr className="border-top border-bottom">
-                        <td>
-                          <div className="text-left">
-                            <span className="font-weight-bold">Subtotal</span>
-                          </div>
-                        </td>
-                        <td>
-                          <div className="text-right">
-                            <span className="font-weight-bold">
-                              ${order.subtotal}
-                            </span>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </Table>
+              <Row>
+                <Col md={3}>
+                  <span className="d-block text-muted">Order Date</span>
+                  <span>12 Jan,2018</span>
+                </Col>
+                <Col md={3}>
+                  <span className="d-block text-muted">Order No</span>
+                  <span>{order.orderNumber}</span>
+                </Col>
+                <Col md={3}>
+                  <span className="d-block text-muted">Payment</span>
+                  <span>{paymentMethod}</span>
+                </Col>
+                <Col md={3}>
+                  <span className="d-block text-muted">Shipping Address</span>
+                  <span>
+                    {shippingAddress.address}, {shippingAddress.city}{' '}
+                    {shippingAddress.state}, {shippingAddress.postalCode}
+                  </span>
                 </Col>
               </Row>
+              <hr />
+              {itemRow(cartProducts)}
+              <Row className="justify-content-end p-3">
+                <Col md={8}>
+                  {labelCostRow('Subtotal', order.itemsPrice)}
+                  {labelCostRow('Shipping Fee', order.shippingPrice)}
+                  {labelCostRow('Tax Fee', order.taxPrice)}
+                  {labelCostRow('Discount', order.discount)}
+                  <hr />
+                  {labelCostRow('Total', order.totalPrice)}
+                  <hr />
+                  <Button onClick={placeOrderHandler}>Place Order</Button>
+                </Col>
+              </Row>
+              <hr />
+
               <p>
                 We will be sending shipping confirmation email when the item
                 shipped successfully!
               </p>
-              <p className="font-weight-bold mb-0">
-                Thanks for shopping with us!
-              </p>
+              <p>Thanks for shopping with us!</p>
               <span>Shoop Team</span>
             </Card.Body>{' '}
-            <Card.Footer className="d-flex justify-content-between p-3">
+            <Card.Footer>
               <span>
                 Need Help? visit our{' '}
                 <a href="#sorry-cant-help-you-yet"> help center</a>

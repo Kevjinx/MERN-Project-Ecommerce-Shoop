@@ -10,11 +10,13 @@ import {
 
 const orderRoutes = express.Router();
 
-orderRoutes.route('/').post(addOrderItems);
-orderRoutes.route('/').get(getAllOrders);
-orderRoutes.route('/:id').get(getOrderById);
-orderRoutes.route('/user').get(getMyOrders);
-orderRoutes.route('/:id/pay').put(updateOrderToPaid);
-orderRoutes.route('/:id/deliver').put(updateOrderToDelivered);
+orderRoutes
+  .route('/')
+  .post(protect, addOrderItems)
+  .get(protect, admin, getOrders);
+orderRoutes.route('/myorders').get(protect, getMyOrders);
+orderRoutes.route('/:id').get(protect, getOrderById);
+orderRoutes.route('/:id/pay').put(protect, updateOrderToPaid);
+orderRoutes.route('/:id/deliver').put(protect, admin, updateOrderToDelivered);
 
 export default orderRoutes;

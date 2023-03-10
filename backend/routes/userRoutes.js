@@ -7,7 +7,7 @@ import {
   registerUser,
   getAllusers,
 } from '../controller/userController.js';
-import authMiddleware from '../middleware/authMiddleware.js';
+import { protext } from '../middleware/authMiddleware.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === 'development') {
 
 userRoutes
   .route('/profile')
-  .get(authMiddleware, getUserProfile)
-  .put(authMiddleware, updateUserProfile);
+  .get(protect, getUserProfile)
+  .put(protext, updateUserProfile);
 
 export default userRoutes;

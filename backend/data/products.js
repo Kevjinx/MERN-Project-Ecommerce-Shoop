@@ -1,3 +1,5 @@
+//archived for reference, replaced it with bikes.js
+
 const products = [
   {
     name: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',

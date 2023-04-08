@@ -1,4 +1,4 @@
-//got from prev project: https://github.com/Kevjinx/jensonUSA-product-scrape
+//got from my prev webscraping project: https://github.com/Kevjinx/jensonUSA-product-scrape
 
 const bikes = [
   {
@@ -15,6 +15,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 3,
   },
   {
     name: 'Marin Pine Mountain 1 Bike 2022',
@@ -30,6 +31,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 6,
   },
   {
     name: 'Chromag Monk Bike Frame',
@@ -43,6 +45,7 @@ const bikes = [
     rearSuspensionType: ['Hardtail'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 3,
   },
   {
     name: 'Haro Steel Reserve 1.1',
@@ -58,6 +61,7 @@ const bikes = [
     forkTravel: ['Rigid'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 5,
   },
   {
     name: 'Haro Steel Reserve 1.2  Bike 2021',
@@ -73,6 +77,7 @@ const bikes = [
     forkTravel: ['100mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 5,
   },
   {
     name: 'Chromag Doctahawk Frame 2021',
@@ -86,6 +91,7 @@ const bikes = [
     rearSuspensionType: ['Hardtail'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 2,
   },
   {
     name: 'Marin Team Marin 2 Bike 2022',
@@ -101,6 +107,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 4.3,
     reviewCount: 4,
+    countInStock: 9,
   },
   {
     name: 'Marin San Quentin 3 Bike 2022',
@@ -116,6 +123,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 5,
     reviewCount: 2,
+    countInStock: 3,
   },
   {
     name: 'Marin San Quentin 1 Bike 2022',
@@ -131,6 +139,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 4.4,
     reviewCount: 7,
+    countInStock: 9,
   },
   {
     name: 'Marin Team Marin 1 29 Bike',
@@ -146,6 +155,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Chromag Stylus Frame 2021',
@@ -159,6 +169,7 @@ const bikes = [
     rearSuspensionType: ['Hardtail'],
     averageRating: 4.8,
     reviewCount: 4,
+    countInStock: 1,
   },
   {
     name: 'Surly Krampus Bike',
@@ -174,6 +185,7 @@ const bikes = [
     forkTravel: ['Rigid'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 10,
   },
   {
     name: 'Marin Palisades Trail 2 27.5" Bike 2021',
@@ -189,6 +201,7 @@ const bikes = [
     forkTravel: ['100mm'],
     averageRating: 4.8,
     reviewCount: 38,
+    countInStock: 1,
   },
   {
     name: 'Chromag Surface-Voyager Frame 2021',
@@ -202,6 +215,7 @@ const bikes = [
     rearSuspensionType: ['Hardtail'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 8,
   },
   {
     name: 'Chromag Primer Frame 2021',
@@ -215,6 +229,7 @@ const bikes = [
     rearSuspensionType: ['Hardtail'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 7,
   },
   {
     name: 'Marin Alcatraz V Frame 2022',
@@ -228,6 +243,7 @@ const bikes = [
     rearSuspensionType: ['Hardtail'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 1,
   },
   {
     name: 'Marin ALCATRAZ Bike 2023',
@@ -240,6 +256,7 @@ const bikes = [
     bikeModel: ['Marin Alcatraz'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 4,
   },
   {
     name: 'Marin BAYVIEW TRL 24 Bike 2023',
@@ -252,6 +269,7 @@ const bikes = [
     bikeModel: ['Marin Bayview'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 8,
   },
   {
     name: 'Marin SAN QUENTIN 24 BIKE',
@@ -264,6 +282,7 @@ const bikes = [
     bikeModel: ['Marin San Quentin'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 3,
   },
   {
     name: 'NORCO RAMPAGE 1 BIKE 2022',
@@ -279,6 +298,7 @@ const bikes = [
     forkTravel: ['100mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 4,
   },
   {
     name: 'NORCO TORRENT HT A1 BIKE 2022',
@@ -294,6 +314,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 2,
   },
   {
     name: 'YETI ARC C2 FACTORY 2022 BIKE',
@@ -309,6 +330,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 2,
   },
   {
     name: 'Orbea ALMA MTEAM Bike 2022',
@@ -324,6 +346,7 @@ const bikes = [
     forkTravel: ['100mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Orbea ALMA H10EAGLE Bike 2022',
@@ -339,6 +362,7 @@ const bikes = [
     forkTravel: ['100mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 6,
   },
   {
     name: 'Orbea LAUFEY H30 Bike 2022',
@@ -354,6 +378,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 5,
     reviewCount: 2,
+    countInStock: 2,
   },
   {
     name: 'Orbea ALMA MLTD Bike 2022',
@@ -369,6 +394,7 @@ const bikes = [
     forkTravel: ['Rigid'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 10,
   },
   {
     name: 'Orbea KERAM 29 30 E-Bike 2022',
@@ -384,6 +410,7 @@ const bikes = [
     forkTravel: ['100mm'],
     averageRating: 5,
     reviewCount: 3,
+    countInStock: 4,
   },
   {
     name: 'Orbea LAUFEY H10 Bike 2022',
@@ -399,6 +426,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 4,
     reviewCount: 1,
+    countInStock: 8,
   },
   {
     name: 'Orbea ALMA M30 Bike 2022',
@@ -414,6 +442,7 @@ const bikes = [
     forkTravel: ['100mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 5,
   },
   {
     name: 'CHROMAG ROOTDOWN FRAME',
@@ -427,6 +456,7 @@ const bikes = [
     rearSuspensionType: ['Hardtail'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 4,
   },
   {
     name: 'CHROMAG MONK FRAME 2022',
@@ -440,6 +470,7 @@ const bikes = [
     rearSuspensionType: ['Hardtail'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 0,
   },
   {
     name: 'NINER AIR 2-STAR BIKE',
@@ -455,6 +486,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 4.7,
     reviewCount: 3,
+    countInStock: 2,
   },
   {
     name: 'Rocky Mountain Fusion 30 Bike 2022',
@@ -470,6 +502,7 @@ const bikes = [
     forkTravel: ['100mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 10,
   },
   {
     name: 'Rocky Mountain Growler 40 Bike 2022',
@@ -485,6 +518,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 4.5,
     reviewCount: 2,
+    countInStock: 3,
   },
   {
     name: 'Rocky Mountain Growler 20 Bike 2022',
@@ -500,6 +534,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 5,
     reviewCount: 4,
+    countInStock: 10,
   },
   {
     name: 'Rocky Mountain Growler 50 Bike 2022',
@@ -515,6 +550,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 5,
     reviewCount: 2,
+    countInStock: 9,
   },
   {
     name: 'Rocky Mountain Fusion 40 Bike 2022',
@@ -530,6 +566,7 @@ const bikes = [
     forkTravel: ['100mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Specialized Tero 3 0 Step Thru 20MPH E-Bike 2022',
@@ -545,6 +582,7 @@ const bikes = [
     forkTravel: ['110mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 0,
   },
   {
     name: 'Surly Ghost Grappler Frameset',
@@ -558,6 +596,7 @@ const bikes = [
     rearSuspensionType: ['Hardtail'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Devinci Kobain A29 Deore 11 Speed Bike 2022',
@@ -573,6 +612,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 7,
   },
   {
     name: 'Marin El Roy Frame Kit',
@@ -586,6 +626,7 @@ const bikes = [
     rearSuspensionType: ['Hardtail'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 1,
   },
   {
     name: 'Marin El Roy Bike',
@@ -601,6 +642,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 4,
     reviewCount: 1,
+    countInStock: 10,
   },
   {
     name: 'Surly Karate Monkey Bike',
@@ -614,6 +656,7 @@ const bikes = [
     rearSuspensionType: ['Hardtail'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 0,
   },
   {
     name: 'YETI ARC T1 GX X01 BIKE 2023',
@@ -629,6 +672,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 7,
   },
   {
     name: 'YETI ARC C2 GX BIKE 2023',
@@ -644,6 +688,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 9,
   },
   {
     name: 'YETI ARC C1 SLX BIKE 2023',
@@ -659,6 +704,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 1,
   },
   {
     name: 'Marin San Quentin 1 Bike 2023',
@@ -674,6 +720,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 8,
   },
   {
     name: 'Ibis DV9 Deore Bike 2023',
@@ -689,6 +736,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 3,
   },
   {
     name: 'Ibis DV9 SLX Bike 2023',
@@ -704,6 +752,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 4,
   },
   {
     name: 'Marin San Quentin 2 27 5 Bike 2023',
@@ -719,6 +768,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 4,
   },
   {
     name: 'Ibis DV9 NGX Bike 2023',
@@ -734,6 +784,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 9,
   },
   {
     name: 'Kona Honzo Bike',
@@ -749,6 +800,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 8,
   },
   {
     name: 'Kona Big Honzo Bike',
@@ -764,6 +816,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 4,
     reviewCount: 1,
+    countInStock: 2,
   },
   {
     name: 'Kona Big Honzo DL Bike',
@@ -779,6 +832,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 0,
   },
   {
     name: 'Rocky Mountain Growler 50 Bike 2023',
@@ -793,6 +847,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 8,
   },
   {
     name: 'Rocky Mountain Growler 40 Bike 2023',
@@ -808,6 +863,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 2,
   },
   {
     name: 'Devinci Django A29 GX Bike 2022',
@@ -823,6 +879,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 6,
   },
   {
     name: 'Devinci eTroy A29 GX 20MPH E-Bike 2022',
@@ -838,6 +895,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 6,
   },
   {
     name: 'Devinci Troy A29 GX Bike 2022',
@@ -853,6 +911,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 2,
   },
   {
     name: 'Devinci Django A29 Deore Bike 2022',
@@ -868,6 +927,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 4,
     reviewCount: 1,
+    countInStock: 1,
   },
   {
     name: 'Devinci Spartan A29 GX Bike 2022',
@@ -883,6 +943,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 7,
   },
   {
     name: 'Devinci Marshall A29 Deore Bike 2022',
@@ -898,6 +959,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 3,
   },
   {
     name: 'Devinci Troy C/A29 GX Bike 2022',
@@ -913,6 +975,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 6,
   },
   {
     name: 'Orbea RISE M20 20MPH E-Bike 2022',
@@ -928,6 +991,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 5,
     reviewCount: 11,
+    countInStock: 2,
   },
   {
     name: 'Orbea RALLON M20 Bike 2022',
@@ -943,6 +1007,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 6,
   },
   {
     name: 'Orbea OCCAM H20EAGLE Bike 2022',
@@ -958,6 +1023,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 4,
     reviewCount: 1,
+    countInStock: 6,
   },
   {
     name: 'Orbea RALLON M10 Bike 2022',
@@ -973,6 +1039,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 1,
   },
   {
     name: 'Orbea WILD FS H20 20MPH E-Bike 2022',
@@ -988,6 +1055,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 5,
   },
   {
     name: 'Orbea OCCAM M30 LT Bike 2022',
@@ -1003,6 +1071,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 5,
     reviewCount: 2,
+    countInStock: 4,
   },
   {
     name: 'Orbea WILD FS M20 20MPH E-Bike 2022',
@@ -1018,6 +1087,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 4,
     reviewCount: 2,
+    countInStock: 7,
   },
   {
     name: 'Orbea OIZ H20 Bike 2022',
@@ -1033,6 +1103,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Orbea WILD FS M10 20MPH E-Bike 2022',
@@ -1048,6 +1119,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 5,
   },
   {
     name: 'Orbea OIZ H10 TR Bike 2022',
@@ -1063,6 +1135,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 7,
   },
   {
     name: 'Orbea OCCAM H30 Bike 2022',
@@ -1078,6 +1151,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 4.7,
     reviewCount: 3,
+    countInStock: 8,
   },
   {
     name: 'Orbea WILD FS H10 20MPH E-Bike 2022',
@@ -1093,6 +1167,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 4,
     reviewCount: 1,
+    countInStock: 7,
   },
   {
     name: 'Orbea OIZ H30 Bike 2022',
@@ -1108,6 +1183,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 4,
     reviewCount: 1,
+    countInStock: 0,
   },
   {
     name: 'Orbea OCCAM H20 LT Bike 2022',
@@ -1123,6 +1199,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 4.8,
     reviewCount: 4,
+    countInStock: 8,
   },
   {
     name: 'Orbea OCCAM M30 Bike 2022',
@@ -1138,6 +1215,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 10,
   },
   {
     name: 'YETI SB130 T-SERIES T2 2022 BIKE',
@@ -1153,6 +1231,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 1,
   },
   {
     name: 'NINER JET RDO 4-STAR BIKE',
@@ -1168,6 +1247,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 3,
   },
   {
     name: 'NINER RIP RDO 3-STAR BIKE',
@@ -1183,6 +1263,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 4.5,
     reviewCount: 2,
+    countInStock: 10,
   },
   {
     name: 'NINER JET RDO 2-STAR BIKE',
@@ -1198,6 +1279,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 7,
   },
   {
     name: 'NINER JET RDO 3-STAR BIKE',
@@ -1213,6 +1295,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 7,
   },
   {
     name: 'NINER RIP RDO 2-STAR BIKE',
@@ -1228,6 +1311,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 9,
   },
   {
     name: 'Juliana Wilder 1 C S TR Bike 2022',
@@ -1243,6 +1327,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 8,
   },
   {
     name: 'Santa Cruz Tallboy 4 AL R Bike 2022',
@@ -1258,6 +1343,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 7,
   },
   {
     name: 'Santa Cruz Tallboy 4 AL D Bike 2022',
@@ -1273,6 +1359,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 2,
   },
   {
     name: 'Rocky Mountain Reaper 24 Bike 2022',
@@ -1285,6 +1372,7 @@ const bikes = [
     bikeModel: ['Rocky Mountain Reaper'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 1,
   },
   {
     name: 'Rocky Mountain Reaper 27.5 Bike 2022',
@@ -1297,6 +1385,7 @@ const bikes = [
     bikeModel: ['Rocky Mountain Reaper'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Rocky Mountain Element Alloy 10 Bike 2022',
@@ -1312,6 +1401,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 4.7,
     reviewCount: 3,
+    countInStock: 6,
   },
   {
     name: 'Rocky Mountain Reaper 26 Bike 2022',
@@ -1324,6 +1414,7 @@ const bikes = [
     bikeModel: ['Rocky Mountain Reaper'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 2,
   },
   {
     name: 'Rocky Mountain Slayer Alloy 50 29" Bike 2022',
@@ -1339,6 +1430,7 @@ const bikes = [
     forkTravel: ['180mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 2,
   },
   {
     name: 'Rocky Mountain Instinct Alloy 50 29" Bike 2022',
@@ -1354,6 +1446,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 4,
   },
   {
     name: 'Rocky Mountain Instinct Alloy 10 29" Bike 2022',
@@ -1369,6 +1462,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 10,
   },
   {
     name: 'Rocky Mountain Altitude Carbon 50 27 5"Bike 2022',
@@ -1384,6 +1478,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 8,
   },
   {
     name: 'Rocky Mountain Instinct Carbon 30 29" Bike 2022',
@@ -1399,6 +1494,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 6,
   },
   {
     name: 'Rocky Mountain Instinct Carbon 50 29" Bike 2022',
@@ -1414,6 +1510,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 0,
   },
   {
     name: 'Rocky Mountain Slayer Carbon 50 29" Bike 2022',
@@ -1429,6 +1526,7 @@ const bikes = [
     forkTravel: ['180mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 0,
   },
   {
     name: 'Rocky Mountain Altitude Carbon 70 29" Bike 2022',
@@ -1444,6 +1542,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 4,
   },
   {
     name: 'Rocky Mountain Instinct Alloy 30 29" Bike 2022',
@@ -1459,6 +1558,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 6,
   },
   {
     name: 'Rocky Mountain Slayer Carbon 70 29" Bike 2022',
@@ -1474,6 +1574,7 @@ const bikes = [
     forkTravel: ['180mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 8,
   },
   {
     name: 'Rocky Mountain Slayer Alloy 30 29" Bike 2022',
@@ -1489,6 +1590,7 @@ const bikes = [
     forkTravel: ['180mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 3,
   },
   {
     name: 'Rocky Mountain Altitude Carbon 50 29" Bike 2022',
@@ -1504,6 +1606,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 6,
   },
   {
     name: 'Rocky Mountain Altitude Alloy 70 Coil 27 5"Bike 2022',
@@ -1519,6 +1622,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 6,
   },
   {
     name: 'Rocky Mountain Altitude Alloy 30 29" Bike 2022',
@@ -1534,6 +1638,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 6,
   },
   {
     name: 'NORCO REVOLVER FS 1 120 FRAME 2022',
@@ -1547,6 +1652,7 @@ const bikes = [
     rearSuspensionType: ['Full Suspension'],
     averageRating: 4,
     reviewCount: 1,
+    countInStock: 5,
   },
   {
     name: 'Specialized Stumpjumper Evo Alloy Frame',
@@ -1560,6 +1666,7 @@ const bikes = [
     rearSuspensionType: ['Full Suspension'],
     averageRating: 4,
     reviewCount: 1,
+    countInStock: 1,
   },
   {
     name: 'Specialized Enduro Frame',
@@ -1573,6 +1680,7 @@ const bikes = [
     rearSuspensionType: ['Full Suspension'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 8,
   },
   {
     name: 'Specialized Stumpjumper Evo Frame',
@@ -1586,6 +1694,7 @@ const bikes = [
     rearSuspensionType: ['Full Suspension'],
     averageRating: 5,
     reviewCount: 3,
+    countInStock: 0,
   },
   {
     name: 'Specialized Stumpjumper Comp Bike 2022',
@@ -1601,6 +1710,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 4,
   },
   {
     name: 'Specialized Stumpjumper Expert Bike 2022',
@@ -1616,6 +1726,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 1,
   },
   {
     name: 'Specialized Stumpjumper Alloy Bike 2022',
@@ -1625,6 +1736,7 @@ const bikes = [
     price: '$2,099.99',
     averageRating: 4.5,
     reviewCount: 2,
+    countInStock: 10,
   },
   {
     name: 'Norco Fluid VLT A1 29" E-Bike 2022',
@@ -1640,6 +1752,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 3,
   },
   {
     name: 'Juliana Wilder 1 C 20 Bike 2022',
@@ -1655,6 +1768,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 7,
   },
   {
     name: 'Norco Range VLT A1 29" E-Bike 2022',
@@ -1670,6 +1784,7 @@ const bikes = [
     forkTravel: ['180mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 2,
   },
   {
     name: 'Santa Cruz Mtwr 2 C R Bike 2022',
@@ -1685,6 +1800,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 1,
   },
   {
     name: 'Santa Cruz Mtwr 2 C S Bike',
@@ -1700,6 +1816,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 3,
   },
   {
     name: 'Santa Cruz HTWR 3 C S Bike',
@@ -1715,6 +1832,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 4,
   },
   {
     name: 'Specialized SJ EVO Alloy LTD Frame',
@@ -1728,6 +1846,7 @@ const bikes = [
     rearSuspensionType: ['Full Suspension'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 10,
   },
   {
     name: 'Niner RKT RDO 3 Star Bike',
@@ -1743,6 +1862,7 @@ const bikes = [
     forkTravel: ['100mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Niner RKT RDO 2 Star Bike',
@@ -1758,6 +1878,7 @@ const bikes = [
     forkTravel: ['100mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 8,
   },
   {
     name: 'Niner RKT RDO 4 Star Bike',
@@ -1773,6 +1894,7 @@ const bikes = [
     forkTravel: ['100mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 6,
   },
   {
     name: 'Ibis Ripley SLX Carbon S28 Logo Wheel Bike 2022',
@@ -1788,6 +1910,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 3,
   },
   {
     name: 'Salsa Spearfish SLX 29 Bike',
@@ -1803,6 +1926,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 1,
   },
   {
     name: 'Salsa Spearfish Deore 12 29 Bike',
@@ -1818,6 +1942,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 3,
   },
   {
     name: 'Salsa Spearfish Carbon XT 29 Bike',
@@ -1833,6 +1958,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 0,
   },
   {
     name: 'Salsa Horsethief Carbon XT 29 Bike',
@@ -1848,6 +1974,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 1,
   },
   {
     name: 'Ibis Exie X01 S28 Logo Bike',
@@ -1863,6 +1990,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 1,
   },
   {
     name: 'Ibis OSO GX 20MPH E-Bike',
@@ -1878,6 +2006,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 5,
     reviewCount: 4,
+    countInStock: 8,
   },
   {
     name: 'Ibis Ripmo XT Carbon S35 Logo Wheel Bike 2022',
@@ -1893,6 +2022,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 0,
   },
   {
     name: 'Ibis Ripley AF NGX Bike 2023',
@@ -1908,6 +2038,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Ibis Ripley SLX Bike 2023',
@@ -1923,6 +2054,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 5,
   },
   {
     name: 'Ibis Ripmo 2 Frameset 2023',
@@ -1936,6 +2068,7 @@ const bikes = [
     rearSuspensionType: ['Full Suspension'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 2,
   },
   {
     name: 'Ibis Ripmo XT Bike 2023',
@@ -1951,6 +2084,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 2,
   },
   {
     name: 'Ibis Ripmo SLX Bike 2023',
@@ -1966,6 +2100,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 6,
   },
   {
     name: 'Ibis Ripley AF Deore Bike 2023',
@@ -1981,6 +2116,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Ibis Ripley AF SLX Bike 2023',
@@ -1996,6 +2132,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 3,
   },
   {
     name: 'Ibis Ripley X01 Bike 2023',
@@ -2011,6 +2148,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 6,
   },
   {
     name: 'Ibis Ripley XT Bike 2023',
@@ -2026,6 +2164,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 7,
   },
   {
     name: 'Ibis Ripmo X01 Bike 2023',
@@ -2041,6 +2180,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 2,
   },
   {
     name: 'Santa Cruz Tallboy C S Bike 2022',
@@ -2056,6 +2196,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Santa Cruz Tallboy C GX AXS Bike 2022',
@@ -2071,6 +2212,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 6,
   },
   {
     name: 'Ibis Ripley X01 Carbon S35 Logo Wheel Bike 2022',
@@ -2086,6 +2228,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 2,
   },
   {
     name: 'YETI SB160 C1 SLX BIKE 2023',
@@ -2101,6 +2244,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 8,
   },
   {
     name: 'YETI 160E T XT BIKE 2023',
@@ -2116,6 +2260,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 3,
   },
   {
     name: 'YETI SB160 C2 GX BIKE 2023',
@@ -2131,6 +2276,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 3,
   },
   {
     name: 'YETI SB160 T3 X01 AXS BIKE 2023',
@@ -2146,6 +2292,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 6,
   },
   {
     name: 'YETI SB160 C1 SLX FACTORY BIKE 2023',
@@ -2161,6 +2308,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'YETI SB160 T1 GX X01 BIKE 2023',
@@ -2176,6 +2324,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 0,
   },
   {
     name: 'Ibis Ripley NGX Bike 2023',
@@ -2191,6 +2340,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 8,
   },
   {
     name: 'Santa Cruz Heckler 9 C R MX 23',
@@ -2206,6 +2356,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 2,
   },
   {
     name: 'YETI SB140 LRC1 SLX 29" BIKE 2023',
@@ -2221,6 +2372,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 9,
   },
   {
     name: 'YETI SB120 C1 SLX BIKE 2023',
@@ -2236,6 +2388,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 10,
   },
   {
     name: 'YETI SB140 29" LRT3 X01 AXS BIKE 2023',
@@ -2251,6 +2404,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 6,
   },
   {
     name: 'YETI SB140 29" LRT1 GX/X01 BIKE 2023',
@@ -2266,6 +2420,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 6,
   },
   {
     name: 'YETI SB140 C1 SLX 29" BIKE 2023',
@@ -2281,6 +2436,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 6,
   },
   {
     name: 'YETI SB140 T2 X01 29" BIKE 2023',
@@ -2296,6 +2452,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'YETI SB140 LRC1 SLX FACTORY 29" BIKE 2023',
@@ -2311,6 +2468,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 0,
   },
   {
     name: 'YETI SB120 T3 X01 AXS BIKE 2023',
@@ -2326,6 +2484,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'YETI SB140 LRC2 GX 29" BIKE 2023',
@@ -2341,6 +2500,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 6,
   },
   {
     name: 'YETI SB120 C2 GX BIKE 2023',
@@ -2356,6 +2516,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'YETI SB120 C1 SLX FACTORY BIKE 2023',
@@ -2371,6 +2532,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 9,
   },
   {
     name: 'Ibis Exie XT S28 Logo 2023 Bike',
@@ -2386,6 +2548,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 9,
   },
   {
     name: 'Orbea Oiz M30 Bike 2023',
@@ -2401,6 +2564,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 4,
   },
   {
     name: 'Orbea Oiz M11 AXS Bike 2023',
@@ -2416,6 +2580,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 1,
   },
   {
     name: 'Orbea Oiz H30 Bike 2023',
@@ -2431,6 +2596,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 3,
   },
   {
     name: 'Orbea Oiz H20 Bike 2023',
@@ -2446,6 +2612,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 7,
   },
   {
     name: 'Orbea Oiz H10 Bike 2023',
@@ -2461,6 +2628,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 4,
   },
   {
     name: 'Orbea Oiz M10 Bike 2023',
@@ -2476,6 +2644,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 3,
   },
   {
     name: 'GT Force Carbon Pro LE Bike',
@@ -2491,6 +2660,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 9,
   },
   {
     name: 'Ibis Ripmo AF Deore Bike 2023',
@@ -2506,6 +2676,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 6,
   },
   {
     name: 'Marin Rift Zone 2 27 5 Bike 2023',
@@ -2521,6 +2692,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 4,
   },
   {
     name: 'Marin Rift Zone 2 29 Bike 2023',
@@ -2536,6 +2708,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 9,
   },
   {
     name: 'GT Force Sport Bike',
@@ -2551,6 +2724,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 7,
   },
   {
     name: 'Ibis Exie NGX 2023',
@@ -2566,6 +2740,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Ibis Exie Deore Factory Bike 2023',
@@ -2581,6 +2756,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 6,
   },
   {
     name: 'GT Force Carbon Pro Bike',
@@ -2596,6 +2772,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 10,
   },
   {
     name: 'Ibis Exie SLX Factory Bike 2023',
@@ -2611,6 +2788,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Kona Process 134 27.5 Bike',
@@ -2626,6 +2804,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Kona Process 134 29 Bike',
@@ -2641,6 +2820,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 9,
   },
   {
     name: 'Kona Process 134 DL 27.5 Bike',
@@ -2656,6 +2836,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 3,
   },
   {
     name: 'Kona Process 153 DL 29 Bike',
@@ -2671,6 +2852,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Kona Process 134 DL 29 Bike',
@@ -2686,6 +2868,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 10,
   },
   {
     name: 'Kona Process 134 CR 29 Bike',
@@ -2701,6 +2884,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 0,
   },
   {
     name: 'Orbea Occam M30 Eagle Bike 2023',
@@ -2716,6 +2900,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 2,
   },
   {
     name: 'Orbea Rallon M20 Bike 2023',
@@ -2731,6 +2916,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 7,
   },
   {
     name: 'Orbea Rise M10 20mph E-Bike 2023',
@@ -2746,6 +2932,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 1,
   },
   {
     name: 'Norco Sight A2 Bike',
@@ -2761,6 +2948,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 2,
   },
   {
     name: 'Rocky Mountain Instinct Alloy 10 Bike 2023',
@@ -2776,6 +2964,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 2,
   },
   {
     name: 'Rocky Mountain Instinct Alloy 10 27.5 Bike 2023',
@@ -2791,6 +2980,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 0,
   },
   {
     name: 'Rocky Mountain Altitude Carbon 50 27.5 Bike 2023',
@@ -2806,6 +2996,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 8,
   },
   {
     name: 'Rocky Mountain Fusion Powerplay 30 Bike 2023',
@@ -2821,6 +3012,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 10,
   },
   {
     name: 'Rocky Mountain Altitude Powerplay Alloy 50 Bike 2023',
@@ -2836,6 +3028,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 4,
     reviewCount: 1,
+    countInStock: 6,
   },
   {
     name: 'Rocky Mountain Element Carbon 50 Bike 2023',
@@ -2851,6 +3044,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 6,
   },
   {
     name: 'Rocky Mountain Altitude Alloy 70 Coil Bike 2023',
@@ -2866,6 +3060,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 1,
   },
   {
     name: 'Rocky Mountain Element Alloy 30 Bike 2023',
@@ -2881,6 +3076,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 3,
   },
   {
     name: 'Rocky Mountain Instinct Carbon 70 Bike 2023',
@@ -2896,6 +3092,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 1,
   },
   {
     name: 'Rocky Mountain Element Carbon 70 Bike 2023',
@@ -2911,6 +3108,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 8,
   },
   {
     name: 'Rocky Mountain Element Alloy 30 27.5 Bike 2023',
@@ -2926,6 +3124,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 1,
   },
   {
     name: 'Rocky Mountain Altitude Carbon 70 Bike 2023',
@@ -2941,6 +3140,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Rocky Mountain Altitude Alloy 50 Bike 2023',
@@ -2956,6 +3156,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 7,
   },
   {
     name: 'Rocky Mountain Element Alloy 50 Bike 2023',
@@ -2971,6 +3172,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 1,
   },
   {
     name: 'Rocky Mountain Element Alloy 10 Bike 2023',
@@ -2986,6 +3188,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 4,
   },
   {
     name: 'Rocky Mountain Altitude Powerplay Carbon 70 Bike 2023',
@@ -3001,6 +3204,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 7,
   },
   {
     name: 'Rocky Mountain Altitude Carbon 50 Bike 2023',
@@ -3016,6 +3220,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 9,
   },
   {
     name: 'Ibis Ripmo AF SLX Bike 2023',
@@ -3031,6 +3236,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 9,
   },
   {
     name: 'Ibis Ripmo AF NGX Bike 2023',
@@ -3046,6 +3252,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 1,
   },
   {
     name: 'Specialized Levo Carbon E-Bike 2023',
@@ -3061,6 +3268,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 9,
   },
   {
     name: 'Orbea Rise M10 20mph E-Bike 2023',
@@ -3076,6 +3284,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 10,
   },
   {
     name: 'Norco Fluid FS 1 29" Bike 2023',
@@ -3091,6 +3300,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 4,
   },
   {
     name: 'Norco Sight A2 Bike',
@@ -3106,6 +3316,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 5,
     reviewCount: 1,
+    countInStock: 1,
   },
   {
     name: 'Rocky Mountain Instinct Alloy 10 Bike 2023',
@@ -3121,6 +3332,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 10,
   },
   {
     name: 'Rocky Mountain Growler 50 Bike 2023',
@@ -3135,6 +3347,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 2,
   },
   {
     name: 'Rocky Mountain Fusion Powerplay 30 Bike 2023',
@@ -3150,6 +3363,7 @@ const bikes = [
     forkTravel: ['120mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Rocky Mountain Altitude Powerplay Alloy 50 Bike 2023',
@@ -3165,6 +3379,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 4,
     reviewCount: 1,
+    countInStock: 1,
   },
   {
     name: 'Rocky Mountain Element Carbon 50 Bike 2023',
@@ -3180,6 +3395,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 10,
   },
   {
     name: 'Rocky Mountain Altitude Alloy 70 Coil Bike 2023',
@@ -3195,6 +3411,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 1,
   },
   {
     name: 'Rocky Mountain Element Alloy 30 Bike 2023',
@@ -3210,6 +3427,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 7,
   },
   {
     name: 'Rocky Mountain Instinct Carbon 70 Bike 2023',
@@ -3225,6 +3443,7 @@ const bikes = [
     forkTravel: ['150mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Rocky Mountain Element Carbon 70 Bike 2023',
@@ -3240,6 +3459,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Rocky Mountain Altitude Carbon 70 Bike 2023',
@@ -3255,6 +3475,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 1,
   },
   {
     name: 'Rocky Mountain Altitude Alloy 50 Bike 2023',
@@ -3270,6 +3491,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 1,
   },
   {
     name: 'Rocky Mountain Element Alloy 50 Bike 2023',
@@ -3285,6 +3507,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 9,
   },
   {
     name: 'Rocky Mountain Element Alloy 10 Bike 2023',
@@ -3300,6 +3523,7 @@ const bikes = [
     forkTravel: ['130mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 1,
   },
   {
     name: 'Rocky Mountain Altitude Powerplay Carbon 70 Bike 2023',
@@ -3315,6 +3539,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Rocky Mountain Altitude Carbon 50 Bike 2023',
@@ -3330,6 +3555,7 @@ const bikes = [
     forkTravel: ['170mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 0,
   },
   {
     name: 'Rocky Mountain Growler 40 Bike 2023',
@@ -3345,6 +3571,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 9,
   },
   {
     name: 'Ibis Ripmo AF SLX Bike 2023',
@@ -3360,6 +3587,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 5,
   },
   {
     name: 'Salsa Horsethief Deore 12 Bike 2023',
@@ -3375,6 +3603,7 @@ const bikes = [
     forkTravel: ['140mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 1,
   },
   {
     name: 'Ibis Ripmo AF NGX Bike 2023',
@@ -3390,6 +3619,7 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 10,
   },
   {
     name: 'Specialized Levo Carbon E-Bike 2023',
@@ -3405,5 +3635,8 @@ const bikes = [
     forkTravel: ['160mm'],
     averageRating: 0,
     reviewCount: 0,
+    countInStock: 8,
   },
 ];
+
+export default bikes;

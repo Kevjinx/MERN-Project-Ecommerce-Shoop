@@ -1,6 +1,4 @@
-//got from my prev webscraping project: https://github.com/Kevjinx/jensonUSA-product-scrape
-
-const bikes = [
+const updatedBikes = [
   {
     name: 'Marin Pine Mountain 1 29 Bike 2023',
     imageUrl:
@@ -3623,4 +3621,4 @@ const bikes = [
   },
 ];
 
-export default bikes;
+export default updatedBikes;

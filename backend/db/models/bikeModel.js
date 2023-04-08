@@ -12,9 +12,9 @@ const bikeSchema = new mongoose.Schema({
     ref: 'User',
   },
   price: {
-    type: String,
+    type: Number,
     required: true,
-    default: '$0.00',
+    default: 0,
   },
   imageUrl: {
     type: String,

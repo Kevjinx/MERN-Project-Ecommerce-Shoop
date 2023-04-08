@@ -93,29 +93,31 @@ const CheckoutScreen = () => {
           <Col md={10}>
             <h1>Order Summary</h1>
             <ListGroup>
-              {cartProducts.map((product) => (
-                <ListGroup.Item key={product._id}>
-                  <Row>
-                    <Col md={2}>
-                      <Image
-                        src={product.imageUrl}
-                        alt={product.name}
-                        fluid
-                        rounded
-                      />
-                    </Col>
-                    <Col md={4}>
-                      <p>{product.name}</p>
-                    </Col>
-                    <Col md={2}>
-                      <p>{product.quantity}</p>
-                    </Col>
-                    <Col md={2}>
-                      <p>${product.price}</p>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-              ))}
+              {cartProducts
+                .filter((product) => product.quantity > 0)
+                .map((product) => (
+                  <ListGroup.Item key={product._id}>
+                    <Row>
+                      <Col md={2}>
+                        <Image
+                          src={product.imageUrl}
+                          alt={product.name}
+                          fluid
+                          rounded
+                        />
+                      </Col>
+                      <Col md={4}>
+                        <p>{product.name}</p>
+                      </Col>
+                      <Col md={2}>
+                        <p>{product.quantity}</p>
+                      </Col>
+                      <Col md={2}>
+                        <p>${product.price}</p>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                ))}
               <ListGroup.Item key="subtotal">
                 <Row className="ps-3 pe-3 pt-1">
                   {dangerMessage && (

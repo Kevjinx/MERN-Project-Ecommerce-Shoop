@@ -8,7 +8,7 @@ const ProductCard = ({ product }) => {
   return (
     <Card style={{ width: '18rem' }}>
       <Link to={`/product/${product._id}`}>
-        <Card.Img variant="top" src={product.image} />
+        <Card.Img variant="top" src={product.imageUrl} />
       </Link>
       <Card.Body>
         <Link to={`/product/${product._id}`}>
@@ -24,8 +24,6 @@ const ProductCard = ({ product }) => {
             text={`${product.numReviews} reviews`}
           />
         </Card.Text>
-
-        <Card.Text as="div">{product.description}</Card.Text>
 
         <Card.Text as="h4" className="my-3">
           ${product.price}

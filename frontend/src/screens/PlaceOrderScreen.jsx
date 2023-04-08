@@ -61,7 +61,7 @@ const PlaceOrderScreen = () => {
         <div key={index}>
           <Row className="p-2">
             <Col md={3}>
-              <Image src={product.image} width="90" />
+              <Image src={product.imageUrl} width="90" />
             </Col>
             <Col md={6}>
               <span className="font-weight-bold">{product.name}</span>

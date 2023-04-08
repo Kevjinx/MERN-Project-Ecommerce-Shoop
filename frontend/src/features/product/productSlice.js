@@ -61,7 +61,7 @@ export const { productListRequest, productListSuccess, productListFail } =
 export const fetchProducts = () => async (dispatch) => {
   try {
     dispatch(productListRequest());
-    const response = await fetch('http://localhost:5000/api/products');
+    const response = await fetch('http://localhost:5000/api/bikes');
     const data = await response.json();
     dispatch(productListSuccess(data));
   } catch (error) {
@@ -72,7 +72,7 @@ export const fetchProducts = () => async (dispatch) => {
 export const fetchProductById = (id) => async (dispatch) => {
   try {
     dispatch(productDetailRequest());
-    const response = await fetch(`http://localhost:5000/api/products/${id}`);
+    const response = await fetch(`http://localhost:5000/api/bikes/${id}`);
     const data = await response.json();
     dispatch(productDetailSuccess(data));
   } catch (error) {

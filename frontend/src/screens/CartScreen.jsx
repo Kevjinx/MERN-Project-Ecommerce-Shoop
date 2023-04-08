@@ -14,7 +14,7 @@ const CartScreen = () => {
       <ListGroup.Item key={product._id}>
         <Row>
           <Col md={2}>
-            <Image src={product.image} alt={product.name} fluid rounded />
+            <Image src={product.imageUrl} alt={product.name} fluid rounded />
           </Col>
           <Col md={2}>
             <Link to={`/product/${product._id}`}>{product.name}</Link>

@@ -98,7 +98,7 @@ const CheckoutScreen = () => {
                   <Row>
                     <Col md={2}>
                       <Image
-                        src={product.image}
+                        src={product.imageUrl}
                         alt={product.name}
                         fluid
                         rounded

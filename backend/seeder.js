@@ -2,9 +2,9 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import colors from 'colors';
 import users from './data/users.js';
-import products from './data/products.js';
 import User from './db/models/userModel.js';
-import Product from './db/models/productModel.js';
+import Bike from './db/models/bikeModel.js';
+import bikes from './data/bikes.js';
 import Order from './db/models/orderModel.js';
 import dbConnect from './db/dbConnect.js';
 import bcrypt from 'bcrypt';
@@ -17,7 +17,7 @@ const importData = async () => {
   try {
     // Clear all data in the database
     await Order.deleteMany();
-    await Product.deleteMany();
+    await Bike.deleteMany();
     await User.deleteMany();
 
     // Hash the password for each user
@@ -40,12 +40,12 @@ const importData = async () => {
 
     const adminUser = createdUsers[0]._id;
 
-    // reference admin user to all products
-    const sampleProducts = products.map((product) => {
-      return { ...product, user: adminUser };
+    // reference admin user to all bikes
+    const sampleBikes = bikes.map((bike) => {
+      return { ...bike, user: adminUser };
     });
 
-    await Product.insertMany(sampleProducts);
+    await Bike.insertMany(sampleBikes);
 
     console.log('Data Imported!'.green.inverse);
     process.exit();
@@ -58,7 +58,7 @@ const importData = async () => {
 const destroyData = async () => {
   try {
     await Order.deleteMany();
-    await Product.deleteMany();
+    await Bike.deleteMany();
     await User.deleteMany();
 
     console.log('Data Destroyed!'.red.inverse);

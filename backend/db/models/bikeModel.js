@@ -45,23 +45,23 @@ const bikeSchema = new mongoose.Schema({
   },
   wheelSize: {
     type: String,
-    required: true,
+    required: false,
   },
   drivetrainType: {
     type: String,
-    required: true,
+    required: false,
   },
   bikeModel: {
     type: String,
-    required: true,
+    required: false,
   },
   rearSuspensionType: {
     type: String,
-    required: true,
+    required: false,
   },
   forkTravel: {
     type: String,
-    required: true,
+    required: false,
   },
 });
 

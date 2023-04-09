@@ -19,6 +19,10 @@ import {
   USER_UPDATE_PROFILE_RESET,
 } from '../../constants/userConstants.js';
 
+let baseURL = 'http://localhost:5000';
+if (process.env.NODE_ENV === 'production') {
+  baseURL = 'https://shoop.herokuapp.com';
+}
 // TODO: refactor these user slices into multiple files. BUT, should I tho?
 
 export const userLoginSlice = createSlice({
@@ -68,7 +72,7 @@ export const fetchUserLogin = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      'http://localhost:5000/api/users/login',
+      `${baseURL}/api/users/login`,
       { email, password },
       config
     );
@@ -122,7 +126,7 @@ export const registerUser =
       };
 
       const { data } = await axios.post(
-        'http://localhost:5000/api/users',
+        `${baseURL}/api/users`,
         { firstName, lastName, email, password },
         config
       );
@@ -180,10 +184,7 @@ export const fetchUserDetails = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(
-      `http://localhost:5000/api/users/${id}`,
-      config
-    );
+    const { data } = await axios.get(`${baseURL}/api/users/${id}`, config);
 
     dispatch(userDetailSuccess(data));
   } catch (error) {
@@ -240,7 +241,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `http://localhost:5000/api/users/profile`,
+      `${baseURL}/api/users/profile`,
       user,
       config
     );

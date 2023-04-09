@@ -6,7 +6,7 @@ import CartButton from '../features/cart/CartButton.jsx';
 
 const ProductCard = ({ product }) => {
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '15rem' }} className="mb-3">
       <Link to={`/product/${product._id}`}>
         <Card.Img variant="top" src={product.imageUrl} />
       </Link>

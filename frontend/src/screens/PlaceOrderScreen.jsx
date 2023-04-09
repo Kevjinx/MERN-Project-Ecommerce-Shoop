@@ -17,14 +17,13 @@ const PlaceOrderScreen = () => {
   const { success, error, order } = orderCreate;
 
   const itemsPrice = cartProducts.reduce((acc, item) => acc + item.price, 0);
-  const taxPrice = cartProducts.reduce(
-    (acc, item) => acc + item.price * 0.05,
-    0
-  );
-  const shippingPrice = cartProducts.reduce(
-    (acc, item) => acc + item.price * 0.1,
-    0
-  );
+  const taxPrice = cartProducts
+    .reduce((acc, item) => acc + item.price * 0.05, 0)
+    .toFixed(2);
+  const shippingPrice = cartProducts
+    .reduce((acc, item) => acc + item.price * 0.1, 0)
+    .toFixed(2);
+
   const totalPrice = (
     Number(itemsPrice) +
     Number(shippingPrice) +

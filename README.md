@@ -11,7 +11,7 @@ Product search feature: Allows users to search for specific bike by price and sp
 
 Custom database seeder script: Prepopulates the database with sample data to streamline development and testing.
 
-## Features to be added
+## Features to be added on the frontend 
 
 Admin Product management: Allows administrators to add, edit, and remove products and categories.
 

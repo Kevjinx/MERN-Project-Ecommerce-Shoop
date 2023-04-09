@@ -9,6 +9,7 @@ import bikeRoutes from './routes/bikeRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 import bodyParser from 'body-parser';
+import * as path from 'path';
 
 dbConnect();
 dotenv.config();
@@ -25,14 +26,26 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
-
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/bikes', bikeRoutes);
+
+const __dirname = path.resolve();
+
+//setting frontend build to static folder
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/build')));
+
+  //any routes that isn't api will point to index.html in build
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+  });
+} else {
+  app.get('/', (req, res) => {
+    res.send('Hello World, API is running');
+  });
+}
 
 app.use(notFound, errorHandler);
 

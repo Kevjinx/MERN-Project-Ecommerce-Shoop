@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+//not yet implemented on frontend
 const orderSchema = new mongoose.Schema(
   {
     user: {

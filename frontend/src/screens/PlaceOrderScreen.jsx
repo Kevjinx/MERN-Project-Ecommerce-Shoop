@@ -5,6 +5,7 @@ import CheckoutSteps from '../components/CheckoutSteps';
 import { createOrder, orderCreateReset } from '../features/order/orderSlice.js';
 import { userDetailReset } from '../features/user/userSlice.js';
 import { useNavigate } from 'react-router-dom';
+import formattedDate from '../Utils/formatDate.js';
 
 const PlaceOrderScreen = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const PlaceOrderScreen = () => {
     if (success && order) {
       dispatch(orderCreateReset());
       dispatch(userDetailReset());
-      // navigate(`/order/${updatedOrder._id}`);
+      navigate(`/order/${updatedOrder._id}`);
     }
   }, [success]);
 
@@ -104,7 +105,7 @@ const PlaceOrderScreen = () => {
               <Row>
                 <Col md={3}>
                   <span className="d-block text-muted">Order Date</span>
-                  <span>12 Jan,2018</span>
+                  <span>{formattedDate}</span>
                 </Col>
                 <Col md={3}>
                   <span className="d-block text-muted">Order No</span>

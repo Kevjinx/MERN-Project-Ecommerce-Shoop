@@ -28,6 +28,11 @@ import { clearCart } from '../cart/cartSlice';
 import axios from 'axios';
 import { createSlice } from '@reduxjs/toolkit';
 
+let baseURL = 'http://localhost:5000';
+if (process.env.NODE_ENV === 'production') {
+  baseURL = 'https://shoop.herokuapp.com';
+}
+
 export const orderCreateSlice = createSlice({
   name: 'orderCreate',
   initialState: {},
@@ -75,11 +80,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.post(
-      `http://localhost:5000/api/orders`,
-      order,
-      config
-    );
+    const { data } = await axios.post(`${baseURL}/api/orders`, order, config);
     dispatch(orderCreateSuccess(data));
     dispatch(clearCart());
   } catch (error) {
@@ -122,10 +123,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(
-      `http://localhost:5000/api/orders/${id}`,
-      config
-    );
+    const { data } = await axios.get(`${baseURL}/api/orders/${id}`, config);
     dispatch(orderDetailsSuccess(data));
   } catch (error) {
     dispatch(orderDetailsFail(error.message));
@@ -172,7 +170,7 @@ export const payOrder =
       };
 
       const { data } = await axios.put(
-        `http://localhost:5000/api/orders/${orderId}/pay`,
+        `${baseURL}/api/orders/${orderId}/pay`,
         paymentResult,
         config
       );
@@ -218,10 +216,7 @@ export const getListMyOrders = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(
-      `http://localhost:5000/api/orders/myorders`,
-      config
-    );
+    const { data } = await axios.get(`${baseURL}/api/orders/myorders`, config);
 
     dispatch(orderListMySuccess(data));
   } catch (error) {
@@ -263,10 +258,7 @@ export const getOrderList = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(
-      `http://localhost:5000/api/orders`,
-      config
-    );
+    const { data } = await axios.get(`${baseURL}/api/orders`, config);
 
     dispatch(orderListSuccess(data));
   } catch (error) {
@@ -312,7 +304,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `http://localhost:5000/api/orders/${order._id}/deliver`,
+      `${baseURL}/api/orders/${order._id}/deliver`,
       {},
       config
     );

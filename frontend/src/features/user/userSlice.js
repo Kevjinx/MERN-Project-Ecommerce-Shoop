@@ -23,8 +23,8 @@ let baseURL = 'http://localhost:5000';
 if (process.env.NODE_ENV === 'production') {
   baseURL = 'https://shoop.herokuapp.com';
 }
-// TODO: refactor these user slices into multiple files. BUT, should I tho?
 
+// TODO: refactor these user slices into multiple files. BUT, should I tho?
 export const userLoginSlice = createSlice({
   name: 'userLogin',
   initialState: {

@@ -3,6 +3,8 @@ import colors from 'colors';
 import dotenv from 'dotenv';
 dotenv.config();
 
+mongoose.set('strictQuery', false);
+
 const dbConnect = async () => {
   try {
     const connect = await mongoose.connect(process.env.MONGO_URI, {

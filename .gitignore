@@ -9,8 +9,9 @@ node_modules/
 # testing
 /coverage
 
+# heroku will run build and put the files in /frontend/build
 # production
-/build
+/frontend/build
 
 # misc
 .DS_Store

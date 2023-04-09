@@ -1,5 +1,8 @@
 # Full-featured shopping cart using React, Node, Express, and MongoDB (MERN)
 
+## Hosted on Heroku: 
+https://shoop.herokuapp.com/api/user
+
 ## Features
 
 Checkout process: Guides customers through the entire checkout process, including shipping, payment method selection, and more.

@@ -1,5 +1,4 @@
 import React from 'react';
-import { educations } from 'scrapedin/src/profile/profileScraperTemplate';
 
 const PriceSlider = ({ priceFilter, setPriceFilter }) => {
   const [minValue, maxValue] = priceFilter.split('-');

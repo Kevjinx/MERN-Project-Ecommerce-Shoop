@@ -1,15 +1,17 @@
 # Full-featured shopping cart using React, Node, Express, and MongoDB (MERN)
 
 ## Hosted on Heroku: 
-https://shoop.herokuapp.com/api/user
+https://shoop.herokuapp.com
 
 ## Features
 
-Checkout process: Guides customers through the entire checkout process, including shipping, payment method selection, and more.
+Checkout process: Guides customers through the entire checkout process, including shipping, discount, payment method selection, and order confirmation.
 
 Product search feature: Allows users to search for specific bike by price and specifications.
 
 Custom database seeder script: Prepopulates the database with sample data to streamline development and testing.
+
+Users: Allow users to register, and update their account information
 
 ## Features to be added on the frontend 
 
@@ -19,11 +21,9 @@ Admin Order Management: Allows administrators to manage orders, marked them as s
 
 Reviews: Allows users to leave reviews for products.
 
-User accounts: Allows users to create an account and manage their profile and orders.
-
 Paypal payment gateway: Allows users to pay for their orders using Paypal.
 
-Better dataset: Update dataset to include variants, real reviews from JensonUSA website, and higher quality images.
+Better dataset: Update product page with better dataset to include variants, real reviews from JensonUSA website, and higher quality images.
 
 ## Dataset
 

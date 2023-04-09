@@ -39,6 +39,21 @@ const ProductScreen = () => {
                 <h3>{product.name}</h3>
               </ListGroup.Item>
 
+              <ListGroup.Item>Brand: {product.brand}</ListGroup.Item>
+              <ListGroup.Item>Category: {product.category}</ListGroup.Item>
+              <ListGroup.Item>Wheel Size: {product.wheelSize}</ListGroup.Item>
+              <ListGroup.Item>
+                Drivetrain Type: {product.drivetrainType}
+              </ListGroup.Item>
+              <ListGroup.Item>Bike Model: {product.bikeModel}</ListGroup.Item>
+              <ListGroup.Item>
+                Rear Suspension Type: {product.rearSuspensionType}
+              </ListGroup.Item>
+              <ListGroup.Item>Fork Travel: {product.forkTravel}</ListGroup.Item>
+              <ListGroup.Item>
+                Count in Stock: {product.countInStock}
+              </ListGroup.Item>
+
               <ListGroup.Item>
                 <Rating
                   value={parseInt(product.rating)}
@@ -51,7 +66,6 @@ const ProductScreen = () => {
               </ListGroup.Item>
             </ListGroup>
           </Col>
-
           <Col md={3}>
             <Card>
               <ListGroup variant="flush">

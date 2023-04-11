@@ -106,17 +106,13 @@ const updateUserProfile = expressAsyncHandler(async (req, res) => {
   }
 });
 
-// @type    POST
-// @route   /api/users/logout
-// @desc    logout user and destroy token
-// @access  public
-const logoutUser = expressAsyncHandler(async (req, res) => {});
-
-//for development purposes only, see userRoutes.js
+// @type    GET
+// @route   /api/users/
+// @desc    get all users info
+// @access  admin
 const getAllUsers = expressAsyncHandler(async (req, res) => {
   const users = await User.find();
   console.log('users: ', users);
-
   res.json(users);
 });
 
@@ -174,13 +170,15 @@ const updateUserById = expressAsyncHandler(async (req, res) => {
 // @route   /api/users/:id
 // @desc    delete user
 // @access  admin
-
 const deleteUserById = expressAsyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
 
   if (user) {
     await user.remove();
-    res.json({ message: 'goodbye user, you will not be forgotten' });
+    res.json({
+      message:
+        'goodbye user, you will be forgotten as we dont keep your data forever like someone we know...',
+    });
   } else {
     res.status(404);
     throw new Error('there ain"t no user by that name here');
@@ -189,7 +187,6 @@ const deleteUserById = expressAsyncHandler(async (req, res) => {
 
 export {
   authUser,
-  logoutUser,
   getUserProfile,
   updateUserProfile,
   registerUser,

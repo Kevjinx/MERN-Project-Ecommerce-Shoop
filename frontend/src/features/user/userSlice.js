@@ -17,14 +17,27 @@ import {
   USER_UPDATE_PROFILE_SUCCESS,
   USER_UPDATE_PROFILE_FAIL,
   USER_UPDATE_PROFILE_RESET,
+  USER_ADMIN_GET_ALL_USERS_REQUEST,
+  USER_ADMIN_GET_ALL_USERS_SUCCESS,
+  USER_ADMIN_GET_ALL_USERS_FAIL,
+  USER_ADMIN_GET_ALL_USERS_RESET,
+  USER_ADMIN_DELETE_BY_ID_REQUEST,
+  USER_ADMIN_DELETE_BY_ID_SUCCESS,
+  USER_ADMIN_DELETE_BY_ID_FAIL,
+  USER_ADMIN_UPDATE_BY_ID_REQUEST,
+  USER_ADMIN_UPDATE_BY_ID_SUCCESS,
+  USER_ADMIN_UPDATE_BY_ID_FAIL,
+  USER_ADMIN_UPDATE_BY_ID_RESET,
 } from '../../constants/userConstants.js';
 
 let baseURL = 'http://localhost:5000';
 if (process.env.NODE_ENV === 'production') {
-  baseURL = 'https://shoop.herokuapp.com';
+  baseURL = process.env.BASE_URL;
 }
 
 // TODO: refactor these user slices into multiple files. BUT, should I tho?
+
+// ************** user login slice **************
 export const userLoginSlice = createSlice({
   name: 'userLogin',
   initialState: {
@@ -61,6 +74,7 @@ export const {
   userLoginErrorReset,
 } = userLoginSlice.actions;
 
+// ************** user login action **************
 export const fetchUserLogin = (email, password) => async (dispatch) => {
   try {
     dispatch(userLoginRequest());
@@ -171,6 +185,7 @@ export const {
   userDetailReset,
 } = userDetailSlice.actions;
 
+// ************** user detail action **************
 export const fetchUserDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch(userDetailRequest());
@@ -227,6 +242,8 @@ export const {
   userUpdateProfileReset,
 } = userUpdateProfileSlice.actions;
 
+// ************** user update profile action **************
+
 export const updateUserProfile = (user) => async (dispatch, getState) => {
   try {
     dispatch(userUpdateProfileRequest());
@@ -249,5 +266,161 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     dispatch(userUpdateProfileSuccess(data));
   } catch (error) {
     dispatch(userUpdateProfileFail(error.response));
+  }
+};
+
+// ************** user admin get all users slice **************
+export const userAdminGetAllUsers = createSlice({
+  name: 'userAdminGetAllUsers',
+  initialState: {
+    users: [],
+    loading: false,
+    error: null,
+  },
+  reducers: {
+    [USER_ADMIN_GET_ALL_USERS_REQUEST]: (state) => {
+      state.loading = true;
+    },
+    [USER_ADMIN_GET_ALL_USERS_SUCCESS]: (state, action) => {
+      state.loading = false;
+      state.users = action.payload;
+    },
+    [USER_ADMIN_GET_ALL_USERS_FAIL]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    [USER_ADMIN_GET_ALL_USERS_RESET]: (state) => {
+      state.users = [];
+    },
+  },
+});
+
+export const {
+  userAdminGetAllUsersRequest,
+  userAdminGetAllUsersSuccess,
+  userAdminGetAllUsersFail,
+  userAdminGetAllUsersReset,
+} = userAdminGetAllUsers.actions;
+
+// ************** user admin get all users action **************
+export const fetchAllUsers = () => async (dispatch, getState) => {
+  try {
+    dispatch(userAdminGetAllUsersRequest());
+
+    const token = getState().userLogin.userInfo.token;
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await axios.get(`/api/users`, config);
+    dispatch(userAdminGetAllUsersSuccess(data));
+  } catch (error) {
+    dispatch(userAdminGetAllUsersFail(error.response));
+  }
+};
+
+// ************** user admin delete by Id slice **************
+export const userAdminDeleteByIdSlice = createSlice({
+  name: 'userAdminDeleteById',
+  initialState: {
+    loading: false,
+    error: null,
+  },
+  reducers: {
+    [USER_ADMIN_DELETE_BY_ID_REQUEST]: (state) => {
+      state.loading = true;
+    },
+    [USER_ADMIN_DELETE_BY_ID_SUCCESS]: (state) => {
+      state.loading = false;
+    },
+    [USER_ADMIN_DELETE_BY_ID_FAIL]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+  },
+});
+
+export const {
+  userAdminDeleteByIdRequest,
+  userAdminDeleteByIdSuccess,
+  userAdminDeleteByIdFail,
+} = userAdminDeleteByIdSlice.actions;
+
+// ************** user admin delete by Id action **************
+export const deleteUserById = (id) => async (dispatch, getState) => {
+  try {
+    dispatch(userAdminDeleteByIdRequest());
+
+    const token = getState().userLogin.userInfo.token;
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    await await axios.delete(`/api/users/${id}`, config);
+    dispatch(userAdminDeleteByIdSuccess());
+  } catch (error) {
+    dispatch(userAdminDeleteByIdFail(error.response));
+  }
+};
+
+// ************** user admin update by Id slice **************
+export const userAdminUpdateByIdSlice = createSlice({
+  name: 'userAdminUpdateById',
+  initialState: {
+    user: {},
+    loading: false,
+    error: null,
+  },
+  reducers: {
+    [USER_ADMIN_UPDATE_BY_ID_REQUEST]: (state) => {
+      state.loading = true;
+    },
+    [USER_ADMIN_UPDATE_BY_ID_SUCCESS]: (state, action) => {
+      state.loading = false;
+      state.user = action.payload;
+    },
+    [USER_ADMIN_UPDATE_BY_ID_FAIL]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    [USER_ADMIN_UPDATE_BY_ID_RESET]: (state) => {
+      state.user = {};
+    },
+  },
+});
+
+export const {
+  userAdminUpdateByIdRequest,
+  userAdminUpdateByIdSuccess,
+  userAdminUpdateByIdFail,
+  userAdminUpdateByIdReset,
+} = userAdminUpdateByIdSlice.actions;
+
+// ************** user admin update by Id action **************
+export const updateUserById = (user) => async (dispatch, getState) => {
+  try {
+    dispatch(userAdminUpdateByIdRequest());
+
+    const token = getState().userLogin.userInfo.token;
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await axios.put(`/api/users/${user._id}`, user, config);
+    dispatch(userAdminUpdateByIdSuccess(data));
+  } catch (error) {
+    dispatch(userAdminUpdateByIdFail(error.response));
   }
 };

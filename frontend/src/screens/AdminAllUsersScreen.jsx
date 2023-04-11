@@ -12,9 +12,6 @@ const AdminAllUsersScreen = ({ history }) => {
   const adminUserList = useSelector((state) => state.adminUserList);
   const { loading, error, users } = adminUserList;
 
-  console.log(loading);
-  console.log(error);
-
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 

@@ -35,8 +35,6 @@ if (process.env.NODE_ENV === 'production') {
   baseURL = process.env.BASE_URL;
 }
 
-// TODO: refactor these user slices into multiple files. BUT, should I tho?
-
 // ************** user login slice **************
 export const userLoginSlice = createSlice({
   name: 'userLogin',

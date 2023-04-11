@@ -48,14 +48,31 @@ const deleteProductById = expressAsyncHandler(async (req, res) => {
 // @desc    create one product
 // @access  admin
 const createProduct = expressAsyncHandler(async (req, res) => {
-  const { name, price, image, brand, category, countInStock } = req.body;
-  const product = new Product({
+  const {
     name,
     price,
-    image,
+    imageUrl,
     brand,
     category,
     countInStock,
+    wheelSize = '',
+    drivetrainType = '',
+    bikeModel = '',
+    rearSuspensionType = '',
+    forkTravel = '',
+  } = req.body;
+  const product = new Product({
+    name,
+    price,
+    imageUrl,
+    brand,
+    category,
+    countInStock,
+    wheelSize,
+    drivetrainType,
+    bikeModel,
+    rearSuspensionType,
+    forkTravel,
   });
   const createdProduct = await product.save();
   res.status(201).json(createdProduct);
@@ -69,10 +86,10 @@ const updateProduct = expressAsyncHandler(async (req, res) => {
   const { productId } = req.params;
   const product = await Product.findById(productId);
   if (product) {
-    const { name, price, image, brand, category, countInStock } = req.body;
+    const { name, price, imageUrl, brand, category, countInStock } = req.body;
     product.name = name || product.name;
     product.price = price || product.price;
-    product.image = image || product.image;
+    product.imageUrl = imageUrl || product.imageUrl;
     product.brand = brand || product.brand;
     product.category = category || product.category;
     product.countInStock = countInStock || product.countInStock;
@@ -85,7 +102,7 @@ const updateProduct = expressAsyncHandler(async (req, res) => {
 });
 
 // @type    POST
-// @route   /api/products/:productId
+// @route   /api/products/:productId/reviews
 // @desc    fetch one product
 // @access  public
 const createProductReview = expressAsyncHandler(async (req, res) => {

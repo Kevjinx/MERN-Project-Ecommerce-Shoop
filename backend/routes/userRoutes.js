@@ -5,7 +5,10 @@ import {
   getUserProfile,
   updateUserProfile,
   registerUser,
-  getAllusers,
+  getAllUsers,
+  updateUserById,
+  getUserById,
+  deleteUserById,
 } from '../controller/userController.js';
 import { protect } from '../middleware/authMiddleware.js';
 import dotenv from 'dotenv';
@@ -17,13 +20,15 @@ userRoutes.post('/', registerUser); // '/' instead of '/register' to follow REST
 userRoutes.post('/login', authUser);
 userRoutes.post('/logout', logoutUser);
 
-if (process.env.NODE_ENV === 'development') {
-  userRoutes.get('/admingetallusers', getAllusers);
-}
-
 userRoutes
   .route('/profile')
   .get(protect, getUserProfile)
   .put(protect, updateUserProfile);
+
+userRoutes
+  .route('/:id')
+  .delete(protect, admin, deleteUserById)
+  .get(protect, admin, [getUserById, getAllUsers])
+  .put(protect, admin, updateUserById);
 
 export default userRoutes;

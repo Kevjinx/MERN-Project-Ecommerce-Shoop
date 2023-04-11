@@ -20,7 +20,7 @@ const authUser = expressAsyncHandler(async (req, res) => {
     });
   } else {
     res.status(401);
-    throw new Error('Invalid email or password');
+    throw new Error('your email and or password is no good here, try again');
   }
 });
 
@@ -42,7 +42,7 @@ const getUserProfile = expressAsyncHandler(async (req, res) => {
     });
   } else {
     res.status(404);
-    throw new Error('User not found');
+    throw new Error('there ain"t no user by that name here');
   }
 });
 
@@ -55,7 +55,7 @@ const registerUser = expressAsyncHandler(async (req, res) => {
   const existingUserSameEmail = await User.findOne({ email });
   if (existingUserSameEmail) {
     res.status(400);
-    throw new Error('User already exists');
+    throw new Error('someone else took your name, too bad');
   }
   const user = await User.create({
     email,
@@ -74,7 +74,7 @@ const registerUser = expressAsyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error('Invalid user data');
+    throw new Error('the user data you gave aint working');
   }
 });
 
@@ -102,7 +102,7 @@ const updateUserProfile = expressAsyncHandler(async (req, res) => {
     });
   } else {
     res.status(404);
-    throw new Error('User not found');
+    throw new Error('there ain"t no user by that name here');
   }
 });
 
@@ -113,11 +113,78 @@ const updateUserProfile = expressAsyncHandler(async (req, res) => {
 const logoutUser = expressAsyncHandler(async (req, res) => {});
 
 //for development purposes only, see userRoutes.js
-const getAllusers = expressAsyncHandler(async (req, res) => {
+const getAllUsers = expressAsyncHandler(async (req, res) => {
   const users = await User.find();
   console.log('users: ', users);
 
   res.json(users);
+});
+
+// @type    GET
+// @route   /api/users/:id
+// @desc    get user profile
+// @access  admin
+const getUserById = expressAsyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  //can use req.user in any protected route
+  if (user) {
+    res.json({
+      _id: user._id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error('there ain"t no user by that name here');
+  }
+});
+
+// @type    PUT
+// @route   /api/users/:id
+// @desc    update user profile
+// @access  admin
+const updateUserById = expressAsyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    user.firstName = req.body.firstName || user.firstName;
+    user.lastName = req.body.lastName || user.lastName;
+    user.email = req.body.email || user.email;
+
+    //password is hashed in the userModel via pre-save middleware
+    req.body.password && (user.password = req.body.password);
+
+    const updatedUser = await user.save();
+    res.json({
+      firstName: updatedUser.firstName,
+      lastName: updatedUser.lastName,
+      email: updatedUser.email,
+      password: user.password,
+    });
+  } else {
+    res.status(404);
+    throw new Error('there ain"t no user by that name here');
+  }
+});
+
+// @type    DELETE
+// @route   /api/users/:id
+// @desc    delete user
+// @access  admin
+
+const deleteUserById = expressAsyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    await user.remove();
+    res.json({ message: 'goodbye user, you will not be forgotten' });
+  } else {
+    res.status(404);
+    throw new Error('there ain"t no user by that name here');
+  }
 });
 
 export {
@@ -126,5 +193,8 @@ export {
   getUserProfile,
   updateUserProfile,
   registerUser,
-  getAllusers,
+  getAllUsers,
+  getUserById,
+  updateUserById,
+  deleteUserById,
 };

@@ -56,7 +56,7 @@ export const { productDetailRequest, productDetailSuccess, productDetailFail } =
 export const fetchProducts = () => async (dispatch) => {
   try {
     dispatch(productListRequest());
-    const { data } = await axios.get(`${baseURL}/api/bikes`);
+    const { data } = await axios.get(`${baseURL}/api/products`);
     dispatch(productListSuccess(data));
   } catch (error) {
     dispatch(productListFail(error.message));
@@ -93,7 +93,7 @@ export const { productListRequest, productListSuccess, productListFail } =
 export const fetchProductById = (id) => async (dispatch) => {
   try {
     dispatch(productDetailRequest());
-    const { data } = await axios.get(`${baseURL}/api/bikes/${id}`);
+    const { data } = await axios.get(`${baseURL}/api/products/${id}`);
     dispatch(productDetailSuccess(data));
   } catch (error) {
     dispatch(productDetailFail(error.message));
@@ -142,7 +142,10 @@ export const deleteProductById = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`${baseURL}/api/bikes/${id}`, config);
+    const { data } = await axios.delete(
+      `${baseURL}/api/products/${id}`,
+      config
+    );
 
     dispatch(productAdminDeleteSuccess(data));
   } catch (error) {
@@ -191,7 +194,11 @@ export const createProduct = (product) => async (dispatch, getState) => {
         Authorization: `Bearer ${token}`,
       },
     };
-    const { data } = await axios.post(`${baseURL}/api/bikes`, product, config);
+    const { data } = await axios.post(
+      `${baseURL}/api/products`,
+      product,
+      config
+    );
     dispatch(productAdminCreateSuccess(data));
   } catch (error) {
     dispatch(productAdminCreateFail(error.response));
@@ -239,7 +246,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.put(
-      `${baseURL}/api/bikes/${product._id}`,
+      `${baseURL}/api/products/${product._id}`,
       product,
       config
     );
@@ -291,7 +298,7 @@ export const createProductReview =
         },
       };
       const { data } = await axios.post(
-        `${baseURL}/api/bikes/${productId}/reviews`,
+        `${baseURL}/api/products/${productId}/reviews`,
         review,
         config
       );

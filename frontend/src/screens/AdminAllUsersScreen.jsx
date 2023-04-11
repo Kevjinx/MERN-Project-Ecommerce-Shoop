@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { fetchAllUsers, deleteUserById } from '../features/user/userSlice.js';
+import { useNavigate } from 'react-router-dom';
 
 const AdminAllUsersScreen = ({ history }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const adminUserList = useSelector((state) => state.adminUserList);
@@ -22,7 +24,7 @@ const AdminAllUsersScreen = ({ history }) => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(fetchAllUsers());
     } else {
-      history.push('/login');
+      navigate('/login');
     }
   }, [dispatch, history, successDelete, userInfo]);
 

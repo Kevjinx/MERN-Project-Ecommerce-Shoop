@@ -34,12 +34,16 @@ const Header = () => {
                   Cart
                 </Nav.Link>
               </LinkContainer>
-
               {userInfo.token ? (
                 <NavDropdown title={userInfo.firstName}>
                   <LinkContainer to="/profile">
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
+                  {userInfo.isAdmin && (
+                    <LinkContainer to="/admin/users">
+                      <NavDropdown.Item>All Users</NavDropdown.Item>
+                    </LinkContainer>
+                  )}
                   <NavDropdown.Item onClick={logoutHandler}>
                     Log out
                   </NavDropdown.Item>

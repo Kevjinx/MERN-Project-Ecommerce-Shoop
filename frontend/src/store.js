@@ -9,8 +9,11 @@ import {
   userDetailSlice,
   userRegisterSlice,
   userUpdateProfileSlice,
+  userAdminDeleteByIdSlice,
+  userAdminGetAllUsersSlice,
+  userAdminUpdateByIdSlice,
 } from './features/user/userSlice';
-import cartReducer from './features/cart/cartSlice';
+import { cartSlice } from './features/cart/cartSlice';
 import {
   orderCreateSlice,
   orderDetailsSlice,
@@ -33,7 +36,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   productList: productListSlice.reducer,
   productDetail: productDetailSlice.reducer,
-  cart: cartReducer,
+  cart: cartSlice.reducer,
   userLogin: userLoginSlice.reducer,
   userDetail: userDetailSlice.reducer,
   userRegister: userRegisterSlice.reducer,
@@ -44,6 +47,9 @@ const rootReducer = combineReducers({
   orderListMy: orderListMySlice.reducer,
   orderList: orderListSlice.reducer,
   orderDeliver: orderDeliverSlice.reducer,
+  adminDeleteUser: userAdminDeleteByIdSlice.reducer,
+  adminUserList: userAdminGetAllUsersSlice.reducer,
+  adminUserUpdate: userAdminUpdateByIdSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

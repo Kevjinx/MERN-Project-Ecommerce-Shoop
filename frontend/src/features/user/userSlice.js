@@ -270,7 +270,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 };
 
 // ************** user admin get all users slice **************
-export const userAdminGetAllUsers = createSlice({
+export const userAdminGetAllUsersSlice = createSlice({
   name: 'userAdminGetAllUsers',
   initialState: {
     users: [],
@@ -300,7 +300,7 @@ export const {
   userAdminGetAllUsersSuccess,
   userAdminGetAllUsersFail,
   userAdminGetAllUsersReset,
-} = userAdminGetAllUsers.actions;
+} = userAdminGetAllUsersSlice.actions;
 
 // ************** user admin get all users action **************
 export const fetchAllUsers = () => async (dispatch, getState) => {
@@ -316,9 +316,10 @@ export const fetchAllUsers = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/users`, config);
+    const { data } = await axios.get(`${baseURL}/api/users`, config);
     dispatch(userAdminGetAllUsersSuccess(data));
   } catch (error) {
+    console.log(error);
     dispatch(userAdminGetAllUsersFail(error.response));
   }
 };
@@ -364,7 +365,7 @@ export const deleteUserById = (id) => async (dispatch, getState) => {
       },
     };
 
-    await await axios.delete(`/api/users/${id}`, config);
+    await await axios.delete(`${baseURL}/api/users/${id}`, config);
     dispatch(userAdminDeleteByIdSuccess());
   } catch (error) {
     dispatch(userAdminDeleteByIdFail(error.response));
@@ -418,7 +419,11 @@ export const updateUserById = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put(`/api/users/${user._id}`, user, config);
+    const { data } = await axios.put(
+      `${baseURL}/api/users/${user._id}`,
+      user,
+      config
+    );
     dispatch(userAdminUpdateByIdSuccess(data));
   } catch (error) {
     dispatch(userAdminUpdateByIdFail(error.response));

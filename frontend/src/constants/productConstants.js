@@ -6,21 +6,20 @@ export const PRODUCT_DETAIL_REQUEST = 'productDetailRequest';
 export const PRODUCT_DETAIL_SUCCESS = 'productDetailSuccess';
 export const PRODUCT_DETAIL_FAIL = 'productDetailFail';
 
-export const PRODUCT_DELETE_REQUEST = 'productDeleteRequest';
-export const PRODUCT_DELETE_SUCCESS = 'productDeleteSuccess';
-export const PRODUCT_DELETE_FAIL = 'productDeleteFail';
+export const PRODUCT_ADMIN_DELETE_REQUEST = 'productAdminDeleteRequest';
+export const PRODUCT_ADMIN_DELETE_SUCCESS = 'productAdminDeleteSuccess';
+export const PRODUCT_ADMIN_DELETE_FAIL = 'productAdminDeleteFail';
 
-export const PRODUCT_CREATE_REQUEST = 'productCreateRequest';
-export const PRODUCT_CREATE_SUCCESS = 'productCreateSuccess';
-export const PRODUCT_CREATE_FAIL = 'productCreateFail';
-export const PRODUCT_CREATE_RESET = 'productCreateReset';
+export const PRODUCT_ADMIN_CREATE_REQUEST = 'productAdminCreateRequest';
+export const PRODUCT_ADMIN_CREATE_SUCCESS = 'productAdminCreateSuccess';
+export const PRODUCT_ADMIN_CREATE_FAIL = 'productAdminCreateFail';
 
-export const PRODUCT_UPDATE_REQUEST = 'productUpdateRequest';
-export const PRODUCT_UPDATE_SUCCESS = 'productUpdateSuccess';
-export const PRODUCT_UPDATE_FAIL = 'productUpdateFail';
-export const PRODUCT_UPDATE_RESET = 'productUpdateReset';
+export const PRODUCT_ADMIN_UPDATE_REQUEST = 'productAdminUpdateRequest';
+export const PRODUCT_ADMIN_UPDATE_SUCCESS = 'productAdminUpdateSuccess';
+export const PRODUCT_ADMIN_UPDATE_FAIL = 'productAdminUpdateFail';
 
-export const PRODUCT_CREATE_REVIEW_REQUEST = 'productCreateReviewRequest';
-export const PRODUCT_CREATE_REVIEW_SUCCESS = 'productCreateReviewSuccess';
-export const PRODUCT_CREATE_REVIEW_FAIL = 'productCreateReviewFail';
-export const PRODUCT_CREATE_REVIEW_RESET = 'productCreateReviewReset';
+export const PRODUCT_ADMIN_CREATE_REVIEW_REQUEST =
+  'productAdminCreateReviewRequest';
+export const PRODUCT_ADMIN_CREATE_REVIEW_SUCCESS =
+  'productAdminCreateReviewSuccess';
+export const PRODUCT_ADMIN_CREATE_REVIEW_FAIL = 'productAdminCreateReviewFail';

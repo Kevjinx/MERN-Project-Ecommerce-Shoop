@@ -363,7 +363,7 @@ export const deleteUserById = (id) => async (dispatch, getState) => {
       },
     };
 
-    await await axios.delete(`${baseURL}/api/users/${id}`, config);
+    await axios.delete(`${baseURL}/api/users/${id}`, config);
     dispatch(userAdminDeleteByIdSuccess());
   } catch (error) {
     dispatch(userAdminDeleteByIdFail(error.response));

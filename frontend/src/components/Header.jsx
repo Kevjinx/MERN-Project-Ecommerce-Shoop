@@ -3,24 +3,25 @@ import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { userLogout } from '../features/user/userSlice.js';
-import * as DarkReader from 'darkreader';
+import {
+  enable as enableDarkMode,
+  disable as disableDarkMode,
+} from 'darkreader';
 
 const Header = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
-    DarkReader.setFetchMethod(window.fetch);
-
     setDarkMode(!darkMode);
 
     if (!darkMode) {
-      DarkReader.enable({
+      enableDarkMode({
         brightness: 100,
         contrast: 90,
         sepia: 10,
       });
     } else {
-      DarkReader.disable();
+      disableDarkMode();
     }
   };
 

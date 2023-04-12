@@ -1,7 +1,7 @@
 import path from 'path';
 import express from 'express';
 import multer from 'multer';
-const uploadRouter = express.Router();
+const uploadRoutes = express.Router();
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
@@ -34,8 +34,8 @@ const upload = multer({
   },
 });
 
-uploadRouter.post('/', upload.single('image'), (req, res) => {
+uploadRoutes.post('/', upload.single('image'), (req, res) => {
   res.send(`/${req.file.path}`);
 });
 
-export default uploadRouter;
+export default uploadRoutes;

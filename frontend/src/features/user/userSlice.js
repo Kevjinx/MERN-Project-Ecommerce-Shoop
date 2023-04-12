@@ -422,6 +422,7 @@ export const updateUserById = (user) => async (dispatch, getState) => {
       user,
       config
     );
+
     dispatch(userAdminUpdateByIdSuccess(data));
   } catch (error) {
     dispatch(userAdminUpdateByIdFail(error.response));

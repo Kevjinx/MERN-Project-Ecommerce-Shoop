@@ -66,52 +66,49 @@ const AdminEditUserScreen = () => {
         <h1>Edit User</h1>
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
-        {loading ? (
-          <Loader />
-        ) : error ? (
-          <Message variant="danger">{error}</Message>
-        ) : (
-          <Form onSubmit={submitHandler}>
-            <Form.Group controlId="name">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="first Name"
-                placeholder="Enter last name"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-              ></Form.Control>
-              <Form.Control
-                type="last Name"
-                placeholder="Enter last name"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
 
-            <Form.Group controlId="email">
-              <Form.Label>Email Address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+        <Form onSubmit={submitHandler}>
+          <Form.Group controlId="name">
+            <Form.Label>First Name</Form.Label>
+            <Form.Control
+              type="first Name"
+              placeholder="Enter last name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            ></Form.Control>
+            <Form.Label>Last Name</Form.Label>
 
-            <Form.Group controlId="isadmin">
-              <Form.Check
-                type="checkbox"
-                label="Is Admin"
-                checked={isAdmin}
-                onChange={(e) => setIsAdmin(e.target.checked)}
-              ></Form.Check>
-            </Form.Group>
+            <Form.Control
+              type="last Name"
+              placeholder="Enter last name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
 
-            <Button type="submit" variant="primary">
-              Update
-            </Button>
-          </Form>
-        )}
+          <Form.Group controlId="email">
+            <Form.Label>Email Address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+
+          <Form.Group controlId="isadmin">
+            <Form.Check
+              type="checkbox"
+              label="Is Admin"
+              checked={isAdmin}
+              onChange={(e) => setIsAdmin(e.target.checked)}
+            ></Form.Check>
+          </Form.Group>
+
+          <Button type="submit" variant="primary">
+            Update
+          </Button>
+        </Form>
       </FormContainer>
     </>
   );

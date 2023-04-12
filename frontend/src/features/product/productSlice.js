@@ -32,8 +32,7 @@ if (process.env.NODE_ENV === 'production') {
 export const productDetailSlice = createSlice({
   name: 'product',
   initialState: {
-    productDetail: [],
-    reviews: [],
+    product: { reviews: [] },
     loading: false,
     error: null,
   },
@@ -63,7 +62,7 @@ export const fetchProductById = (id) => async (dispatch) => {
     console.log(data);
     dispatch(productDetailSuccess(data));
   } catch (error) {
-    dispatch(productDetailFail(error.message));
+    dispatch(productDetailFail(error.response.data.message));
   }
 };
 
@@ -153,7 +152,7 @@ export const deleteProductById = (id) => async (dispatch, getState) => {
 
     dispatch(productAdminDeleteSuccess(data));
   } catch (error) {
-    dispatch(productAdminDeleteFail(error.response));
+    dispatch(productAdminDeleteFail(error.response.data.message));
   }
 };
 
@@ -205,7 +204,7 @@ export const createProduct = (product) => async (dispatch, getState) => {
     );
     dispatch(productAdminCreateSuccess(data));
   } catch (error) {
-    dispatch(productAdminCreateFail(error.response));
+    dispatch(productAdminCreateFail(error.response.data.message));
   }
 };
 
@@ -309,13 +308,13 @@ export const createProductReview =
           Authorization: `Bearer ${token}`,
         },
       };
-      const { data } = await axios.post(
+      await axios.post(
         `${baseURL}/api/products/${productId}/reviews`,
         review,
         config
       );
-      dispatch(productCreateReviewSuccess(data));
+      dispatch(productCreateReviewSuccess());
     } catch (error) {
-      dispatch(productCreateReviewFail(error.response));
+      dispatch(productCreateReviewFail(error.response.data.message));
     }
   };

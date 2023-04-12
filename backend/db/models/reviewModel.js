@@ -3,7 +3,11 @@ import mongoose from 'mongoose';
 //not yet implemented on frontend
 const reviewSchema = new mongoose.Schema(
   {
-    name: {
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
       type: String,
       required: true,
     },

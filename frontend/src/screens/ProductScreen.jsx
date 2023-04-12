@@ -17,8 +17,9 @@ const ProductScreen = () => {
     dispatch(fetchProductById(productId));
   }, [dispatch, productId]);
 
-  const productDetail = useSelector((state) => state.productDetail);
-  const { loading, error, product } = productDetail;
+  const { loading, error, product } = useSelector(
+    (state) => state.productDetail
+  );
 
   return (
     <>
@@ -35,7 +36,7 @@ const ProductScreen = () => {
             <>
               <Image src={product.imageUrl} alt={product.name} fluid />
             </>
-            <Review productId={productId} />
+            {/* <Review productId={productId} /> */}
           </Col>
 
           <Col md={4}>
@@ -103,7 +104,9 @@ const ProductScreen = () => {
             </Card>
           </Col>
         </Row>
-      ) : null}
+      ) : (
+        <Message variant="danger">Product not found</Message>
+      )}
     </>
   );
 };

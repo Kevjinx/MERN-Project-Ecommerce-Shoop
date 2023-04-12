@@ -21,8 +21,9 @@ const Review = ({ productId }) => {
     error: errorProductReview,
   } = productCreateReview;
 
-  const product = useSelector((state) => state.productDetail.productDetail);
-  const reviews = useSelector((state) => state.productDetail.reviews);
+  const { loading, error, product, reviews } = useSelector(
+    (state) => state.productDetail
+  );
 
   const { userInfo } = useSelector((state) => state.userLogin);
 
@@ -49,7 +50,6 @@ const Review = ({ productId }) => {
   return (
     <>
       <h2>Reviews</h2>
-
       {reviews && reviews.length > 0 && <Message>No Reviews</Message>}
       <ListGroup variant="flush">
         {reviews.map((review) => (

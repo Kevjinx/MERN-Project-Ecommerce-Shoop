@@ -32,7 +32,8 @@ if (process.env.NODE_ENV === 'production') {
 export const productDetailSlice = createSlice({
   name: 'product',
   initialState: {
-    product: { reviews: [] },
+    productDetail: [],
+    reviews: [],
     loading: false,
     error: null,
   },
@@ -57,9 +58,9 @@ export const { productDetailRequest, productDetailSuccess, productDetailFail } =
 // ********** products detail action **********
 export const fetchProductById = (id) => async (dispatch) => {
   try {
-    console.log('fetchProductById');
     dispatch(productDetailRequest());
     const { data } = await axios.get(`${baseURL}/api/products/${id}`);
+    console.log(data);
     dispatch(productDetailSuccess(data));
   } catch (error) {
     dispatch(productDetailFail(error.message));

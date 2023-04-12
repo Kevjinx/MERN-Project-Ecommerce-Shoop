@@ -5,9 +5,9 @@ import {
   ORDER_CREATE_SUCCESS,
   ORDER_CREATE_FAIL,
   ORDER_CREATE_RESET,
-  ORDER_DETAILS_REQUEST,
-  ORDER_DETAILS_SUCCESS,
-  ORDER_DETAILS_FAIL,
+  ORDER_DETAIL_REQUEST,
+  ORDER_DETAIL_SUCCESS,
+  ORDER_DETAIL_FAIL,
   ORDER_PAY_REQUEST,
   ORDER_PAY_SUCCESS,
   ORDER_PAY_FAIL,
@@ -88,30 +88,30 @@ export const createOrder = (order) => async (dispatch, getState) => {
   }
 };
 
-export const orderDetailsSlice = createSlice({
-  name: 'orderDetails',
+export const orderDetailSlice = createSlice({
+  name: 'orderDetail',
   initialState: { loading: true, orderItems: [], shippingAddress: {} },
   reducers: {
-    [ORDER_DETAILS_REQUEST]: (state) => {
+    [ORDER_DETAIL_REQUEST]: (state) => {
       state.loading = true;
     },
-    [ORDER_DETAILS_SUCCESS]: (state, action) => {
+    [ORDER_DETAIL_SUCCESS]: (state, action) => {
       state.loading = false;
       state.order = action.payload;
     },
-    [ORDER_DETAILS_FAIL]: (state, action) => {
+    [ORDER_DETAIL_FAIL]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
   },
 });
 
-export const { orderDetailsRequest, orderDetailsSuccess, orderDetailsFail } =
-  orderDetailsSlice.actions;
+export const { orderDetailRequest, orderDetailSuccess, orderDetailFail } =
+  orderDetailSlice.actions;
 
-export const getOrderDetails = (id) => async (dispatch, getState) => {
+export const getOrderDetail = (id) => async (dispatch, getState) => {
   try {
-    dispatch(orderDetailsRequest());
+    dispatch(orderDetailRequest());
     const {
       userLogin: { userInfo },
     } = getState();
@@ -124,9 +124,9 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.get(`${baseURL}/api/orders/${id}`, config);
-    dispatch(orderDetailsSuccess(data));
+    dispatch(orderDetailSuccess(data));
   } catch (error) {
-    dispatch(orderDetailsFail(error.message));
+    dispatch(orderDetailFail(error.message));
   }
 };
 

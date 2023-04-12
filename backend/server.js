@@ -9,6 +9,7 @@ import orderRoutes from './routes/orderRoutes.js';
 import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 import bodyParser from 'body-parser';
 import * as path from 'path';
+import uploadRoutes from './routes/uploadRoutes.js';
 
 dbConnect();
 dotenv.config();
@@ -28,6 +29,7 @@ app.use(cors());
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/upload', uploadRoutes);
 
 const __dirname = path.resolve();
 

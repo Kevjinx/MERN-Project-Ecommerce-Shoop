@@ -17,6 +17,7 @@ export const PRODUCT_ADMIN_CREATE_FAIL = 'productAdminCreateFail';
 export const PRODUCT_ADMIN_UPDATE_REQUEST = 'productAdminUpdateRequest';
 export const PRODUCT_ADMIN_UPDATE_SUCCESS = 'productAdminUpdateSuccess';
 export const PRODUCT_ADMIN_UPDATE_FAIL = 'productAdminUpdateFail';
+export const PRODUCT_ADMIN_UPDATE_RESET = 'productAdminUpdateReset';
 
 export const PRODUCT_ADMIN_CREATE_REVIEW_REQUEST =
   'productAdminCreateReviewRequest';

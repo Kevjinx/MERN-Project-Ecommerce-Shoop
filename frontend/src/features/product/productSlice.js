@@ -19,6 +19,7 @@ import {
   PRODUCT_ADMIN_CREATE_REVIEW_REQUEST,
   PRODUCT_ADMIN_CREATE_REVIEW_SUCCESS,
   PRODUCT_ADMIN_CREATE_REVIEW_FAIL,
+  PRODUCT_ADMIN_UPDATE_RESET,
 } from '../../constants/productConstants';
 
 let baseURL = 'http://localhost:5000';
@@ -28,7 +29,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // ********** product detail slice **********
 export const productDetailSlice = createSlice({
-  name: 'productDetail',
+  name: 'product',
   initialState: {
     productDetail: [],
     loading: false,
@@ -207,9 +208,9 @@ export const createProduct = (product) => async (dispatch, getState) => {
 
 // ********** product admin update slice **********
 export const productAdminUpdateSlice = createSlice({
-  name: 'productUpdate',
+  name: 'productAdminUpdate',
   initialState: {
-    productUpdate: [],
+    productAdminUpdate: [],
     loading: false,
     error: null,
   },
@@ -225,6 +226,9 @@ export const productAdminUpdateSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    [PRODUCT_ADMIN_UPDATE_RESET]: (state) => {
+      state.productUpdate = [];
+    },
   },
 });
 
@@ -232,6 +236,7 @@ export const {
   productAdminUpdateRequest,
   productAdminUpdateSuccess,
   productAdminUpdateFail,
+  productAdminUpdateReset,
 } = productAdminUpdateSlice.actions;
 
 // ********** product admin update action **********

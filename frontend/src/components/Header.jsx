@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { userLogout } from '../features/user/userSlice.js';
+import {
+  enable as enableDarkMode,
+  disable as disableDarkMode,
+} from 'darkreader';
 
 const Header = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+
+    if (!darkMode) {
+      enableDarkMode({
+        brightness: 100,
+        contrast: 90,
+        sepia: 10,
+      });
+    } else {
+      disableDarkMode();
+    }
+  };
+
   const { userInfo } = useSelector((state) => state.userLogin);
 
   const dispatch = useDispatch();
@@ -58,6 +78,9 @@ const Header = () => {
                   </Nav.Link>
                 </LinkContainer>
               )}
+              <Nav.Link onClick={toggleDarkMode}>
+                <i className={`fas ${darkMode ? 'fa-sun' : 'fa-moon'}`}></i>
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

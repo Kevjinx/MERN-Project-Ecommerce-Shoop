@@ -16,10 +16,11 @@ import {
   PRODUCT_ADMIN_UPDATE_REQUEST,
   PRODUCT_ADMIN_UPDATE_SUCCESS,
   PRODUCT_ADMIN_UPDATE_FAIL,
-  PRODUCT_ADMIN_CREATE_REVIEW_REQUEST,
-  PRODUCT_ADMIN_CREATE_REVIEW_SUCCESS,
-  PRODUCT_ADMIN_CREATE_REVIEW_FAIL,
   PRODUCT_ADMIN_UPDATE_RESET,
+  PRODUCT_CREATE_REVIEW_REQUEST,
+  PRODUCT_CREATE_REVIEW_SUCCESS,
+  PRODUCT_CREATE_REVIEW_FAIL,
+  PRODUCT_CREATE_REVIEW_RESET,
 } from '../../constants/productConstants';
 
 let baseURL = 'http://localhost:5000';
@@ -31,7 +32,7 @@ if (process.env.NODE_ENV === 'production') {
 export const productDetailSlice = createSlice({
   name: 'product',
   initialState: {
-    productDetail: [],
+    product: { reviews: [] },
     loading: false,
     error: null,
   },
@@ -41,7 +42,7 @@ export const productDetailSlice = createSlice({
     },
     [PRODUCT_DETAIL_SUCCESS]: (state, action) => {
       state.loading = false;
-      state.productDetail = action.payload;
+      state.product = action.payload;
     },
     [PRODUCT_DETAIL_FAIL]: (state, action) => {
       state.loading = false;
@@ -53,14 +54,15 @@ export const productDetailSlice = createSlice({
 export const { productDetailRequest, productDetailSuccess, productDetailFail } =
   productDetailSlice.actions;
 
-// ********** product detail action **********
-export const fetchProducts = () => async (dispatch) => {
+// ********** products detail action **********
+export const fetchProductById = (id) => async (dispatch) => {
   try {
-    dispatch(productListRequest());
-    const { data } = await axios.get(`${baseURL}/api/products`);
-    dispatch(productListSuccess(data));
+    console.log('fetchProductById');
+    dispatch(productDetailRequest());
+    const { data } = await axios.get(`${baseURL}/api/products/${id}`);
+    dispatch(productDetailSuccess(data));
   } catch (error) {
-    dispatch(productListFail(error.message));
+    dispatch(productDetailFail(error.message));
   }
 };
 
@@ -91,13 +93,13 @@ export const { productListRequest, productListSuccess, productListFail } =
   productListSlice.actions;
 
 // ********** product list action **********
-export const fetchProductById = (id) => async (dispatch) => {
+export const fetchProducts = () => async (dispatch) => {
   try {
-    dispatch(productDetailRequest());
-    const { data } = await axios.get(`${baseURL}/api/products/${id}`);
-    dispatch(productDetailSuccess(data));
+    dispatch(productListRequest());
+    const { data } = await axios.get(`${baseURL}/api/products`);
+    dispatch(productListSuccess(data));
   } catch (error) {
-    dispatch(productDetailFail(error.message));
+    dispatch(productListFail(error.message));
   }
 };
 
@@ -262,39 +264,43 @@ export const updateProduct = (product) => async (dispatch, getState) => {
 };
 
 // ********** product admin create review slice **********
-export const productAdminCreateReviewSlice = createSlice({
-  name: 'productAdminCreateReview',
+export const productCreateReviewSlice = createSlice({
+  name: 'productCreateReview',
   initialState: {
-    productAdminCreateReview: [],
+    productCreateReview: [],
     loading: false,
     error: null,
   },
   reducers: {
-    [PRODUCT_ADMIN_CREATE_REVIEW_REQUEST]: (state) => {
+    [PRODUCT_CREATE_REVIEW_REQUEST]: (state) => {
       state.loading = true;
     },
-    [PRODUCT_ADMIN_CREATE_REVIEW_SUCCESS]: (state, action) => {
+    [PRODUCT_CREATE_REVIEW_SUCCESS]: (state, action) => {
       state.loading = false;
-      state.productAdminCreateReview = action.payload;
+      state.productCreateReview = action.payload;
     },
-    [PRODUCT_ADMIN_CREATE_REVIEW_FAIL]: (state, action) => {
+    [PRODUCT_CREATE_REVIEW_FAIL]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
+    },
+    [PRODUCT_CREATE_REVIEW_RESET]: (state) => {
+      state.productCreateReview = [];
     },
   },
 });
 
 export const {
-  productAdminCreateReviewRequest,
-  productAdminCreateReviewSuccess,
-  productAdminCreateReviewFail,
-} = productAdminCreateReviewSlice.actions;
+  productCreateReviewRequest,
+  productCreateReviewSuccess,
+  productCreateReviewFail,
+  productCreateReviewReset,
+} = productCreateReviewSlice.actions;
 
 // ********** product admin create review action **********
 export const createProductReview =
   (productId, review) => async (dispatch, getState) => {
     try {
-      dispatch(productAdminCreateReviewRequest());
+      dispatch(productCreateReviewRequest());
       const token = getState().userLogin.userInfo.token;
       const config = {
         headers: {
@@ -307,8 +313,8 @@ export const createProductReview =
         review,
         config
       );
-      dispatch(productAdminCreateReviewSuccess(data));
+      dispatch(productCreateReviewSuccess(data));
     } catch (error) {
-      dispatch(productAdminCreateReviewFail(error.response));
+      dispatch(productCreateReviewFail(error.response));
     }
   };

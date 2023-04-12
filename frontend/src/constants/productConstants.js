@@ -19,8 +19,7 @@ export const PRODUCT_ADMIN_UPDATE_SUCCESS = 'productAdminUpdateSuccess';
 export const PRODUCT_ADMIN_UPDATE_FAIL = 'productAdminUpdateFail';
 export const PRODUCT_ADMIN_UPDATE_RESET = 'productAdminUpdateReset';
 
-export const PRODUCT_ADMIN_CREATE_REVIEW_REQUEST =
-  'productAdminCreateReviewRequest';
-export const PRODUCT_ADMIN_CREATE_REVIEW_SUCCESS =
-  'productAdminCreateReviewSuccess';
-export const PRODUCT_ADMIN_CREATE_REVIEW_FAIL = 'productAdminCreateReviewFail';
+export const PRODUCT_CREATE_REVIEW_REQUEST = 'productCreateReviewRequest';
+export const PRODUCT_CREATE_REVIEW_SUCCESS = 'productCreateReviewSuccess';
+export const PRODUCT_CREATE_REVIEW_FAIL = 'productCreateReviewFail';
+export const PRODUCT_CREATE_REVIEW_RESET = 'productCreateReviewReset';

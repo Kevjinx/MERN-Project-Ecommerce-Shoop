@@ -4,6 +4,7 @@ import {
   productListSlice,
   productDetailSlice,
   productAdminUpdateSlice,
+  productCreateReviewSlice,
 } from './features/product/productSlice';
 import {
   userLoginSlice,
@@ -52,6 +53,7 @@ const rootReducer = combineReducers({
   userAdminGetAllUsers: userAdminGetAllUsersSlice.reducer,
   userAdminUpdateById: userAdminUpdateByIdSlice.reducer,
   productAdminUpdate: productAdminUpdateSlice.reducer,
+  productCreateReview: productCreateReviewSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

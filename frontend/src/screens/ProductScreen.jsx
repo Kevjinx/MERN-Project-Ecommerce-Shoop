@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductById } from '../features/product/productSlice.js';
 import Loader from '../components/Loader';
 import Message from '../components/Message.jsx';
+import Review from '../components/Review.jsx';
 
 const ProductScreen = () => {
   const { productId } = useParams();
@@ -16,8 +17,8 @@ const ProductScreen = () => {
     dispatch(fetchProductById(productId));
   }, [dispatch, productId]);
 
-  const product = useSelector((state) => state.productDetail.productDetail);
-  const { loading, error } = product;
+  const productDetail = useSelector((state) => state.productDetail);
+  const { loading, error, product } = productDetail;
 
   return (
     <>
@@ -28,11 +29,15 @@ const ProductScreen = () => {
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
-      ) : (
+      ) : product ? ( // Add this condition to check if the product is defined
         <Row>
           <Col md={5}>
-            <Image src={product.imageUrl} alt={product.name} fluid />
+            <>
+              <Image src={product.imageUrl} alt={product.name} fluid />
+            </>
+            <Review productId={productId} />
           </Col>
+
           <Col md={4}>
             <ListGroup variant="flush">
               <ListGroup.Item>
@@ -98,7 +103,7 @@ const ProductScreen = () => {
             </Card>
           </Col>
         </Row>
-      )}
+      ) : null}
     </>
   );
 };

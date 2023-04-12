@@ -32,7 +32,7 @@ import {
 
 let baseURL = 'http://localhost:5000';
 if (process.env.NODE_ENV === 'production') {
-  baseURL = process.env.BASE_URL;
+  baseURL = 'http://shoop.herokuapp.com/';
 }
 
 // ************** user login slice **************

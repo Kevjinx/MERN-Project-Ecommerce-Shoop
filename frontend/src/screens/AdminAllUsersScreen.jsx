@@ -26,7 +26,7 @@ const AdminAllUsersScreen = ({ history }) => {
     } else {
       navigate('/login');
     }
-  }, [dispatch, history, successDelete, userInfo]);
+  }, [dispatch, successDelete, userInfo, navigate]);
 
   const deleteHandler = (id) => {
     if (window.confirm('you sure you wanna delete this user?')) {
@@ -46,7 +46,8 @@ const AdminAllUsersScreen = ({ history }) => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>NAME</th>
+              <th>FIRST NAME</th>
+              <th>LAST NAME</th>
               <th>EMAIL</th>
               <th>ADMIN</th>
               <th></th>
@@ -69,7 +70,7 @@ const AdminAllUsersScreen = ({ history }) => {
                   )}
                 </td>
                 <td>
-                  <LinkContainer to={`/admin/user/${user._id}/edit`}>
+                  <LinkContainer to={`/admin/users/${user._id}/edit`}>
                     <Button variant="light" className="btn-sm">
                       <i className="fas fa-edit"></i>
                     </Button>

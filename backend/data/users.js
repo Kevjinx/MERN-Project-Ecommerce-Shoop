@@ -1,5 +1,6 @@
 const users = [
   {
+    isAdmin: true,
     firstName: 'Admin',
     lastName: 'User',
     maidenName: 'Cole',

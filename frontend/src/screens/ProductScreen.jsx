@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Row, Col, Image, Card, ListGroup } from 'react-bootstrap';
+import { Row, Col, Image, Card, ListGroup, Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import Rating from '../components/Rating';
 import CartButton from '../features/cart/CartButton';
@@ -88,6 +88,11 @@ const ProductScreen = () => {
                 </ListGroup.Item>
                 <ListGroup.Item className="text-center">
                   <CartButton product={product} />
+                </ListGroup.Item>
+                <ListGroup.Item className="text-center">
+                  <Link to={`/admin/products/${product._id}/edit`}>
+                    <Button className="btn btn-primary">Edit Product</Button>
+                  </Link>
                 </ListGroup.Item>
               </ListGroup>
             </Card>

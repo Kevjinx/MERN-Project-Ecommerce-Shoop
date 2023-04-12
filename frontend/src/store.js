@@ -3,17 +3,21 @@ import { combineReducers } from 'redux';
 import {
   productListSlice,
   productDetailSlice,
+  productAdminUpdateSlice,
 } from './features/product/productSlice';
 import {
   userLoginSlice,
   userDetailSlice,
   userRegisterSlice,
   userUpdateProfileSlice,
+  userAdminDeleteByIdSlice,
+  userAdminGetAllUsersSlice,
+  userAdminUpdateByIdSlice,
 } from './features/user/userSlice';
-import cartReducer from './features/cart/cartSlice';
+import { cartSlice } from './features/cart/cartSlice';
 import {
   orderCreateSlice,
-  orderDetailsSlice,
+  orderDetailSlice,
   orderPaySlice,
   orderListMySlice,
   orderListSlice,
@@ -33,17 +37,21 @@ const persistConfig = {
 const rootReducer = combineReducers({
   productList: productListSlice.reducer,
   productDetail: productDetailSlice.reducer,
-  cart: cartReducer,
+  cart: cartSlice.reducer,
   userLogin: userLoginSlice.reducer,
   userDetail: userDetailSlice.reducer,
   userRegister: userRegisterSlice.reducer,
   userUpdateProfile: userUpdateProfileSlice.reducer,
   orderCreate: orderCreateSlice.reducer,
-  orderDetails: orderDetailsSlice.reducer,
+  orderDetail: orderDetailSlice.reducer,
   orderPay: orderPaySlice.reducer,
   orderListMy: orderListMySlice.reducer,
   orderList: orderListSlice.reducer,
   orderDeliver: orderDeliverSlice.reducer,
+  userAdminDeleteById: userAdminDeleteByIdSlice.reducer,
+  userAdminGetAllUsers: userAdminGetAllUsersSlice.reducer,
+  userAdminUpdateById: userAdminUpdateByIdSlice.reducer,
+  productAdminUpdate: productAdminUpdateSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

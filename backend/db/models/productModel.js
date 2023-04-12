@@ -14,19 +14,20 @@ const productSchema = new mongoose.Schema({
   price: {
     type: Number,
     required: true,
-    default: 0.0,
+    default: 0,
   },
-  image: {
+  review: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: false,
+    ref: 'Review',
+  },
+  imageUrl: {
     type: String,
     required: true,
   },
   brand: {
     type: String,
     required: false,
-  },
-  description: {
-    type: String,
-    required: true,
   },
   category: {
     type: String,
@@ -46,6 +47,26 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true,
     default: 0,
+  },
+  wheelSize: {
+    type: String,
+    required: false,
+  },
+  drivetrainType: {
+    type: String,
+    required: false,
+  },
+  bikeModel: {
+    type: String,
+    required: false,
+  },
+  rearSuspensionType: {
+    type: String,
+    required: false,
+  },
+  forkTravel: {
+    type: String,
+    required: false,
   },
 });
 

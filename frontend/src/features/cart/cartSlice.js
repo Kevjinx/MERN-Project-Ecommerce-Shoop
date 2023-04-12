@@ -11,7 +11,7 @@ import {
   SAVE_PAYMENT_METHOD,
 } from '../../constants/cartConstants.js';
 
-const cartSlice = createSlice({
+export const cartSlice = createSlice({
   name: 'cart',
   initialState: {
     cartProducts: [],
@@ -80,5 +80,3 @@ export const {
   addDiscountCode,
   savePaymentMethod,
 } = cartSlice.actions;
-
-export default cartSlice.reducer;

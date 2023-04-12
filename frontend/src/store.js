@@ -47,9 +47,9 @@ const rootReducer = combineReducers({
   orderListMy: orderListMySlice.reducer,
   orderList: orderListSlice.reducer,
   orderDeliver: orderDeliverSlice.reducer,
-  adminDeleteUser: userAdminDeleteByIdSlice.reducer,
-  adminUserList: userAdminGetAllUsersSlice.reducer,
-  adminUserUpdate: userAdminUpdateByIdSlice.reducer,
+  userAdminDeleteById: userAdminDeleteByIdSlice.reducer,
+  userAdminGetAllUsers: userAdminGetAllUsersSlice.reducer,
+  userAdminUpdateById: userAdminUpdateByIdSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

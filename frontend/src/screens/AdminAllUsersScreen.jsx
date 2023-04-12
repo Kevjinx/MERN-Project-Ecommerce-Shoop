@@ -11,14 +11,16 @@ const AdminAllUsersScreen = ({ history }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const adminUserList = useSelector((state) => state.adminUserList);
-  const { loading, error, users } = adminUserList;
+  const userAdminGetAllUsers = useSelector(
+    (state) => state.userAdminGetAllUsers
+  );
+  const { loading, error, users } = userAdminGetAllUsers;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const adminDeleteUser = useSelector((state) => state.adminDeleteUser);
-  const { success: successDelete } = adminDeleteUser;
+  const userAdminDeleteById = useSelector((state) => state.userAdminDeleteById);
+  const { success: successDelete } = userAdminDeleteById;
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {

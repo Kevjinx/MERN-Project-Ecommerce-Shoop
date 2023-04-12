@@ -27,12 +27,12 @@ const AdminEditUserScreen = () => {
   const userDetail = useSelector((state) => state.userDetail);
   const { loading, error, user } = userDetail;
 
-  const adminUserUpdate = useSelector((state) => state.adminUserUpdate);
+  const userAdminUpdateById = useSelector((state) => state.userAdminUpdateById);
   const {
     loading: loadingUpdate,
     error: errorUpdate,
     success: successUpdate,
-  } = adminUserUpdate;
+  } = userAdminUpdateById;
 
   useEffect(() => {
     if (successUpdate) {

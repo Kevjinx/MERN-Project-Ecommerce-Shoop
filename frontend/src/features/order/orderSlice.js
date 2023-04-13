@@ -33,6 +33,7 @@ if (process.env.NODE_ENV === 'production') {
   baseURL = 'https://shoop.herokuapp.com';
 }
 
+// ********** order create slice **********
 export const orderCreateSlice = createSlice({
   name: 'orderCreate',
   initialState: {},
@@ -65,6 +66,7 @@ export const {
   orderCreateReset,
 } = orderCreateSlice.actions;
 
+// ********** order create action **********
 export const createOrder = (order) => async (dispatch, getState) => {
   try {
     dispatch(orderCreateRequest());
@@ -88,6 +90,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
   }
 };
 
+// ********** order detail slice **********
 export const orderDetailSlice = createSlice({
   name: 'orderDetail',
   initialState: { loading: true, orderItems: [], shippingAddress: {} },
@@ -109,6 +112,7 @@ export const orderDetailSlice = createSlice({
 export const { orderDetailRequest, orderDetailSuccess, orderDetailFail } =
   orderDetailSlice.actions;
 
+// ********** order detail action **********
 export const getOrderDetail = (id) => async (dispatch, getState) => {
   try {
     dispatch(orderDetailRequest());
@@ -130,6 +134,7 @@ export const getOrderDetail = (id) => async (dispatch, getState) => {
   }
 };
 
+// ********** order pay slice **********
 export const orderPaySlice = createSlice({
   name: 'orderPay',
   initialState: {},
@@ -154,32 +159,39 @@ export const orderPaySlice = createSlice({
 export const { orderPayRequest, orderPaySuccess, orderPayFail, orderPayReset } =
   orderPaySlice.actions;
 
-export const payOrder =
-  (orderId, paymentResult) => async (dispatch, getState) => {
-    try {
-      dispatch(orderPayRequest());
-      const {
-        userLogin: { userInfo },
-      } = getState();
+// ********** order pay action **********
+export const payOrder = (orderId) => async (dispatch, getState) => {
+  try {
+    dispatch(orderPayRequest());
+    const {
+      userLogin: { userInfo },
+    } = getState();
 
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${userInfo.token}`,
-        },
-      };
+    const paymentResult = {
+      status: 'paid',
+      updateTime: Date.now(),
+      email: userInfo.email,
+    };
 
-      const { data } = await axios.put(
-        `${baseURL}/api/orders/${orderId}/pay`,
-        paymentResult,
-        config
-      );
-      dispatch(orderPaySuccess(data));
-    } catch (error) {
-      dispatch(orderPayFail(error.message));
-    }
-  };
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
 
+    const { data } = await axios.put(
+      `${baseURL}/api/orders/${orderId}/pay`,
+      paymentResult,
+      config
+    );
+    dispatch(orderPaySuccess(data));
+  } catch (error) {
+    dispatch(orderPayFail(error.message));
+  }
+};
+
+// ********** order user list slice **********
 export const orderListMySlice = createSlice({
   name: 'orderListMy',
   initialState: { orders: [] },
@@ -196,7 +208,9 @@ export const orderListMySlice = createSlice({
       state.error = action.payload;
     },
     [ORDER_LIST_MY_RESET]: (state) => {
-      state = { orders: [] };
+      state.order = [];
+      state.error = '';
+      state.loading = false;
     },
   },
 });
@@ -204,6 +218,7 @@ export const orderListMySlice = createSlice({
 export const { orderListMyRequest, orderListMySuccess, orderListMyFail } =
   orderListMySlice.actions;
 
+// ********** order user list action **********
 export const getListMyOrders = () => async (dispatch, getState) => {
   try {
     dispatch(orderListMyRequest());
@@ -224,6 +239,7 @@ export const getListMyOrders = () => async (dispatch, getState) => {
   }
 };
 
+// ********** order admin list slice **********
 export const orderListSlice = createSlice({
   name: 'orderList',
   initialState: { orders: [] },
@@ -245,6 +261,7 @@ export const orderListSlice = createSlice({
 export const { orderListRequest, orderListSuccess, orderListFail } =
   orderListSlice.actions;
 
+// ********** order admin list action **********
 export const getOrderList = () => async (dispatch, getState) => {
   try {
     dispatch(orderListRequest());
@@ -266,6 +283,7 @@ export const getOrderList = () => async (dispatch, getState) => {
   }
 };
 
+// ********** order deliver slice **********
 export const orderDeliverSlice = createSlice({
   name: 'orderDeliver',
   initialState: {},
@@ -287,9 +305,14 @@ export const orderDeliverSlice = createSlice({
   },
 });
 
-export const { orderDeliverRequest, orderDeliverSuccess, orderDeliverFail } =
-  orderDeliverSlice.actions;
+export const {
+  orderDeliverRequest,
+  orderDeliverSuccess,
+  orderDeliverFail,
+  orderDeliverReset,
+} = orderDeliverSlice.actions;
 
+// ********** order deliver action **********
 export const deliverOrder = (order) => async (dispatch, getState) => {
   try {
     dispatch(orderDeliverRequest());

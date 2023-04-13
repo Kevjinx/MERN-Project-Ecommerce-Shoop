@@ -14,6 +14,9 @@ const ProductScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (!!productId) {
+      console.log('productId is defined', productId);
+    }
     dispatch(fetchProductById(productId));
   }, [dispatch, productId]);
 
@@ -36,7 +39,7 @@ const ProductScreen = () => {
             <>
               <Image src={product.imageUrl} alt={product.name} fluid />
             </>
-            {/* <Review productId={productId} /> */}
+            {!!productId && <Review productId={productId} />}
           </Col>
 
           <Col md={4}>

@@ -40,24 +40,29 @@ const Review = ({ productId }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(
-      createProductReview(productId, {
-        rating,
-        comment,
-      })
-    );
+    const reviewDispatch = {
+      firstName: userInfo.firstName,
+      lastName: userInfo.lastName,
+      rating,
+      comment,
+      user: userInfo._id,
+    };
+    console.log('reviewdispatch', reviewDispatch);
+    dispatch(createProductReview(productId, reviewDispatch));
   };
 
   return (
     <>
       <h2>Reviews</h2>
-      {reviews && reviews.length > 0 && <Message>No Reviews</Message>}
+      {reviews && reviews.length === 0 && <Message>No Reviews</Message>}
       <ListGroup variant="flush">
-        {reviews.map((review) => (
+        {reviews?.map((review) => (
           <ListGroup.Item key={review._id}>
-            <strong>{review.name}</strong>
-            <Rating value={review.rating} />
-            <p>{review.createdAt.substring(0, 10)}</p>
+            <strong>{review.firstName}</strong>
+            <Rating value={review.rating} text={review.firstName} />
+            <p>
+              {review.createdAt ? review.createdAt.substring(0, 10) : 'N/A'}
+            </p>
             <p>{review.comment}</p>
           </ListGroup.Item>
         ))}

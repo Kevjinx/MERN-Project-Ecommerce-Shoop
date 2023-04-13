@@ -28,11 +28,14 @@ if (process.env.NODE_ENV === 'production') {
   baseURL = 'https://shoop.herokuapp.com';
 }
 
+// how can you get reviews from backend api?
 // ********** product detail slice **********
 export const productDetailSlice = createSlice({
   name: 'product',
   initialState: {
-    product: [],
+    product: {
+      reviews: [],
+    },
     loading: false,
     error: null,
   },
@@ -59,7 +62,7 @@ export const fetchProductById = (id) => async (dispatch) => {
   try {
     dispatch(productDetailRequest());
     const { data } = await axios.get(`${baseURL}/api/products/${id}`);
-    console.log(data);
+    console.log('data = ', data);
     dispatch(productDetailSuccess(data));
   } catch (error) {
     dispatch(productDetailFail(error.response.data.message));

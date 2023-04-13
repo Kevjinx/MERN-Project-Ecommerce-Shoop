@@ -16,11 +16,35 @@ const productSchema = new mongoose.Schema({
     required: true,
     default: 0,
   },
-  review: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: false,
-    ref: 'Review',
-  },
+  reviews: [
+    {
+      firstName: {
+        type: String,
+        required: false,
+      },
+      lastName: {
+        type: String,
+        required: false,
+      },
+      rating: {
+        type: Number,
+        required: true,
+      },
+      comment: {
+        type: String,
+        required: false,
+      },
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User',
+      },
+      createdAt: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+  ],
   imageUrl: {
     type: String,
     required: true,

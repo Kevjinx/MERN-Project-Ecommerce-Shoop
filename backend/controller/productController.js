@@ -16,6 +16,7 @@ const getProducts = expressAsyncHandler(async (req, res) => {
 // @access  public
 const getProductById = expressAsyncHandler(async (req, res) => {
   const { productId } = req.params;
+  console.log('Product ID (server-side):', productId); // Add this line to print the productId
 
   const product = await Product.findById(productId);
 
@@ -23,7 +24,7 @@ const getProductById = expressAsyncHandler(async (req, res) => {
     res.json(product);
   } else {
     res.status(404);
-    throw new Error('there aint no product here by that name');
+    throw new Error('there aint no product here by that name getProductById');
   }
 });
 
@@ -108,30 +109,31 @@ const updateProduct = expressAsyncHandler(async (req, res) => {
 const createProductReview = expressAsyncHandler(async (req, res) => {
   console.log('reqbody', req.body);
   console.log('requse', req.user);
-  const { rating, comment } = req.body;
+  const { rating, comment, firstName, lastName, user } = req.body;
   const { productId } = req.params;
   const product = await Product.findById(productId);
-  if (!product.reviews) {
-    product.reviews = [];
-  }
 
   if (product) {
     const review = {
-      firstName: req.user.firstName,
-      lastName: req.user.lastName,
+      firstName,
+      lastName,
       rating: Number(rating),
       comment,
-      user: req.user._id,
+      user,
     };
 
+    console.log('review:', review);
+    console.log(typeof review.rating);
+
     product.reviews.push(review);
-    product.numReviews = product.reviews.length;
-    product.rating =
-      product.reviews.reduce((acc, item) => item.rating + acc, 0) /
-      product.reviews.length;
+
+    await product.save();
+    res.json(product);
   } else {
     res.status(404);
-    throw new Error('there aint no product here by that name');
+    throw new Error(
+      'there aint no product here by that name, createProductReview'
+    );
   }
 });
 

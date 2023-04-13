@@ -13,13 +13,13 @@ Custom database seeder script: Prepopulates the database with sample data to str
 
 Users: Allow users to register, and update their account information
 
-## Features to be added on the frontend 
+Reviews: Allows users to leave reviews for products.
 
 Admin Product management: Allows administrators to add, edit, and remove products and categories.
 
-Admin Order Management: Allows administrators to manage orders, marked them as shipped/paid/delivered, and view the order history of individual customers.
+## Features to be added on the frontend 
 
-Reviews: Allows users to leave reviews for products.
+Admin Order Management: Allows administrators to manage orders, marked them as shipped/paid/delivered, and view the order history of individual customers.
 
 Paypal payment gateway: Allows users to pay for their orders using Paypal.
 

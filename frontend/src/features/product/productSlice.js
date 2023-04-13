@@ -7,6 +7,7 @@ import {
   PRODUCT_DETAIL_REQUEST,
   PRODUCT_DETAIL_SUCCESS,
   PRODUCT_DETAIL_FAIL,
+  PRODUCT_DETAIL_ERROR_RESET,
   PRODUCT_ADMIN_DELETE_REQUEST,
   PRODUCT_ADMIN_DELETE_SUCCESS,
   PRODUCT_ADMIN_DELETE_FAIL,
@@ -28,7 +29,6 @@ if (process.env.NODE_ENV === 'production') {
   baseURL = 'https://shoop.herokuapp.com';
 }
 
-// how can you get reviews from backend api?
 // ********** product detail slice **********
 export const productDetailSlice = createSlice({
   name: 'product',
@@ -51,11 +51,18 @@ export const productDetailSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    [PRODUCT_DETAIL_ERROR_RESET]: (state) => {
+      state.error = null;
+    },
   },
 });
 
-export const { productDetailRequest, productDetailSuccess, productDetailFail } =
-  productDetailSlice.actions;
+export const {
+  productDetailRequest,
+  productDetailSuccess,
+  productDetailFail,
+  productDetailErrorReset,
+} = productDetailSlice.actions;
 
 // ********** products detail action **********
 export const fetchProductById = (id) => async (dispatch) => {
@@ -67,6 +74,10 @@ export const fetchProductById = (id) => async (dispatch) => {
   } catch (error) {
     dispatch(productDetailFail(error.response.data.message));
   }
+};
+
+export const clearProductDetailError = () => (dispatch) => {
+  dispatch(productDetailFail(null));
 };
 
 // ********** product list slice **********

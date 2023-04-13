@@ -1,6 +1,7 @@
 import {
   createProductReview,
   productCreateReviewReset,
+  clearProductDetailError,
 } from '../features/product/productSlice.js';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,6 +37,9 @@ const Review = ({ productId }) => {
     if (!product._id || product._id !== productId) {
       dispatch(productCreateReviewReset());
     }
+    return () => {
+      dispatch(clearProductDetailError());
+    };
   }, [dispatch, successProductReview, product._id, productId]);
 
   const submitHandler = (e) => {

@@ -5,6 +5,7 @@ export const PRODUCT_LIST_FAIL = 'productListFail';
 export const PRODUCT_DETAIL_REQUEST = 'productDetailRequest';
 export const PRODUCT_DETAIL_SUCCESS = 'productDetailSuccess';
 export const PRODUCT_DETAIL_FAIL = 'productDetailFail';
+export const PRODUCT_DETAIL_ERROR_RESET = 'productDetailErrorReset';
 
 export const PRODUCT_ADMIN_DELETE_REQUEST = 'productAdminDeleteRequest';
 export const PRODUCT_ADMIN_DELETE_SUCCESS = 'productAdminDeleteSuccess';

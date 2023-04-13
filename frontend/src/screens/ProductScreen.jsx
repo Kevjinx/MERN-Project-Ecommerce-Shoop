@@ -14,9 +14,6 @@ const ProductScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!!productId) {
-      console.log('productId is defined', productId);
-    }
     dispatch(fetchProductById(productId));
   }, [dispatch, productId]);
 

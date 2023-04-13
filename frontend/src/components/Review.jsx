@@ -15,6 +15,8 @@ const Review = ({ productId }) => {
   const dispatch = useDispatch();
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
   const productCreateReview = useSelector((state) => state.productCreateReview);
   const {
     success: successProductReview,
@@ -33,6 +35,14 @@ const Review = ({ productId }) => {
     if (successProductReview) {
       setRating(0);
       setComment('');
+      setShowSuccessMessage(true);
+      const timer = setTimeout(() => {
+        setShowSuccessMessage(false);
+      }, 5000);
+
+      return () => {
+        clearTimeout(timer);
+      };
     }
     if (!product._id || product._id !== productId) {
       dispatch(productCreateReviewReset());
@@ -62,17 +72,19 @@ const Review = ({ productId }) => {
       <ListGroup variant="flush">
         {reviews?.map((review) => (
           <ListGroup.Item key={review._id}>
-            <strong>{review.firstName}</strong>
-            <Rating value={review.rating} text={review.firstName} />
-            <p>
-              {review.createdAt ? review.createdAt.substring(0, 10) : 'N/A'}
-            </p>
+            <Rating
+              value={review.rating}
+              text={`Written by ${review.firstName} at ${
+                review.createdAt ? review.createdAt.substring(0, 10) : 'N/A'
+              }`}
+            />
+
             <p>{review.comment}</p>
           </ListGroup.Item>
         ))}
         <ListGroup.Item>
           <h2>Write a Customer Review</h2>
-          {successProductReview && (
+          {showSuccessMessage && (
             <Message variant="success">Review submitted successfully</Message>
           )}
           {loadingProductReview && <Loader />}

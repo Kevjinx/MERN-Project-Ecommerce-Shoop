@@ -236,6 +236,7 @@ export const productAdminUpdateSlice = createSlice({
       state.loading = false;
       state.success = true;
       state.productUpdate = action.payload;
+      state.error = null;
     },
     [PRODUCT_ADMIN_UPDATE_FAIL]: (state, action) => {
       state.loading = false;
@@ -291,13 +292,14 @@ export const productCreateReviewSlice = createSlice({
     [PRODUCT_CREATE_REVIEW_SUCCESS]: (state, action) => {
       state.loading = false;
       state.success = true;
+      state.error = null;
     },
     [PRODUCT_CREATE_REVIEW_FAIL]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
     [PRODUCT_CREATE_REVIEW_RESET]: (state) => {
-      state.productCreateReview = [];
+      state.error = null;
     },
   },
 });

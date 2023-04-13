@@ -13,13 +13,13 @@ Product search feature: Allows users to search for specific bike by price and sp
 
 Custom database seeder script: Prepopulates the database with sample data to streamline development and testing.
 
-Users: Allow users to register, and update their account information
+Users: Allow users to register, update their account information and view their orders on their profile page.
 
 Reviews: Allows users to leave reviews for products.
 
 Admin Product management: Allows administrators to add, edit, and remove products and categories.
 
-Admin Order Management: Allows administrators to manage orders, marked them as shipped/paid/delivered, and view the order history of individual customers.
+Admin Order Management: Allows administrators to manage orders, marked them as delivered, and view the order history of individual customers.
 
 ## Features to be added on the frontend 
 

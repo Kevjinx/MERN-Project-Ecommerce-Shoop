@@ -26,9 +26,9 @@ const AdminProductEditScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const productDetailState = useSelector((state) => state.productDetail);
-
-  const { loading, error, productDetail } = productDetailState;
+  const { loading, error, product } = useSelector(
+    (state) => state.productDetail
+  );
 
   const productAdminUpdate = useSelector((state) => state.productAdminUpdate);
   const {
@@ -42,18 +42,18 @@ const AdminProductEditScreen = () => {
       dispatch(productAdminUpdateReset());
       navigate('/admin/products');
     } else {
-      if (!productDetail.name || productDetail._id !== productId) {
+      if (!product.name || product._id !== productId) {
         dispatch(fetchProductById(productId));
       } else {
-        setName(productDetail.name);
-        setPrice(productDetail.price);
-        setImage(productDetail.image);
-        setBrand(productDetail.brand);
-        setCategory(productDetail.category);
-        setCountInStock(productDetail.countInStock);
+        setName(product.name);
+        setPrice(product.price);
+        setImage(product.image);
+        setBrand(product.brand);
+        setCategory(product.category);
+        setCountInStock(product.countInStock);
       }
     }
-  }, [dispatch, productId, productDetail, successUpdate, navigate]);
+  }, [dispatch, productId, product, successUpdate, navigate]);
 
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];

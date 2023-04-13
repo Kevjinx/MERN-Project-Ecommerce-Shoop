@@ -300,8 +300,12 @@ export const orderDeliverSlice = createSlice({
   },
 });
 
-export const { orderDeliverRequest, orderDeliverSuccess, orderDeliverFail } =
-  orderDeliverSlice.actions;
+export const {
+  orderDeliverRequest,
+  orderDeliverSuccess,
+  orderDeliverFail,
+  orderDeliverReset,
+} = orderDeliverSlice.actions;
 
 // ********** order deliver action **********
 export const deliverOrder = (order) => async (dispatch, getState) => {

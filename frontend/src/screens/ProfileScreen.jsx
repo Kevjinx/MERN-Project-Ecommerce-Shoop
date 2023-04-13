@@ -6,10 +6,7 @@ import {
   updateUserProfile,
   userUpdateProfileReset,
 } from '../features/user/userSlice.js';
-import {
-  getOrderDetail,
-  getListMyOrders,
-} from '../features/order/orderSlice.js';
+import { getListMyOrders } from '../features/order/orderSlice.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Message from '../components/Message.jsx';
@@ -174,7 +171,7 @@ const ProfileScreen = () => {
                   <tr key={order._id}>
                     <td>{order._id}</td>
                     <td>{order.createdAt.substring(0, 10)}</td>
-                    <td>{order.totalPrice}</td>
+                    <td>${order.totalPrice}</td>
                     <td>
                       {order.isPaid ? (
                         order.paidAt.substring(0, 10)

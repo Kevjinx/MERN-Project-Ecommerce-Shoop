@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,6 +16,7 @@ const OrderDetailScreen = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isDelivered, setIsDelivered] = useState(false);
 
   const orderDetail = useSelector((state) => state.orderDetail);
   const { order, loading, error } = orderDetail;
@@ -49,20 +50,26 @@ const OrderDetailScreen = () => {
   }
 
   console.log('updatedOrder', updatedOrder);
+
   useEffect(() => {
     if (!userInfo) {
       navigate('/login');
     }
-
-    if (!order || successDeliver || order._id !== orderId) {
+    // Only reset and fetch order details if successDeliver is true or order._id is not orderId
+    if (successDeliver || (order && order._id !== orderId)) {
       dispatch(orderDeliverReset());
       dispatch(getOrderDetail(orderId));
     }
-    //paypal integration to be added here
-  }, [dispatch, orderId, successDeliver, order, userInfo, navigate]);
+  }, [dispatch, orderId, successDeliver, userInfo, navigate]);
+
+  // Fetch order details on component mount
+  useEffect(() => {
+    dispatch(getOrderDetail(orderId));
+  }, [dispatch, orderId]);
 
   const deliverHandler = () => {
     dispatch(deliverOrder(order));
+    setIsDelivered(true);
   };
 
   return loading ? (
@@ -92,7 +99,7 @@ const OrderDetailScreen = () => {
                   {order.shippingAddress.postalCode},{' '}
                   {order.shippingAddress.country}
                 </p>
-                {order.isDelivered ? (
+                {order.isDelivered || isDelivered ? (
                   <Message variant="success">
                     Delivered on {order.deliveredAt}
                   </Message>

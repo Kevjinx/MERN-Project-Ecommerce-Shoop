@@ -3,6 +3,8 @@
 ## Hosted on Heroku: 
 https://shoop.herokuapp.com
 
+note: heroku login can't access server, you can see [issue #9](https://github.com/Kevjinx/MERN-Project-Ecommerce-Shoop/issues/9) for more details. I've submitted a ticket with heroku. 
+
 ## Features
 
 Checkout process: Guides customers through the entire checkout process, including shipping, discount, payment method selection, and order confirmation.

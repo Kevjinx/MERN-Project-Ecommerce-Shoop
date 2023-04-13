@@ -17,9 +17,9 @@ Reviews: Allows users to leave reviews for products.
 
 Admin Product management: Allows administrators to add, edit, and remove products and categories.
 
-## Features to be added on the frontend 
-
 Admin Order Management: Allows administrators to manage orders, marked them as shipped/paid/delivered, and view the order history of individual customers.
+
+## Features to be added on the frontend 
 
 Paypal payment gateway: Allows users to pay for their orders using Paypal.
 

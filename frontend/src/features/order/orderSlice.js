@@ -160,31 +160,36 @@ export const { orderPayRequest, orderPaySuccess, orderPayFail, orderPayReset } =
   orderPaySlice.actions;
 
 // ********** order pay action **********
-export const payOrder =
-  (orderId, paymentResult) => async (dispatch, getState) => {
-    try {
-      dispatch(orderPayRequest());
-      const {
-        userLogin: { userInfo },
-      } = getState();
+export const payOrder = (orderId) => async (dispatch, getState) => {
+  try {
+    dispatch(orderPayRequest());
+    const {
+      userLogin: { userInfo },
+    } = getState();
 
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${userInfo.token}`,
-        },
-      };
+    const paymentResult = {
+      status: 'paid',
+      updateTime: Date.now(),
+      email: userInfo.email,
+    };
 
-      const { data } = await axios.put(
-        `${baseURL}/api/orders/${orderId}/pay`,
-        paymentResult,
-        config
-      );
-      dispatch(orderPaySuccess(data));
-    } catch (error) {
-      dispatch(orderPayFail(error.message));
-    }
-  };
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.put(
+      `${baseURL}/api/orders/${orderId}/pay`,
+      paymentResult,
+      config
+    );
+    dispatch(orderPaySuccess(data));
+  } catch (error) {
+    dispatch(orderPayFail(error.message));
+  }
+};
 
 // ********** order user list slice **********
 export const orderListMySlice = createSlice({

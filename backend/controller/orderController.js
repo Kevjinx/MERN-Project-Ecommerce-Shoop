@@ -61,7 +61,7 @@ const getMyOrders = expressAsyncHandler(async (req, res) => {
   res.json(orders);
 });
 
-// @type    GET
+// @type    PUT
 // @route   /api/orders/:id/pay
 // @desc    update order to paid
 // @access  private
@@ -69,16 +69,11 @@ const getMyOrders = expressAsyncHandler(async (req, res) => {
 const updateOrderToPaid = expressAsyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id);
 
+  const { paymentResult } = req.body;
   if (order) {
     order.isPaid = true;
     order.paidAt = Date.now();
-    order.paymentResult = {
-      id: req.body.id,
-      status: req.body.status,
-      update_time: req.body.update_time,
-      email_address: req.body.payer.email_address,
-    };
-
+    order.paymentResult = paymentResult;
     const updatedOrder = await order.save();
 
     res.json(updatedOrder);

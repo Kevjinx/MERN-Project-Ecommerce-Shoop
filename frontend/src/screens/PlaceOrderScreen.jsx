@@ -2,7 +2,11 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Row, Col, Image, Card, Container, Button } from 'react-bootstrap';
 import CheckoutSteps from '../components/CheckoutSteps';
-import { createOrder, orderCreateReset } from '../features/order/orderSlice.js';
+import {
+  createOrder,
+  orderCreateReset,
+  payOrder,
+} from '../features/order/orderSlice.js';
 import { userDetailReset } from '../features/user/userSlice.js';
 import { useNavigate } from 'react-router-dom';
 import formattedDate from '../Utils/formatDate.js';
@@ -36,6 +40,7 @@ const PlaceOrderScreen = () => {
       dispatch(orderCreateReset());
       dispatch(userDetailReset());
       navigate(`/order/${order._id}`);
+      dispatch(payOrder(order._id, order.paymentResult));
     }
   }, [success, order, dispatch, navigate]);
 
@@ -53,6 +58,7 @@ const PlaceOrderScreen = () => {
     console.log(updatedOrder);
 
     dispatch(createOrder(updatedOrder));
+    console.log(order);
   };
 
   const itemRow = (cartProducts) => {

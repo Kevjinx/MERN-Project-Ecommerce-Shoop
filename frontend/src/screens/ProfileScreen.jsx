@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { Table, Form, Button, Row, Col } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import {
   fetchUserDetails,
   updateUserProfile,
   userUpdateProfileReset,
 } from '../features/user/userSlice.js';
+import {
+  getOrderDetail,
+  getListMyOrders,
+} from '../features/order/orderSlice.js';
 import { useDispatch, useSelector } from 'react-redux';
-import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Message from '../components/Message.jsx';
 import Loader from '../components/Loader.jsx';
@@ -17,7 +22,6 @@ const ProfileScreen = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [message, setMessage] = useState(null);
-  // const [success, setSuccess] = useState(null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,6 +33,9 @@ const ProfileScreen = () => {
 
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const updateSuccess = userUpdateProfile.success;
+
+  const orderListMy = useSelector((state) => state.orderListMy);
+  const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -44,7 +51,11 @@ const ProfileScreen = () => {
         firstName,
         lastName,
       };
-      dispatch(updateUserProfile(updatedUser));
+      dispatch(updateUserProfile(updatedUser)).then(() => {
+        if (updateSuccess) {
+          dispatch(userUpdateProfileReset());
+        }
+      });
       setMessage(null);
     }
   };
@@ -52,17 +63,21 @@ const ProfileScreen = () => {
   useEffect(() => {
     if (!userLogin.userInfo.token) {
       navigate('/login');
-    } else {
-      if (!user._id) {
-        dispatch(userUpdateProfileReset());
+    }
+  }, [navigate, userLogin]);
+
+  useEffect(() => {
+    if (userLogin.userInfo.token) {
+      if (updateSuccess) {
         dispatch(fetchUserDetails('profile'));
+        dispatch(getListMyOrders());
       } else {
         setEmail(user.email);
         setFirstName(user.firstName);
         setLastName(user.lastName);
       }
     }
-  }, [dispatch, user, navigate, userLogin]);
+  }, [dispatch, user, updateSuccess, userLogin]);
 
   return (
     <>
@@ -131,9 +146,63 @@ const ProfileScreen = () => {
             </Button>
           </Form>
         </Col>
-        {/* <Col md={8}>
+        <Col md={8}>
           <h2>My Orders</h2>
-        </Col> */}
+          {loadingOrders ? (
+            <Loader />
+          ) : errorOrders ? (
+            <Message variant="danger">{errorOrders}</Message>
+          ) : (
+            <Table striped bordered hover responsive className="table-sm">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>DATE</th>
+                  <th>TOTAL</th>
+                  <th>PAID</th>
+                  <th>DELIVERED</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {orders.map((order) => (
+                  <tr key={order._id}>
+                    <td>{order._id}</td>
+                    <td>{order.createdAt.substring(0, 10)}</td>
+                    <td>{order.totalPrice}</td>
+                    <td>
+                      {order.isPaid ? (
+                        order.paidAt.substring(0, 10)
+                      ) : (
+                        <i
+                          className="fas fa-times"
+                          style={{ color: 'red' }}
+                        ></i>
+                      )}
+                    </td>
+                    <td>
+                      {order.isDelivered ? (
+                        order.deliveredAt.substring(0, 10)
+                      ) : (
+                        <i
+                          className="fas fa-times"
+                          style={{ color: 'red' }}
+                        ></i>
+                      )}
+                    </td>
+                    <td>
+                      <LinkContainer to={`/order/${order._id}`}>
+                        <Button className="btn-sm" variant="light">
+                          Details
+                        </Button>
+                      </LinkContainer>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          )}
+        </Col>
       </Row>
     </>
   );

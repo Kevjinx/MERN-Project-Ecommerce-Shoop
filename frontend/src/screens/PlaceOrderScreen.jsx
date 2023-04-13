@@ -37,7 +37,7 @@ const PlaceOrderScreen = () => {
       dispatch(userDetailReset());
       navigate(`/order/${order._id}`);
     }
-  }, [success]);
+  }, [success, order, dispatch, navigate]);
 
   const updatedOrder = {
     orderItems: cartProducts,

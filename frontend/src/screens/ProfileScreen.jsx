@@ -70,7 +70,6 @@ const ProfileScreen = () => {
     if (userLogin.userInfo.token) {
       if (updateSuccess) {
         dispatch(fetchUserDetails('profile'));
-        dispatch(getListMyOrders());
       } else {
         setEmail(user.email);
         setFirstName(user.firstName);
@@ -78,6 +77,12 @@ const ProfileScreen = () => {
       }
     }
   }, [dispatch, user, updateSuccess, userLogin]);
+
+  useEffect(() => {
+    if (userLogin.userInfo.token) {
+      dispatch(getListMyOrders());
+    }
+  }, [dispatch, userLogin]);
 
   return (
     <>

@@ -106,10 +106,15 @@ const updateProduct = expressAsyncHandler(async (req, res) => {
 // @desc    fetch one product
 // @access  public
 const createProductReview = expressAsyncHandler(async (req, res) => {
+  console.log('reqbody', req.body);
+  console.log('requse', req.user);
   const { rating, comment } = req.body;
-  console.log(rating, comment);
   const { productId } = req.params;
   const product = await Product.findById(productId);
+  if (!product.reviews) {
+    product.reviews = [];
+  }
+
   if (product) {
     const review = {
       firstName: req.user.firstName,

@@ -32,7 +32,7 @@ if (process.env.NODE_ENV === 'production') {
 export const productDetailSlice = createSlice({
   name: 'product',
   initialState: {
-    product: { reviews: [] },
+    product: [],
     loading: false,
     error: null,
   },
@@ -107,7 +107,6 @@ export const fetchProducts = () => async (dispatch) => {
 export const productDeleteSlice = createSlice({
   name: 'productDelete',
   initialState: {
-    productDelete: [],
     loading: false,
     error: null,
   },
@@ -117,7 +116,7 @@ export const productDeleteSlice = createSlice({
     },
     [PRODUCT_ADMIN_DELETE_SUCCESS]: (state, action) => {
       state.loading = false;
-      state.productDelete = action.payload;
+      state.success = true;
     },
     [PRODUCT_ADMIN_DELETE_FAIL]: (state, action) => {
       state.loading = false;
@@ -160,7 +159,6 @@ export const deleteProductById = (id) => async (dispatch, getState) => {
 export const productAdminCreateSlice = createSlice({
   name: 'productCreate',
   initialState: {
-    productCreate: [],
     loading: false,
     error: null,
   },
@@ -170,7 +168,7 @@ export const productAdminCreateSlice = createSlice({
     },
     [PRODUCT_ADMIN_CREATE_SUCCESS]: (state, action) => {
       state.loading = false;
-      state.productCreate = action.payload;
+      state.success = true;
     },
     [PRODUCT_ADMIN_CREATE_FAIL]: (state, action) => {
       state.loading = false;
@@ -222,6 +220,7 @@ export const productAdminUpdateSlice = createSlice({
     },
     [PRODUCT_ADMIN_UPDATE_SUCCESS]: (state, action) => {
       state.loading = false;
+      state.success = true;
       state.productUpdate = action.payload;
     },
     [PRODUCT_ADMIN_UPDATE_FAIL]: (state, action) => {
@@ -277,7 +276,7 @@ export const productCreateReviewSlice = createSlice({
     },
     [PRODUCT_CREATE_REVIEW_SUCCESS]: (state, action) => {
       state.loading = false;
-      state.productCreateReview = action.payload;
+      state.success = true;
     },
     [PRODUCT_CREATE_REVIEW_FAIL]: (state, action) => {
       state.loading = false;

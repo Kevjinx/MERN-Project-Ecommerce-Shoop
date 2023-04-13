@@ -21,9 +21,10 @@ const Review = ({ productId }) => {
     error: errorProductReview,
   } = productCreateReview;
 
-  const { loading, error, product, reviews } = useSelector(
+  const { loading, error, product } = useSelector(
     (state) => state.productDetail
   );
+  const { reviews } = product;
 
   const { userInfo } = useSelector((state) => state.userLogin);
 

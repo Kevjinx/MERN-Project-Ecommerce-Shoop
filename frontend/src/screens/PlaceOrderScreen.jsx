@@ -35,7 +35,7 @@ const PlaceOrderScreen = () => {
     if (success && order) {
       dispatch(orderCreateReset());
       dispatch(userDetailReset());
-      navigate(`/order/${updatedOrder._id}`);
+      navigate(`/order/${order._id}`);
     }
   }, [success]);
 

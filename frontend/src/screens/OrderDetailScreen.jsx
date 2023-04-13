@@ -12,11 +12,12 @@ import {
 
 const OrderDetailScreen = () => {
   const { orderId } = useParams();
-  console.log(orderId); //correct
+  console.log(orderId);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isDelivered, setIsDelivered] = useState(false);
+  const [isPaid, setIsPaid] = useState(false); // Add state for isPaid
 
   const orderDetail = useSelector((state) => state.orderDetail);
   const { order, loading, error } = orderDetail;
@@ -67,6 +68,12 @@ const OrderDetailScreen = () => {
     dispatch(getOrderDetail(orderId));
   }, [dispatch, orderId]);
 
+  useEffect(() => {
+    if (order && order.isPaid) {
+      setIsPaid(true);
+    }
+  }, [order]);
+
   const deliverHandler = () => {
     dispatch(deliverOrder(order));
     setIsDelivered(true);
@@ -114,7 +121,7 @@ const OrderDetailScreen = () => {
                   <strong>Method: </strong>
                   {order.paymentMethod}
                 </p>
-                {order.isPaid ? (
+                {isPaid ? (
                   <Message variant="success">Paid on {order.paidAt}</Message>
                 ) : (
                   <Message variant="danger">Not Paid</Message>

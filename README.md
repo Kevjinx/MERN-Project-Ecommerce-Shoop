@@ -5,6 +5,18 @@ https://shoop.herokuapp.com
 
 note: heroku login can't access server, you can see [issue #9](https://github.com/Kevjinx/MERN-Project-Ecommerce-Shoop/issues/9) for more details. I've submitted a ticket with heroku. 
 
+
+## Loom Video Demo
+
+<a href="https://www.loom.com/share/fc65620002f54d55842f7e5790d305fc">
+    <p>A really long explanation of Shoop, a full stack ecommerce Bike Shoop - Watch Video</p>
+    <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/fc65620002f54d55842f7e5790d305fc-with-play.gif">
+  </a>
+  
+ ![](https://cdn.loom.com/sessions/thumbnails/fc65620002f54d55842f7e5790d305fc-with-play.gif)
+
+  
+
 ## Features
 
 Checkout process: Guides customers through the entire checkout process, including shipping, discount, payment method selection, and order confirmation.
